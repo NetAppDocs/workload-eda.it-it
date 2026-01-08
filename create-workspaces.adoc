@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: create-workspaces.html 
+keywords: manage, workspace, snapshot, project 
+summary: 'Un"area di lavoro in NetApp Workload Factory per EDA è una rappresentazione Perforce di un progetto basata su uno snapshot del progetto. È possibile creare spazi di lavoro come parte di un progetto EDA.' 
+---
+= Creare uno spazio di lavoro EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Un'area di lavoro in NetApp Workload Factory per EDA è una rappresentazione Perforce di un progetto in un momento specifico. Gli spazi di lavoro vengono creati utilizzando come base uno snapshot del progetto. È possibile creare nuovi spazi di lavoro all'interno di un progetto EDA. È possibile creare spazi di lavoro dall'interfaccia utente di Perforce.
+
+.Prima di iniziare
+Assicurati di aver integrato EDA con Perforce Helix Visual Client. Vedere link:integrate-perforce.html["Integrare EDA con Perforce"^] per maggiori informazioni.
+
+.Passi
+. Accedi a Perforce.
+. Nel menu Perforce, seleziona *Visualizza* > *WF*.
++
+La schermata di accesso a Workload Factory viene visualizzata nell'interfaccia utente di Perforce.
+
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro quali storage, eda, ai, database, vmware e amministrazione."] e quindi selezionare *EDA*.
+. Selezionare *CI/CD*.
+. Selezionare *Crea progetto* e quindi *Crea area di lavoro*.
+. Nella pagina Crea un progetto di area di lavoro, fornisci quanto segue:
++
+.. Selezionare uno snapshot da utilizzare come base per l'area di lavoro.
+.. Inserisci un nome per l'area di lavoro.
+.. Facoltativamente, inserisci un identificativo utente per rivendicare l'area di lavoro. Questo identificatore deve corrispondere all'ID utente Perforce dello sviluppatore che utilizzerà questo spazio di lavoro.
+
+
+. Seleziona *Crea*.
+
+
+.Risultato
+L'area di lavoro viene creata e visualizzata nell'elenco delle aree di lavoro nella pagina Aree di lavoro.

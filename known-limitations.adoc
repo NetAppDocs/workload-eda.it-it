@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: known-limitations.html 
+keywords: limitations, builders, eda, electronic design automation 
+summary: Le limitazioni note identificano piattaforme, dispositivi o funzioni che non sono supportati da questa versione del prodotto o che non interagiscono correttamente con esso. Esamina attentamente queste limitazioni. 
+---
+= Limitazioni note di NetApp Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Le limitazioni note identificano piattaforme, dispositivi o funzioni che non sono supportati da questa versione del prodotto o che non interagiscono correttamente con esso. Esamina attentamente queste limitazioni.
+
+
+
+== Sono richieste autorizzazioni dell'operatore
+
+Per funzionare correttamente, NetApp Workload Factory per EDA richiede le autorizzazioni dell'operatore.

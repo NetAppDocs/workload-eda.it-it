@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: version-projects.html 
+keywords: snapshot, clone, project, protect, API, version, versions, versioning 
+summary: Gestisci le versioni dei tuoi progetti EDA utilizzando snapshot e cloni. 
+---
+= Gestisci le versioni di NetApp Workload Factory per i progetti EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lavora con diverse versioni dei tuoi progetti EDA creando snapshot e cloni on-demand direttamente da Workload Factory. Gli snapshot e i cloni di un progetto vengono archiviati nel file system associato al progetto al momento della sua creazione. È inoltre possibile gestire snapshot e cloni utilizzando https://console.workloads.netapp.com/api-doc["API REST di Workload Factory"^].
+
+
+
+== Creare uno snapshot di un progetto
+
+È possibile creare uno snapshot di un progetto seguendo questi passaggi.
+
+.Passi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro quali storage, eda, ai, database, vmware e amministrazione."] e quindi selezionare *EDA*.
+. Selezionare *CI/CD*.
+. Seleziona *Vai alla pagina Progetti*.
+. Nella pagina Progetti, seleziona image:icon-action.png["il pulsante di opzione"] per il progetto di cui vuoi creare uno snapshot.
+. Nel menu visualizzato, seleziona *Crea uno snapshot*.
+. Nella finestra di dialogo *Crea snapshot*, scegli un nome per lo snapshot e seleziona *Crea*.
+
+
+
+
+== Creare un clone di un progetto
+
+Per clonare un progetto EDA da uno snapshot, seguire questi passaggi. Quando si crea un clone, viene creato un nuovo volume modificabile che conterrà il clone.
+
+.Passi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro quali storage, eda, ai, database, vmware e amministrazione."] e quindi selezionare *EDA*.
+. Selezionare *CI/CD*.
+. Seleziona *Vai alla pagina Progetti*.
+. Nella pagina Progetti, seleziona image:icon-action.png["il pulsante di opzione"] per il progetto che vuoi clonare.
+. Nel menu che si apre, seleziona *Crea un clone*.
+. Nella finestra di dialogo *Crea clone*, procedi come segue:
++
+.. Inserisci un nome per il clone.
++
+Il nome predefinito per il clone è il nome del progetto con un suffisso della data e dell'ora correnti.
+
+.. Selezionare uno snapshot da utilizzare come base per il clone.
+.. Seleziona *Crea*.
+
+
+
+
+.Risultato
+Workload Factory crea un nuovo clone del progetto e il clone appare come un nuovo progetto nella pagina Progetti.

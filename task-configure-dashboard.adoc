@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: task-configure-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation 
+summary: Configura la tua dashboard EDA aggiungendo tag per raccogliere le metriche. 
+---
+= Utilizzare la dashboard
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Quando accedi per la prima volta a EDA, puoi utilizzare la dashboard per osservare l'utilizzo del progetto nei file system e nei volumi FSx for ONTAP . La dashboard include diversi filtri predefiniti che puoi utilizzare per personalizzare le informazioni visualizzate. Inoltre, puoi creare e applicare i tuoi tag AWS per organizzare e filtrare i dati in base alle tue specifiche esigenze aziendali.
+
+La dashboard consente di monitorare l'utilizzo dello storage in termini di capacità allocata, capacità utilizzata, throughput e IOPS.
+
+Le metriche CloudWatch raccolte includono:
+
+* Capacità fornita: metrica a livello di volume che rappresenta la capacità di archiviazione fornita.
+* Capacità utilizzata: metrica a livello di volume che rappresenta lo spazio di archiviazione utilizzato.
+* Throughput medio/massimo: calcolato come media o massimo della somma di DataReadBytes e DataWriteBytes nel periodo di tempo specificato.
+* IOPS medi/massimi: calcolati come media o massimo della somma di DataReadOperations, DataWriteOperations e MetadataOperations nel periodo di tempo specificato.
+
+
+
+
+== Imposta la dashboard
+
+Per utilizzare efficacemente la dashboard, configura i tag AWS sui volumi FSx for ONTAP in base ai requisiti aziendali, ad esempio tag che rappresentano progetti o unità aziendali. Per i dettagli, vedere <<Configura filtri personalizzati>>.
+
+I tag AWS sono metadati per le tue risorse AWS. Ti aiutano a categorizzare le tue risorse AWS in diversi modi, ad esempio per progetto, applicazione o unità aziendale. Per maggiori dettagli sul tagging, vedere https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["Cosa sono i tag?"^] E  https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Riferimento API per il tagging dei gruppi di risorse AWS"^].
+
+Una volta configurati, nella pagina *Configurazione tag* fornisci i nomi delle chiavi dei tag AWS e le etichette corrispondenti da visualizzare nella dashboard.
+
+Quando questi tag vengono applicati, Workload Factory inizia a raccogliere e visualizzare le metriche CloudWatch pertinenti.
+
+La dashboard diventa uno strumento dinamico per organizzare, monitorare i costi e filtrare le risorse in base alle esigenze della tua organizzazione.
+
+
+
+=== Configura filtri personalizzati
+
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro quali storage, eda, ai, database, vmware e amministrazione."] e quindi selezionare *EDA*.
++
+Se non hai ancora configurato la tua dashboard, ti verrà automaticamente chiesto di farlo.
+
+. Per ogni filtro richiesto, aggiungi un nome di etichetta del filtro e il nome della chiave del tag AWS che desideri associare ad esso.
+. Selezionare *Applica*.
+. Per visualizzare le modifiche dopo aver applicato tag o filtri, seleziona l'icona di aggiornamento sulla dashboard. La dashboard dinamica, configurata con i nuovi filtri, viene visualizzata nella dashboard dei progetti EDA.
+. Per modificare in seguito la configurazione della dashboard, seleziona *Configura*.
+
+
+
+
+=== Filtra la dashboard
+
+È possibile filtrare le informazioni visualizzate sulla dashboard selezionando uno o tutti i seguenti filtri predefiniti, nonché eventuali filtri personalizzati creati:
+
+* Credenziali
+* Regione
+* Sistema di file
+* Tipo di volume
+* Intervallo di tempo
+
+
+Dopo aver selezionato i filtri desiderati, seleziona l'icona di aggiornamento per aggiornare le informazioni della dashboard.
+
+Per una spiegazione delle informazioni mostrate su una scheda, seleziona l'icona informativa relativa a quella scheda.
