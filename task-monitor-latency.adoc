@@ -1,0 +1,176 @@
+---
+sidebar: sidebar 
+permalink: task-monitor-latency.html 
+keywords: latency analysis, CloudWatch alarms, volume latency, read latency, write latency, critical events, warning events, latency thresholds, IOPS thresholds, latency monitoring, FSx for ONTAP 
+summary: Monitora e analizza le performance di latenza del volume con soglie configurabili per eventi di avviso e critici per identificare in modo proattivo i colli di bottiglia delle performance. 
+---
+= Monitorare la latenza del volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Utilizzando l'analisi della latenza puoi monitorare proattivamente le performance dei volumi tracciando le metriche di latenza di lettura e scrittura sui tuoi file system FSx for ONTAP. Configura soglie personalizzabili per eventi di avviso e critici per identificare potenziali colli di bottiglia delle performance prima che impattino i tuoi carichi di lavoro EDA.
+
+
+
+== Panoramica
+
+L'analisi della latenza raccoglie e monitora le metriche CloudWatch per le operazioni di lettura e scrittura sui volumi. Quando sia le soglie di latenza che quelle di IOPS vengono superate per tutti i punti dati entro un intervallo di tempo specificato, il sistema genera avvisi che vengono visualizzati nella tabella degli eventi di latenza. Ciò consente di:
+
+* Identificare i volumi che presentano peggioramento delle performance.
+* Distinguere tra problemi di performance di livello di avviso e di livello critico.
+* Monitora le tendenze di latenza nel tempo per ottimizzare le configurazioni dello storage.
+* Adotta misure proattive prima che la latenza influisca sulle performance del carico di lavoro.
+
+
+
+
+== Prima di iniziare
+
+Per utilizzare l'analisi della latenza, è necessario disporre delle credenziali AWS configurate in Workload Factory. La funzionalità richiede l'accesso alle metriche CloudWatch per tutti i volumi FSx for ONTAP associati alle credenziali AWS.
+
+Se non hai configurato le credenziali AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aggiungi credenziali AWS"^].
+
+
+
+== Configurare le soglie di latenza
+
+È possibile configurare soglie sia per gli eventi di avviso che per quelli critici. Ogni tipo di evento include soglie separate per le operazioni di lettura e scrittura. Il sistema valuta costantemente queste soglie e genera avvisi quando vengono soddisfatte le condizioni.
+
+
+NOTE: È necessario impostare soglie per gli eventi critici superiori alle soglie per gli eventi di avviso per garantire una corretta escalation degli avvisi. In caso contrario, non è possibile salvare la configurazione.
+
+.Informazioni su questa attività
+Affinché un avviso venga attivato, sia la soglia di latenza che la soglia di IOPS devono essere superate per tutti i punti dati nell'intervallo di tempo specificato. Questa logica a doppia condizione contribuisce a ridurre i falsi positivi garantendo che un'elevata latenza sia mantenuta sotto carico significativo.
+
+.Passi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *EDA*.
+. Dal menu EDA, seleziona *Latenza*.
+. Nella pagina di configurazione della latenza EDA, configurare le seguenti soglie:
++
+** *Eventi di warning*
++
+*** *Soglia di latenza di lettura*: Inserire la soglia di latenza in millisecondi. Predefinito: 6 ms.
+*** *Soglia IOPS di lettura*: immettere la soglia IOPS in operazioni per secondo. Predefinito: 100 ops/sec.
+*** *Intervallo di tempo di lettura*: immettere l'intervallo di tempo in minuti (5-20). Predefinito: 10 minuti.
+*** *Soglia di latenza in scrittura*: immettere la soglia di latenza in millisecondi. Predefinito: 8 ms.
+*** *Soglia IOPS di scrittura*: Inserire la soglia IOPS in operazioni per secondo. Predefinito: 100 ops/sec.
+*** *Intervallo di tempo di scrittura*: inserisci l'intervallo di tempo in minuti (5-20). Predefinito: 10 minuti.
+
+
+** *Eventi critici*
++
+*** *Soglia di latenza di lettura*: immettere la soglia di latenza in millisecondi. Predefinito: 12 ms.
+*** *Soglia IOPS di lettura*: immettere la soglia IOPS in operazioni per secondo. Predefinito: 100 ops/sec.
+*** *Intervallo di tempo di lettura*: immettere l'intervallo di tempo in minuti (5-20). Predefinito: 10 minuti.
+*** *Soglia di latenza in scrittura*: immettere la soglia di latenza in millisecondi. Predefinito: 15 ms.
+*** *Soglia IOPS di scrittura*: Inserire la soglia IOPS in operazioni per secondo. Predefinito: 100 ops/sec.
+*** *Intervallo di tempo di scrittura*: inserisci l'intervallo di tempo in minuti (5-20). Predefinito: 10 minuti.
+
+
+
+
+. Selezionare *Applica*.
+
+
+.Risultato
+Workload Factory inizia a raccogliere le metriche di latenza per tutti i volumi FSx for ONTAP associati alle tue credenziali AWS. Le metriche vengono raccolte almeno ogni 20 minuti. La tabella degli eventi di latenza mostra tutti i volumi che superano le soglie configurate.
+
+
+
+== Comprensione degli avvisi
+
+La funzionalità di analisi della latenza utilizza gli allarmi CloudWatch per monitorare le performance del volume. Comprendere come vengono attivati gli avvisi aiuta a configurare soglie appropriate e a interpretare i risultati.
+
+
+
+=== Metriche raccolte
+
+Il sistema raccoglie le seguenti metriche CloudWatch per ogni volume:
+
+* *Soglia di latenza di lettura*: calcolata come 1000 * m2/(m1+0.000001) dove m1 = DataReadOperations e m2 = DataReadOperationTime
+* *Soglia di latenza di scrittura*: calcolata come 1000 * m2/(m1+0.000001) dove m1 = DataWriteOperations e m2 = DataWriteOperationTime
+
+
+
+
+=== Condizioni di attivazione dell'avviso
+
+Un avviso viene attivato quando vengono soddisfatte tutte le seguenti condizioni:
+
+* La soglia di latenza è superata per il tipo di operazione (lettura o scrittura).
+* La soglia IOPS è stata superata per il tipo di operazione.
+* Entrambe le condizioni persistono per tutti i punti dati all'interno dell'intervallo di tempo configurato.
+
+
+Ad esempio, con le soglie di avviso predefinite, un avviso di lettura viene attivato solo se la latenza di lettura supera i 6 ms E gli IOPS di lettura superano i 100 ops/sec per tutti i punti dati entro un periodo di 10 minuti.
+
+
+
+=== Gravità dell'evento
+
+* *Eventi di avviso*: indicano una latenza elevata che potrebbe richiedere attenzione.
+* *Eventi critici*: indicano una grave latenza che richiede un'indagine immediata.
+
+
+
+
+== Visualizza gli eventi di latenza
+
+La tabella degli eventi di latenza mostra tutti gli eventi di avviso e critici rilevati nelle ultime 72 ore. Utilizza questa tabella per monitorare le prestazioni dei volumi e identificare i volumi che richiedono ottimizzazione.
+
+.Informazioni aggiuntive
+* Solo l'ultima violazione per ciascun volume appare nella tabella. Se un volume subisce più violazioni, viene visualizzato solo l'evento più recente.
+* Gli eventi vengono rimossi automaticamente dopo 72 ore.
+* La tabella visualizza un massimo di 200 eventi. Gli eventi più vecchi vengono rimossi man mano che vengono aggiunti nuovi eventi.
+
+
+.Passi
+. Nella scheda *Latenza*, visualizza la tabella degli eventi di latenza.
+. Esaminare le informazioni per ciascun evento, inclusi:
++
+** *Gravità*: indica se l'evento è Critico o di Avviso.
+** *Nome volume*: Il nome del volume interessato.
+** *ID volume*: L'ID del volume interessato.
+** *File system*: Il file system FSx for ONTAP contenente il volume.
+** *Time detected*: Quando è stata rilevata la violazione
+** *Latenza mediana*: Il valore di latenza mediana durante il periodo di violazione.
+
+
+. Per ordinare la tabella, seleziona un'intestazione di colonna. Per impostazione predefinita, gli eventi critici vengono visualizzati per primi ordinati per ora, seguiti dagli eventi di avviso ordinati per ora.
+. Per ignorare uno o più eventi, accanto a ciascun evento seleziona *Dismiss*.
+. Per aggiungere colonne alla tabella, seleziona l'icona della colonna, scegli le colonne e seleziona *Applica*.
+
+
+
+
+== Gestisci la configurazione della latenza
+
+Dopo la configurazione iniziale, puoi modificare le soglie.
+
+.Passi
+. Nella pagina *Latenza*, seleziona *Modifica*.
+. Modifica uno qualsiasi dei valori soglia secondo necessità.
++
+
+NOTE: Assicurarsi che le soglie critiche rimangano superiori alle soglie di avviso. Il sistema visualizza un errore se si configurano soglie critiche inferiori alle soglie di avviso.
+
+. Seleziona *Applica* per salvare le modifiche.
+
+
+
+
+== Best practice
+
+Considerare queste raccomandazioni quando si configura e si utilizza l'analisi della latenza:
+
+* *Imposta soglie realistiche*: configura le soglie in base ai requisiti del tuo carico di lavoro. I valori predefiniti forniscono un punto di partenza ma potrebbero richiedere adattamenti per il tuo ambiente specifico.
+* *Inizia con le soglie di avviso*: usa gli eventi di avviso per stabilire le aspettative di prestazioni di base prima di perfezionare le soglie critiche.
+* *Considera attentamente gli intervalli di tempo*: intervalli di tempo più brevi (5-10 minuti) rilevano i problemi più velocemente ma potrebbero generare più avvisi. Intervalli di tempo più lunghi (15-20 minuti) riducono i falsi positivi ma potrebbero ritardare il rilevamento.
+* *Monitorare le tendenze*: rivedere regolarmente la tabella degli eventi di latenza per identificare modelli o problemi ricorrenti che potrebbero indicare problemi di configurazione sottostanti.
+* *Coordinare le soglie di IOPS e latenza*: la logica a doppia condizione implica che entrambe debbano essere superate. L'impostazione di soglie di IOPS molto elevate potrebbe impedire l'emissione di avvisi anche quando la latenza è problematica.
+* *Esaminare gli eventi ignorati*: esaminare periodicamente i motivi per cui gli eventi sono stati ignorati per identificare opportunità di adeguamento della soglia o di miglioramenti dell'infrastruttura.
+

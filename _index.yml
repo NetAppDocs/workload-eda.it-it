@@ -17,6 +17,10 @@ indexpage:
     links:
     - title: Utilizzare la dashboard
       url: "/task-configure-dashboard.html"
+  - title: Monitorare la latenza del volume
+    links:
+    - title: Monitorare la latenza del volume
+      url: "/task-monitor-latency.html"
   - title: Utilizzare l'integrazione Perforce
     links:
     - title: Scopri di più sull'integrazione di Perforce

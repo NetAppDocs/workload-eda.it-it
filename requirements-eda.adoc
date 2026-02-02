@@ -19,6 +19,9 @@ Credenziali e autorizzazioni AWS:: È necessario aggiungere le credenziali AWS a
 
 Al momento, le autorizzazioni in modalità _base_ e _sola lettura_ non sono supportate.
 
+
+NOTE: Sono necessarie anche le credenziali AWS per utilizzare la funzionalità di monitoraggio della latenza, che raccoglie le metriche CloudWatch per l'analisi delle performance del volume. link:task-monitor-latency.html["Scopri il monitoraggio della latenza"].
+
 https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Scopri come aggiungere le credenziali AWS a Workload Factory"^]
 
 FSx per il file system ONTAP:: È necessario almeno un FSx per il file system ONTAP :
