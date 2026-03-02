@@ -1,0 +1,214 @@
+---
+sidebar: sidebar 
+permalink: task-use-overview-dashboard.html 
+keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, cluster usage, capacity, throughput, IOPS, EMS events, latency events, performance widgets, clusters table, volume placement, scale up, scale down, CloudWatch metrics, CSV export 
+summary: 'Utilizza la dashboard di panoramica per monitorare lo stato, la capacità e il throughput dei tuoi cluster FSx for ONTAP. Visualizza l"utilizzo dei cluster su larga scala e prendi decisioni informate sul posizionamento dei volumi e sulla scalabilità della capacità.' 
+---
+= Utilizza la dashboard di panoramica nei carichi di lavoro EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+In qualità di amministratore IT che gestisce carichi di lavoro EDA su decine di file system FSx for ONTAP, puoi utilizzare la dashboard di panoramica per rispondere alle domande operative quotidiane più comuni sullo stato dei tuoi cluster. Utilizzala per determinare dove posizionare nuovi volumi o job, comprendere l'utilizzo dei cluster su larga scala e prendere decisioni informate sulla scalabilità della capacità e del throughput verso l'alto o verso il basso.
+
+
+
+== Panoramica
+
+La dashboard di panoramica fornisce una vista centralizzata del cluster che consente di comprendere rapidamente l'utilizzo del cluster in termini di capacità, throughput e IOPS, e di determinare dove posizionare nuovi volumi o spostare volumi e SVM esistenti.
+
+Il dashboard include:
+
+* *Stato di integrità del cluster*: informazioni riepilogate nella parte superiore della dashboard che evidenziano latenza, disponibilità e protezione, eventi di sicurezza e raccomandazioni sulla capacità nei tuoi cluster.
+* *Tabella dei cluster*: una tabella dettagliata e ricercabile che mostra le metriche di utilizzo e performance per ciascun cluster FSx for ONTAP, con supporto per filtraggio, ordinamento, impaginazione ed esportazione CSV.
+
+
+
+
+== Requisiti
+
+Prima di utilizzare la dashboard di panoramica, assicurati di soddisfare i seguenti requisiti:
+
+Credenziali AWS con autorizzazioni di visualizzazione:: È necessario disporre di credenziali AWS configurate in Workload Factory con almeno autorizzazioni di lettura (visualizzazione) per General Storage. Le credenziali configurate con modalità _Basic_ non sono supportate.
++
+--
+Se non hai configurato le credenziali con autorizzazioni di visualizzazione, vieni reindirizzato alla pagina di configurazione delle credenziali AWS quando apri la scheda Overview.
+
+Se non hai configurato le credenziali AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aggiungi credenziali AWS"^].
+
+--
+Attiva la dashboard EDA:: Dopo aver confermato le credenziali con autorizzazioni di visualizzazione, è necessario attivare la dashboard per Workload Factory per iniziare a raccogliere le metriche CloudWatch per i file system FSx for ONTAP.
+
+
+
+NOTE: La raccolta delle metriche potrebbe richiedere del tempo dopo aver fornito il consenso. La dashboard ti avvisa mentre la raccolta iniziale è in corso.
+
+.Passi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *EDA*.
+. Seleziona la scheda *Overview*.
+. Se non vengono rilevate credenziali con autorizzazioni di visualizzazione, seleziona *Aggiungi credenziali* e segui le istruzioni per configurare le credenziali AWS con autorizzazioni di visualizzazione. Quindi torna alla scheda *Overview*.
+. Esaminare la richiesta di consenso che descrive le metriche CloudWatch che verranno raccolte per i file system FSx for ONTAP.
+. Selezionare *Attiva* per attivare la dashboard e iniziare la raccolta delle metriche.
+
+
+.Risultato
+Workload Factory inizia a raccogliere le metriche CloudWatch per tutti i file system FSx for ONTAP associati alle credenziali AWS configurate. La dashboard di panoramica si popola man mano che le metriche diventano disponibili. Viene visualizzata una notifica se la raccolta è ancora in corso.
+
+
+
+== Filtra la dashboard
+
+Utilizza i filtri nella parte superiore della dashboard di panoramica per concentrarti sui file system rilevanti per l'attività corrente. Si tratta di filtri a livello di Workload Factory che si applicano sia alle informazioni sulla latenza e sugli eventi ONTAP, sia alla tabella dei cluster.
+
+Filtri disponibili:
+
+* *Regione*: Filtra per una o più regioni AWS.
+* *Account AWS*: Filtra in base a uno o più account AWS associati alle credenziali configurate.
+
+
+Quando si aggiornano le selezioni del filtro, tutte le informazioni vengono aggiornate per mostrare solo i file system e i cluster corrispondenti.
+
+
+
+== Stato di salute del cluster
+
+Nella parte superiore della dashboard di panoramica, viene visualizzata una vista riepilogativa dell'attività degli eventi e dello stato di integrità nei cluster filtrati. Queste informazioni vengono visualizzate solo quando almeno un link FSx for ONTAP è associato ai tuoi file system. Se non sono disponibili link, le informazioni vengono nascoste.
+
+
+
+=== Latenza
+
+La sezione Latenza mostra il numero di eventi di latenza rilevati nei file system interessati.
+
+* Il conteggio riflette gli eventi di latenza generati dalla funzionalità link:task-monitor-latency.html["Analisi della latenza FSx"].
+* Selezionando *Review* si accede alla scheda *Latenza*.
+* È possibile visualizzare le informazioni sulla latenza solo se è stato abilitato il monitoraggio della latenza. Se non sono state configurate soglie di latenza, selezionare *Configura*. Per dettagli sul monitoraggio della latenza, vedere link:task-monitor-latency.html["Analisi della latenza FSx"^].
+
+
+
+
+=== Capacità
+
+La sezione Capacity visualizza il numero di messaggi EMS relativi a problemi di capacità, insieme al numero di file system interessati.
+
+Gli eventi EMS monitorati includono, ma non sono limitati a:
+
+* Aggregato quasi pieno
+* Aggregato pieno
+* Volume quasi pieno
+* Volume pieno
+* riserva di Snapshot quasi piena
+* riserva di Snapshot piena
+* Dimensione directory piena
+* Flex groups completi
+* Inodes pieni
+
+
+Per un elenco completo degli eventi EMS monitorati, vedere link:https://docs.netapp.com/us-en/ontap-cli-9171/index.html["Eventi di capacità"^].
+
+Selezionando *Capacità* si accede alla schermata di analisi della capacità in Storage workloads.
+
+
+
+=== Disponibilità e protezione
+
+La sezione Availability & protection visualizza il numero di messaggi EMS relativi alla disponibilità e alla protezione dei dati, insieme al numero di file system interessati.
+
+Gli eventi monitorati includono eventi EMS correlati a FlexCache e SnapMirror.
+
+Selezionando *Availability & protection* si accede alla schermata di analisi della disponibilità e della protezione nei carichi di lavoro di archiviazione.
+
+
+
+=== Sicurezza e altro
+
+La sezione Sicurezza e altro mostra il numero di messaggi EMS per eventi non classificati in Capacità o Disponibilità e protezione, insieme al numero di file system interessati. Gli eventi monitorati includono la protezione anti-ransomware, errori di autenticazione NFS e altri.
+
+Selezionando *Security & other* si accede alla schermata di analisi degli eventi nei carichi di lavoro di archiviazione.
+
+
+
+== Tabella dei cluster
+
+La tabella dei cluster fornisce una vista dettagliata di ciascun cluster FSx for ONTAP associato alle credenziali AWS configurate, filtrato in base alla regione attiva e alle selezioni dell'account AWS. I dati vengono raccolti dalle metriche CloudWatch. La tabella supporta la ricerca, il filtraggio delle colonne, la paginazione, la personalizzazione delle colonne e l'esportazione in formato CSV.
+
+
+
+=== Cerca e filtra
+
+* Utilizzare la ricerca per cercare cluster specifici in base al nome, all'ID del file system, alla regione o ad altri attributi.
+* Seleziona qualsiasi intestazione di colonna per ordinare la tabella in base a quella colonna.
+* Utilizzare i controlli filtro per colonna per restringere i risultati all'interno della tabella.
+* La tabella è suddivisa in pagine. Utilizza i controlli di paginazione in fondo alla tabella per navigare tra le pagine.
+
+
+La tabella include le seguenti colonne. Le colonne visualizzate per impostazione predefinita sono indicate nella tabella. Puoi aggiungere o rimuovere colonne non predefinite utilizzando il selettore di colonna. Per le colonne di throughput, passa il mouse sull'intestazione della colonna per dettagli sul periodo di calcolo di 30 giorni e sulla formula di utilizzo.
+
+[cols="30,10,60"]
+|===
+| Colonna | Predefinito | Descrizione 
+
+
+| Nome del cluster | Sì | Il nome del cluster FSx for ONTAP. 
+
+
+| Regione | Sì | La regione AWS in cui è distribuito il cluster. 
+
+
+| Account AWS | No | L'account AWS associato al cluster. 
+
+
+| Capacità SSD utilizzata | Sì | La quantità di storage SSD attualmente in uso. 
+
+
+| Capacità totale SSD | Sì | La capacità totale di archiviazione SSD fornita. 
+
+
+| Utilizzo SSD | Sì | Percentuale di capacità SSD in uso. Utilizza questa percentuale per identificare i cluster che si avvicinano ai limiti di capacità prima che influiscano sulle prestazioni del carico di lavoro. 
+
+
+| Pool di capacità | Sì | La quantità di storage nel pool di capacità. 
+
+
+| Throughput medio | Sì | Il throughput medio degli ultimi 30 giorni. 
+
+
+| throughput P95 | No | Il throughput al 95° percentile negli ultimi 30 giorni. 
+
+
+| throughput P99 | Sì | Il throughput al 99° percentile negli ultimi 30 giorni. 
+
+
+| Throughput massimo | No | Il throughput massimo registrato negli ultimi 30 giorni. 
+
+
+| Utilizzo del throughput (P99) | Sì | Throughput P99 rispetto allo throughput SKU di throughput fornito. Utilizza questo per identificare i cluster in cui il throughput è costantemente vicino o al limite fornito. 
+
+
+| SKU di throughput | Sì | Il livello di throughput fornito. Confrontalo con l'utilizzo del throughput per valutare se lo SKU corrente ha le dimensioni appropriate. 
+|===
+
+
+=== Personalizza colonne
+
+Per aggiungere o rimuovere colonne dalla tabella dei cluster:
+
+. Seleziona l'icona di selezione delle colonne sopra la tabella a destra.
+. Seleziona o deseleziona le colonne che vuoi mostrare o nascondere.
+. Selezionare *Applica*.
+
+
+
+
+=== Esporta tabella in CSV
+
+È possibile esportare i dati della tabella attualmente visualizzati in un file CSV per ulteriori analisi o reportistica.
+
+. Applica tutti i filtri o le personalizzazioni delle colonne che desideri riflettere nell'esportazione.
+. Selezionare il pulsante image:button_download.png["Scarica"] sopra la tabella dei cluster.
+
+
+Il file CSV viene scaricato e contiene tutte le righe attualmente visibili nella tabella, incluse solo le colonne attualmente mostrate.

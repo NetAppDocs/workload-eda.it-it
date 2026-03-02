@@ -2,16 +2,18 @@
 sidebar: sidebar 
 permalink: task-configure-dashboard.html 
 keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation, volume details, top volumes, capacity utilization, throughput utilization, IOPS utilization 
-summary: Configura la tua dashboard EDA aggiungendo tag per raccogliere metriche. Personalizza i filtri con opzioni di selezione singola o multipla per soddisfare le tue esigenze aziendali. 
+summary: Configura la dashboard del progetto EDA aggiungendo tag per raccogliere metriche. Personalizza i filtri con opzioni di selezione singola o multipla per soddisfare le tue esigenze aziendali. 
 ---
-= Utilizzare la dashboard
+= Utilizzare la dashboard del progetto
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
 
 
 [role="lead"]
-Quando accedi per la prima volta a EDA, puoi utilizzare la dashboard per osservare l'utilizzo del progetto nei file system FSx for ONTAP e nei volumi. La dashboard include diversi filtri predefiniti che puoi utilizzare per personalizzare le informazioni visualizzate. Inoltre, puoi creare fino a cinque filtri personalizzati in base ai tuoi tag AWS, con opzioni di selezione singola o multipla, per organizzare e filtrare i dati secondo le tue specifiche esigenze aziendali.
+In qualità di amministratore IT o project manager che supervisiona i carichi di lavoro EDA, puoi utilizzare la scheda Project per osservare e analizzare l'utilizzo dei progetti nei tuoi file system e volumi FSx for ONTAP. La dashboard ti aiuta a pianificare la capacità, valutare i costi e prendere decisioni basate sui dati sull'allocazione delle risorse. Puoi creare fino a cinque filtri personalizzati in base ai tuoi tag AWS, con opzioni di selezione singola o multipla, per organizzare e filtrare i dati secondo i tuoi specifici requisiti aziendali come progetti, team o applicazioni.
+
+La dashboard fornisce visibilità sui modelli di utilizzo dello storage, aiutandoti a identificare progetti che richiedono molte risorse, monitorare i costi e ottimizzare l'allocazione dello storage prima che problemi di capacità o performance influiscano sulle tue simulazioni EDA.
 
 La dashboard consente di monitorare l'utilizzo dello storage per capacità allocata, capacità utilizzata, throughput e IOPS. Per un monitoraggio proattivo delle performance di latenza, vedere link:task-monitor-latency.html["Monitorare la latenza del volume"].
 
@@ -27,9 +29,11 @@ Le metriche CloudWatch raccolte includono:
 
 == Imposta la dashboard
 
+L'impostazione di filtri personalizzati consente di visualizzare metriche organizzate in base alla struttura aziendale, ad esempio per progetto, team o applicazione. Questa organizzazione aiuta a monitorare i costi in modo accurato, identificare quali progetti consumano più risorse e prendere decisioni informate sull'allocazione delle risorse e sulla pianificazione del budget.
+
 Per utilizzare efficacemente la dashboard, configura fino a cinque tag AWS sui tuoi volumi FSx for ONTAP in base alle tue esigenze aziendali, ad esempio tag che rappresentano progetti o unità aziendali. Per dettagli, vedi <<Configura filtri personalizzati>>.
 
-I tag AWS sono metadati per le tue risorse AWS. Ti aiutano a categorizzare le tue risorse AWS in diversi modi, ad esempio per progetto, applicazione o unità aziendale. Per maggiori dettagli sul tagging, vedere https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["Cosa sono i tag?"^] E  https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Riferimento API per il tagging dei gruppi di risorse AWS"^].
+I tag AWS sono metadati per le tue risorse AWS. Ti aiutano a categorizzare le tue risorse AWS in diversi modi, ad esempio per progetto, applicazione o unità aziendale. Per maggiori dettagli sul tagging, consulta https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["Cosa sono i tag?"^] e https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Riferimento API per il tagging dei gruppi di risorse AWS"^].
 
 Una volta configurati, nella pagina *Configurazione tag* fornisci i nomi delle chiavi dei tag AWS e le etichette corrispondenti da visualizzare nella dashboard.
 
@@ -41,10 +45,16 @@ La dashboard diventa uno strumento dinamico per organizzare, monitorare i costi 
 
 === Configura filtri personalizzati
 
+
+NOTE: Solo il primo utente amministratore ad accedere alla dashboard del progetto può configurare, aggiungere o eliminare filtri personalizzati. Tutti gli altri utenti, inclusi gli amministratori successivi, hanno accesso in sola lettura ai filtri.
+
+I filtri personalizzati consentono di organizzare i dati della dashboard in base al funzionamento della propria organizzazione. Allineando i filtri alla struttura del progetto, ai team o ai centri di costo, puoi accedere rapidamente ai dati specifici di cui hai bisogno senza dover navigare tra informazioni irrilevanti. Questo rende la pianificazione della capacità, il monitoraggio dei costi e il monitoraggio delle performance più efficienti.
+
 Puoi configurare fino a cinque filtri personalizzati in base ai tuoi tag AWS. Ogni filtro personalizzato richiede tre componenti: un nome per l'etichetta del filtro, un nome per la chiave del tag AWS e un tipo di selezione (selezione singola o multipla). Se non configuri alcun filtro personalizzato, i filtri predefiniti (file system, tipo di volume e intervallo di tempo) rimangono disponibili così puoi comunque visualizzare e interagire con le tue dashboard.
 
 . Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
 . Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro quali storage, eda, ai, database, vmware e amministrazione."] e quindi selezionare *EDA*.
+. Seleziona *Project*.
 +
 Se non hai ancora configurato la tua dashboard, ti verrà automaticamente chiesto di farlo.
 
@@ -72,6 +82,8 @@ Puoi eliminare un filtro personalizzato selezionando l'icona del cestino accanto
 
 === Filtra la dashboard
 
+I filtri ti aiutano a concentrarti su sottoinsiemi specifici delle tue risorse di storage, semplificando l'analisi delle tendenze, l'identificazione dei problemi e la generazione di report per gli stakeholder. Combinando più filtri, puoi rispondere a domande aziendali specifiche come "Quanto storage sta utilizzando il mio team di progetto ASIC?" o "Quali volumi nella regione US-West hanno le IOPS più elevate?"
+
 È possibile filtrare le informazioni visualizzate sulla dashboard utilizzando una combinazione di filtri predefiniti e di eventuali filtri personalizzati che hai creato.
 
 I seguenti filtri predefiniti sono sempre disponibili:
@@ -97,19 +109,21 @@ Per una spiegazione delle informazioni mostrate su una scheda, seleziona l'icona
 
 == Visualizza i dettagli del volume
 
+Comprendere sia le prestazioni aggregate che quelle dei singoli volumi aiuta a prendere decisioni informate sulla pianificazione della capacità e sull'ottimizzazione delle performance. La vista Totale mostra le tendenze complessive, mentre la vista Volume aiuta a identificare volumi specifici che potrebbero richiedere attenzione, ottimizzazione o risorse aggiuntive.
+
 La dashboard offre due modalità di visualizzazione per aiutarti ad analizzare le metriche dello storage: Total view e Volume view. Puoi passare da una modalità all'altra utilizzando le schede disponibili sulla dashboard.
 
 
 
 === Vista totale
 
-La vista Totale (predefinita) mostra metriche aggregate di tutti i volumi che corrispondono ai filtri selezionati. Questa vista fornisce una panoramica high-level delle performance complessive dello storage, mostrando capacità, IOPS e metriche di throughput combinate.
+La vista Totale (predefinita) mostra metriche aggregate per tutti i volumi che corrispondono ai filtri selezionati. Questa vista fornisce una panoramica high-level delle performance complessive dello storage, mostrando le metriche combinate di capacità, IOPS e throughput. Utilizza questa vista per comprendere le tendenze generali, pianificare le future esigenze di capacità e generare report sul consumo totale delle risorse tra progetti o team.
 
 
 
 === Vista del volume
 
-La vista Volume mostra le prestazioni dei singoli volumi nel tempo, mostrando i primi 10 volumi per ogni metrica. Questa vista aiuta a identificare volumi specifici che determinano l'utilizzo delle risorse e a osservarne il comportamento nel periodo di tempo selezionato.
+La vista Volume mostra le prestazioni dei singoli volumi nel tempo, mostrando i primi 10 volumi per ogni metrica. Questa vista aiuta a identificare volumi specifici che determinano il consumo di risorse e a osservarne il comportamento nel periodo di tempo selezionato. Utilizza questa vista per individuare colli di bottiglia nelle performance, identificare volumi che potrebbero richiedere un dimensionamento corretto o individuare quali progetti o carichi di lavoro specifici consumano più risorse.
 
 Per passare alla visualizzazione Volume, seleziona la scheda *Volume* nella dashboard.
 
@@ -129,6 +143,8 @@ L'asse orizzontale mostra l'intervallo di tempo, mentre una legenda mostra tutti
 
 
 ==== Dati di volume interattivi
+
+I dati interattivi visualizzati al passaggio del mouse forniscono metriche precise in momenti specifici, aiutando a correlare le variazioni delle performance con eventi o intervalli di tempo specifici. Queste informazioni dettagliate sono preziose per la risoluzione di problemi di performance, la convalida degli sforzi di ottimizzazione o la spiegazione dei modelli di utilizzo delle risorse agli stakeholder.
 
 Puoi passare il mouse su qualsiasi linea del volume nei grafici per visualizzare informazioni dettagliate:
 
