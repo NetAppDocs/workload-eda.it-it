@@ -4,7 +4,7 @@ permalink: manage-projects.html
 keywords: Microsoft SQL Server instance, server instance, manage host, view host, database host, database instance, manage, unmanage 
 summary: Gestisci le istanze di Microsoft SQL Server in Workload Factory per database. 
 ---
-= Gestire progetti EDA
+= Gestisci i progetti EDA in Workload Factory per EDA
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
@@ -17,21 +17,21 @@ summary: Gestisci le istanze di Microsoft SQL Server in Workload Factory per dat
 
 == Crea un progetto
 
-Puoi creare un nuovo progetto EDA in modo da sfruttare le funzionalità di protezione dei dati del tuo file system Amazon FSX for NetApp ONTAP per il tuo codice e i tuoi artefatti. .Passaggi
+È possibile creare un nuovo progetto EDA per sfruttare le funzionalità di protezione dei dati del file system FSx for ONTAP per il proprio codice e i propri artefatti. .Passaggi
 
 . Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
 . Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro quali storage, eda, ai, database, vmware e amministrazione."] e quindi selezionare *EDA*.
 . Selezionare *CI/CD*.
-. Seleziona *Crea progetto*.
+. Seleziona *Aggiungi progetto*.
 . Nella pagina Crea progetto, fornisci quanto segue:
 +
 .. *Nome progetto*: inserisci un nome per il progetto.
 .. *Descrizione*: Inserisci una descrizione per il progetto.
 .. *Filesystem*: fornire quanto segue:
 +
-... *Credenziali*: seleziona le credenziali Amazon AWS da utilizzare. EDA utilizza queste credenziali per individuare i file system FSx per ONTAP che è possibile utilizzare con questo progetto e per creare cloni e snapshot dei progetti.
-... *Regione*: seleziona la regione in cui risiede questo file system FSx for ONTAP .
-... *File system FSx per ONTAP *: seleziona un file system FSx per ONTAP da utilizzare con questo progetto.
+... *Credenziali*: Seleziona le credenziali Amazon AWS da utilizzare. EDA utilizza queste credenziali per individuare i file system FSx for ONTAP che puoi utilizzare con questo progetto e per creare cloni e snapshot dei progetti.
+... *Regione*: Seleziona la regione in cui risiede questo file system FSx for ONTAP.
+... *FSx for ONTAP file system*: Selezionare un FSx for ONTAP file system da utilizzare con questo progetto.
 +
 È possibile selezionare solo i file system configurati con un collegamento. https://docs.netapp.com/us-en/workload-fsx-ontap/links-overview.html["Scopri di più sui link"^].
 

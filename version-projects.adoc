@@ -4,14 +4,14 @@ permalink: version-projects.html
 keywords: snapshot, clone, project, protect, API, version, versions, versioning 
 summary: Gestisci le versioni dei tuoi progetti EDA utilizzando snapshot e cloni. 
 ---
-= Gestisci le versioni di NetApp Workload Factory per i progetti EDA
+= Gestire le versioni di Workload Factory per i progetti EDA
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
 
 
 [role="lead"]
-Lavora con diverse versioni dei tuoi progetti EDA creando snapshot e cloni on-demand direttamente da Workload Factory. Gli snapshot e i cloni di un progetto vengono archiviati nel file system associato al progetto al momento della sua creazione. È inoltre possibile gestire snapshot e cloni utilizzando https://console.workloads.netapp.com/api-doc["API REST di Workload Factory"^].
+Lavora con diverse versioni dei tuoi progetti EDA creando snapshot e cloni su richiesta direttamente da Workload Factory. Gli snapshot e i cloni di un progetto vengono archiviati nel file system associato al progetto al momento della sua creazione. Puoi anche gestire snapshot e cloni utilizzando  https://console.workloads.netapp.com/api-doc["API REST di Workload Factory"^].
 
 
 
