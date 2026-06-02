@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: requirements-eda.html 
-keywords: Builders, FSx, project, projects. eda, electronic design automation, requirements, setup, workload factory 
+keywords: Builders, FSx, project, projects. eda, electronic design automation, requirements, setup, Workload Factory 
 summary: Prima di iniziare a utilizzare NetApp Workload Factory per EDA, assicurati che Workload Factory e AWS siano configurati correttamente. Ciò include avere le credenziali di accesso AWS, un file system FSx per ONTAP distribuito e altro ancora. 
 ---
 = Workload Factory per i requisiti EDA
@@ -20,7 +20,7 @@ Credenziali e autorizzazioni AWS:: È necessario aggiungere le credenziali AWS a
 Le autorizzazioni per la modalità _Basic_ e la modalità _Read-only_ non sono attualmente supportate.
 
 
-NOTE: Sono inoltre necessarie le credenziali AWS per utilizzare la funzionalità di monitoraggio della latenza, che raccoglie le metriche CloudWatch per l'analisi delle performance del volume. Per ricevere notifiche relative agli eventi di latenza, configura le preferenze di notifica nelle impostazioni di Workload Factory. Per abilitare l'analisi facoltativa tramite agente AI per scenari complessi di latenza, è inoltre necessario fornire un ARN del modello Amazon Bedrock. link:task-monitor-latency.html["Scopri il monitoraggio della latenza"].
+NOTE: Sono inoltre necessarie le credenziali AWS per utilizzare la funzionalità di monitoraggio della latenza, che raccoglie le metriche CloudWatch per l'analisi delle performance del volume. Per ricevere notifiche relative agli eventi di latenza, configura le preferenze di notifica nelle impostazioni di Workload Factory. Per abilitare l'analisi facoltativa tramite agente AI per scenari complessi di latenza, è inoltre necessario fornire un ARN del modello Amazon Bedrock. link:learn-latency-monitoring.html["Scopri il monitoraggio della latenza"].
 
 https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Scopri come aggiungere le credenziali AWS a Workload Factory"^]
 

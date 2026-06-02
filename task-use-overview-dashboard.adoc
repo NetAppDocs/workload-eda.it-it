@@ -1,61 +1,23 @@
 ---
 sidebar: sidebar 
 permalink: task-use-overview-dashboard.html 
-keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, cluster usage, capacity, throughput, IOPS, EMS events, latency events, performance widgets, clusters table, volume placement, scale up, scale down, CloudWatch metrics, CSV export 
-summary: 'Utilizza la dashboard Panoramica per monitorare lo stato di salute, la capacità e il throughput dei tuoi file system FSx for ONTAP. Visualizza l"utilizzo dello storage su larga scala e prendi decisioni informate sul posizionamento dei volumi e sulla scalabilità della capacità.' 
+keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, bulk edit, decision points, clusters table, ONTAP events, latency events 
+summary: Utilizza la dashboard Panoramica per monitorare lo stato del cluster, visualizzare i consigli sulla capacità, gestire le impostazioni di capacità SSD e analizzare le tendenze delle prestazioni nei tuoi file system FSx for ONTAP. 
 ---
-= Gestisci le operazioni di archiviazione EDA
+= Utilizzare la dashboard Panoramica in Workload Factory per EDA
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
 
 
 [role="lead"]
-In qualità di amministratore IT che gestisce carichi di lavoro EDA su più file system FSx for ONTAP (cluster ONTAP), puoi utilizzare la dashboard Panoramica per valutare rapidamente lo stato e l'utilizzo del cluster. Usala per decidere dove posizionare nuovi volumi o job, identificare i candidati per lo spostamento di volumi o SVM e determinare quando scalare la capacità o il throughput.
+Utilizza la dashboard Panoramica per monitorare lo stato di salute e la capacità del cluster sui tuoi file system FSx for ONTAP. Filtra i dati, visualizza le raccomandazioni sulla capacità, gestisci le impostazioni di capacità SSD e analizza le tendenze delle prestazioni per prendere decisioni informate sul posizionamento dei volumi e sulla scalabilità della capacità.
 
 
 
-== Panoramica
+== Prima di iniziare
 
-La dashboard Panoramica offre una visione centralizzata dei cluster FSx for ONTAP, inclusi capacità e throughput. Utilizzala per aggiungere nuovi volumi, ribilanciare i carichi di lavoro e pianificare la capacità o il throughput.
-
-Il dashboard include:
-
-* *Stato di salute del cluster*: Informazioni riepilogate nella parte superiore del dashboard che evidenziano gli eventi di latenza, l'utilizzo delle unità SSD e i consigli sulla capacità, e gli eventi ONTAP EMS sui file system.
-* *Tabella dei cluster*: una tabella dettagliata e ricercabile che mostra l'utilizzo e le metriche di performance per ciascun cluster, con supporto per filtri, ordinamento, impaginazione ed esportazione in formato CSV.
-
-
-
-
-== Requisiti
-
-Prima di utilizzare la dashboard, assicurati di soddisfare i seguenti requisiti:
-
-Credenziali AWS con autorizzazioni di visualizzazione:: È necessario configurare le credenziali AWS in Workload Factory con almeno le autorizzazioni di lettura (visualizzazione) per General Storage. Le credenziali _Basic_ non sono supportate.
-+
---
-Se non hai configurato le credenziali con autorizzazioni di visualizzazione, verrai reindirizzato alla pagina di configurazione delle credenziali AWS quando apri la scheda Panoramica.
-
-Se non hai configurato le credenziali AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aggiungi credenziali AWS"^].
-
---
-Attiva la dashboard:: Dopo che Workload Factory avrà confermato le credenziali con i permessi di visualizzazione, sarà necessario attivare la dashboard per iniziare a raccogliere le metriche CloudWatch per i file system FSx for ONTAP.
-
-
-
-NOTE: La raccolta delle metriche potrebbe richiedere del tempo dopo aver fornito il consenso. La dashboard ti avvisa mentre la raccolta iniziale è in corso.
-
-.Passi
-. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
-. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *EDA*.
-. Seleziona la scheda *Overview*.
-. Se non vengono rilevate credenziali con autorizzazioni di visualizzazione, seleziona *Aggiungi credenziali* e segui le istruzioni per configurare le credenziali AWS con autorizzazioni di visualizzazione. Quindi torna alla scheda *Overview*.
-. Esaminare la richiesta di consenso che descrive le metriche CloudWatch che verranno raccolte per i file system FSx for ONTAP.
-. Selezionare *Attiva* per attivare la dashboard e iniziare la raccolta delle metriche.
-
-
-.Risultato
-Workload Factory inizia a raccogliere le metriche CloudWatch per tutti i file system FSx for ONTAP associati alle credenziali AWS configurate. La dashboard si popola man mano che le metriche diventano disponibili. Viene visualizzata una notifica se la raccolta è ancora in corso.
+È necessario avere link:task-activate-overview-dashboard.html["ha attivato la dashboard Overview"] prima di poterlo utilizzare per monitorare i file system.
 
 
 
@@ -63,67 +25,63 @@ Workload Factory inizia a raccogliere le metriche CloudWatch per tutti i file sy
 
 Utilizza i filtri nella parte superiore del dashboard per concentrarti su specifici file system. Questi filtri si applicano alle sezioni relative a latenza, utilizzo ed eventi ONTAP, nonché alla tabella dei cluster.
 
-Filtri disponibili:
-
-* *Regione*: Filtra per una o più regioni AWS.
-* *Account AWS*: Filtra in base a uno o più account AWS associati alle credenziali configurate.
-
-
-Quando aggiorni le selezioni del filtro, tutte le informazioni vengono aggiornate per mostrare solo i file system corrispondenti.
-
-
-
-== Stato di salute del cluster
-
-Nella parte superiore del pannello di controllo viene visualizzata una panoramica dello stato di salute e dell'attività dei file system filtrati. Queste informazioni vengono mostrate solo se almeno un collegamento FSx for ONTAP è associato ai file system. Se non sono presenti collegamenti, le informazioni vengono nascoste.
-
-* *Latenza*: visualizza il numero di eventi di latenza rilevati nei file system considerati.
-* *Utilizzo*: Visualizza lo stato di utilizzo dell'SSD e identifica i file system con raccomandazioni di capacità attiva.
-* *Eventi ONTAP*: Visualizza il numero di eventi EMS rilevati, categorizzati per Capacità, Disponibilità e protezione, e Sicurezza e altro.
-
-
-
-
-=== Latenza
-
-Visualizza il numero di eventi di latenza rilevati nei file system considerati.
-
-* Quando si seleziona *Review*, viene visualizzata la scheda *Latenza*.
-* È possibile visualizzare le informazioni sulla latenza solo se è stato abilitato il monitoraggio della latenza. Se non sono state configurate soglie di latenza, selezionare *Configura*. Per dettagli sul monitoraggio della latenza, vedere link:task-monitor-latency.html["Analisi della latenza di FSx for ONTAP"^].
-
-
-
-
-=== Utilizzo
-
-Visualizza il numero di file system inclusi nell'ambito che presentano almeno un cluster con utilizzo SSD superiore all'80% e il numero di file system con raccomandazioni di capacità attive. Questo consente di identificare rapidamente i file system che potrebbero richiedere attenzione alla capacità.
-
-
-
-==== Raccomandazioni sulla capacità
-
-Workload Factory esegue automaticamente un algoritmo di raccomandazione della capacità per ogni file system FSx for ONTAP visibile nell'inventario EDA. L'algoritmo esegue una scansione ogni 24 ore e identifica quando è consigliabile regolare la capacità degli SSD.
-
-Quando viene individuata una raccomandazione:
-
-* Ricevi una notifica immediata (email o WAD), in base alle impostazioni di notifica di Workload Factory. Le notifiche vengono inviate non appena viene identificata una raccomandazione, invece di attendere il riepilogo settimanale.
-* Nella riga della tabella Clusters viene visualizzata un'icona a forma di lampadina per ogni file system con una raccomandazione attiva.
-* Viene visualizzato il numero totale di file system con raccomandazioni attive. Ciò garantisce che le raccomandazioni siano visibili anche se il file system interessato non si trova nella prima pagina della tabella.
-
-
-
-
-==== Visualizza e applica le raccomandazioni sulla capacità
-
 .Passi
 . Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
 . Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *EDA*.
 . Seleziona la scheda *Overview*.
-. Nella tabella *Clusters*, individua un file system con un indicatore a forma di lampadina.
+. Utilizza i filtri disponibili per restringere la visualizzazione:
 +
-Passa il mouse sopra l'indicatore a forma di lampadina per visualizzare una descrizione a comparsa con una breve spiegazione del suggerimento.
+** *Account AWS*: Filtra in base a uno o più account AWS associati alle credenziali configurate
+** *Credenziali*: Filtra per credenziali AWS specifiche se ne hai configurate più di una
+** *Regioni*: Filtra per una o più regioni AWS
 
-. Seleziona il nome del cluster nella tabella per aprirlo e visualizzare i suggerimenti.
+
+. Quando aggiorni le selezioni del filtro, tutte le informazioni vengono aggiornate per mostrare solo i file system corrispondenti.
+
+
+
+
+== Visualizza lo stato di salute del cluster
+
+Nella parte superiore del pannello di controllo viene visualizzata una panoramica dello stato di salute e dell'attività dei file system filtrati. Queste informazioni vengono mostrate solo se almeno un collegamento FSx for ONTAP è associato ai file system.
+
+.Informazioni su questa attività
+Lo stato di salute del cluster comprende le seguenti aree chiave:
+
+* *Latenza*: Numero di eventi di latenza rilevati
+* *Modalità capacità SSD*: Stato di utilizzo SSD e file system con raccomandazioni sulla capacità attiva
+* *Eventi ONTAP*: Numero di eventi EMS per categoria (Capacità, Disponibilità e protezione, Sicurezza e altro)
+
+
+.Passi
+. Esamina lo stato di salute del cluster nella parte superiore della dashboard.
+. Per visualizzare gli eventi di latenza:
++
+** Seleziona *Rivedi* per accedere alla scheda *Latenza*
+** Se il monitoraggio della latenza non è configurato, selezionare *Configura* per impostare le soglie di latenza
++
+Per dettagli sul monitoraggio della latenza, vedere link:task-configure-latency-monitoring.html["Configura il monitoraggio della latenza"^].
+
+
+
+. Per visualizzare gli eventi ONTAP per i file system FSx for ONTAP, selezionare *Rivedi*.
++
+La scheda di visualizzazione degli eventi ONTAP mostra il numero di eventi EMS per categoria (Capacità, Disponibilità e protezione e Sicurezza e altro). Per un elenco completo degli eventi EMS monitorati, vedere link:https://docs.netapp.com/us-en/ontap-cli-9171/index.html["Documentazione CLI ONTAP"^].
+
+
+
+
+
+== Visualizza e applica le raccomandazioni sulla capacità
+
+Workload Factory esegue automaticamente un algoritmo di raccomandazione della capacità per ogni file system FSx for ONTAP. È possibile identificare i file system con raccomandazioni di capacità filtrando la tabella Cluster.
+
+.Passi
+. Nella tabella *Cluster*, filtra in base alle colonne *Timestamp ultimo aumento SSD* o *Descrizione ultimo aumento SSD*.
++
+I file system con raccomandazioni di capacità vengono visualizzati nella parte superiore della tabella.
+
+. Seleziona un nome di file system nella tabella per aprirlo e visualizzare i suggerimenti.
 . Esaminate le raccomandazioni relative all'SSD e il grafico della capacità.
 +
 La raccomandazione spiega la modifica suggerita e le motivazioni che la supportano. Ad esempio: _Consigliamo di aumentare le dimensioni dell'SSD in base allo schema di utilizzo dell'SSD del file system._
@@ -132,91 +90,149 @@ La raccomandazione spiega la modifica suggerita e le motivazioni che la supporta
 Il grafico presenta l'utilizzo attuale degli SSD a confronto con le tendenze storiche e mostra come l'algoritmo di raccomandazione della capacità avrebbe regolato la capacità nel tempo.
 
 . In alto a destra del grafico, selezionare l'intervallo di tempo per modificare il periodo visualizzato. L'impostazione predefinita è una settimana.
++
+Il grafico visualizza anche i punti decisionali relativi alle raccomandazioni e i punti decisionali relativi all'automazione (se la modalità di automazione è abilitata). Passando il mouse su un punto decisionale qualsiasi, è possibile visualizzare i dettagli relativi alla raccomandazione di capacità o all'azione di automazione in quel momento.
+
+. Per applicare la raccomandazione, segui le istruzioni fornite nel messaggio di raccomandazione.
 
 
 
 
-=== Eventi ONTAP
+== Modifica la modalità di gestione dell'SSD
 
-Visualizza il numero di eventi EMS rilevati nei file system inclusi, suddivisi per Capacità, Disponibilità e protezione, e Sicurezza e altro.
+Modifica la modalità di gestione della capacità SSD per i singoli file system per controllare se desideri raccomandazioni manuali o scalabilità della capacità automatizzata.
 
-.Capacità
-Visualizza il numero di messaggi EMS relativi a problemi di capacità, insieme al numero di file system interessati.
+.Informazioni su questa attività
+Le modalità di gestione dell'SSD includono:
 
-Esempi di eventi EMS monitorati includono:
-
-* Aggregato quasi pieno/pieno
-* Volume quasi pieno/pieno
-* riserva di Snapshot quasi piena/piena
-* Dimensione directory piena
-* FlexGroup pieno
-* Inodes pieni
+* *Automatizza*: Aumenta automaticamente la capacità SSD in base a soglie predefinite
+* *Consigliato*: Ricevi raccomandazioni sulla capacità che puoi esaminare e applicare manualmente
+* *Nessuno*: Nessuna raccomandazione di capacità o azioni automatizzate
 
 
-Per un elenco completo degli eventi EMS monitorati, vedere link:https://docs.netapp.com/us-en/ontap-cli-9171/index.html["Eventi di capacità"^].
+Selezionando la modalità Automatizza, è possibile configurare i parametri Soglia, Analisi retrospettiva e Previsione che controllano il modo in cui il sistema di gestione della capacità analizza l'utilizzo dell'SSD e prende decisioni automatizzate. Selezionando la modalità Raccomanda, è possibile configurare solo il parametro Soglia.
 
-Selezionando *Capacità* si accede alla schermata di analisi della capacità in Storage workloads.
-
-.Disponibilità e protezione
-Visualizza il numero di messaggi EMS relativi alla disponibilità e alla protezione dei dati, insieme al numero di file system interessati.
-
-Gli eventi monitorati includono eventi EMS correlati a FlexCache e SnapMirror.
-
-Selezionando *Availability & protection* si accede alla schermata di analisi della disponibilità e della protezione nei carichi di lavoro di archiviazione.
-
-.Sicurezza e altro
-Visualizza il numero di messaggi EMS per eventi non classificati in Capacità o Disponibilità e protezione, insieme al numero di file system interessati. Gli eventi monitorati includono la protezione anti-ransomware, errori di autenticazione NFS e altri.
-
-Selezionando *Security & other* si accede alla schermata di analisi degli eventi nei carichi di lavoro di archiviazione.
+* *Soglia* (10-90%): la percentuale di utilizzo dell'SSD che attiva i suggerimenti di capacità o le azioni automatizzate
+* *Retrospettiva* (1-200 ore): il periodo di tempo utilizzato per analizzare i modelli storici di utilizzo degli SSD
+* *In anticipo* (1-200 ore): il periodo di tempo utilizzato per prevedere il fabbisogno di capacità futuro
 
 
-
-== Tabella dei cluster
-
-Fornisce una visualizzazione dettagliata di ogni file system FSx for ONTAP associato alle credenziali AWS configurate, filtrata in base alla regione attiva e alle selezioni dell'account AWS. I dati vengono raccolti dalle metriche di CloudWatch. La tabella supporta la ricerca, il filtro delle colonne, la paginazione, la personalizzazione delle colonne e l'esportazione in formato CSV.
-
-Metriche chiave includono:
-
-* Nome, regione e account AWS
-* Metriche della capacità SSD (utilizzata, totale e percentuale di utilizzo)
-* Storage del pool di capacità
-* Metriche di throughput (media, P95, P99 e massimo negli ultimi 30 giorni)
+.Passi
+. Nella tabella Cluster, individua il nome del file system. Accanto ad esso, apri image:icon-action.png["l'icona del menu delle azioni"] e seleziona *Modifica gestione della capacità SSD*.
+. Scegli la modalità che preferisci:
++
+** *Nessuno*: Disabilita gestione della capacità
+** *Consigliato*: Imposta il parametro Threshold per l'analisi delle raccomandazioni
+** *Automatizza*: Imposta i parametri di soglia, di analisi retrospettiva e di previsione per la scalabilità della capacità
 
 
-Utilizza *Utilizzo SSD* per identificare i file system che si stanno avvicinando ai limiti di capacità. Utilizza *Utilizzo throughput (P99)* per confrontare la richiesta di throughput con il throughput SKU fornito. Passa il mouse sopra le intestazioni delle colonne del throughput per visualizzare i dettagli del calcolo.
-
-
-
-=== Cerca e filtra
-
-* Utilizzare la ricerca per cercare cluster specifici in base al nome, all'ID del file system, alla regione o ad altri attributi.
-* Seleziona qualsiasi intestazione di colonna per ordinare la tabella in base a quella colonna.
-* Utilizzare i controlli filtro per colonna per restringere i risultati all'interno della tabella.
-* La tabella è suddivisa in pagine. Utilizza i controlli di paginazione in fondo alla tabella per navigare tra le pagine.
-
-
-
-NOTE: I file system con raccomandazioni di capacità attive vengono visualizzati con un indicatore a forma di lampadina nella tabella. Seleziona il nome di un file system qualsiasi per visualizzare le metriche di capacità SSD, le tendenze di utilizzo storiche e le raccomandazioni di capacità per quel file system.
-
-
-
-=== Personalizza colonne
-
-Per aggiungere o rimuovere colonne dalla tabella dei cluster:
-
-. Seleziona l'icona di selezione delle colonne sopra la tabella a destra.
-. Seleziona o deseleziona le colonne che vuoi mostrare o nascondere.
 . Selezionare *Applica*.
 
 
+.Risultato
+Il file system utilizza immediatamente la nuova modalità. Se hai selezionato Consiglia o Automatizza, il sistema utilizza i parametri configurati per l'analisi della capacità e il processo decisionale.
 
 
-=== Esporta tabella in CSV
 
-È possibile esportare i dati della tabella attualmente visualizzati in un file CSV per ulteriori analisi o reportistica.
+== Modifica in blocco i parametri di gestione SSD
 
-. Applica tutti i filtri o le personalizzazioni delle colonne che desideri riflettere nell'esportazione.
-. Selezionare il pulsante image:button_download.png["Scarica"] sopra la tabella dei cluster.
+Regola i parametri di gestione della capacità SSD per più file system contemporaneamente, in modo da applicare impostazioni coerenti a tutti i cluster.
+
+.Informazioni su questa attività
+Quando si selezionano più file system per la modifica in blocco:
+
+* Se tutti i file system selezionati hanno valori di parametro identici, tali valori vengono visualizzati come predefiniti nella finestra di dialogo di modifica
+* Se uno qualsiasi dei file system selezionati è in modalità None, nella finestra di dialogo vengono visualizzati i valori predefiniti
+* Se i valori dei parametri differiscono tra i file system selezionati, nella finestra di dialogo vengono inseriti i valori predefiniti
 
 
-Il file CSV viene scaricato e contiene tutte le righe attualmente visibili nella tabella, incluse solo le colonne attualmente mostrate.
+.Passi
+. Dalla scheda *Panoramica*, seleziona i file system che desideri modificare nella tabella.
++
+
+TIP: È possibile selezionare singoli file system oppure utilizzare la casella di controllo nell'intestazione per selezionare tutti i file system visibili.
+
+. Seleziona *Modifica gestione della capacità* sopra la tabella.
+. Scegli la modalità che preferisci.
+. Nella finestra di dialogo di modifica, regolare i parametri Threshold, Lookback e Ahead secondo necessità.
++
+Ciascun campo parametro include una descrizione che ne illustra lo scopo e l'intervallo di validità. La finestra di dialogo indica i valori correnti o predefiniti in base alla selezione effettuata.
+
+. Seleziona *Applica* per applicare le modifiche a tutti i file system selezionati.
+
+
+.Risultato
+I parametri vengono aggiornati per tutti i file system selezionati. I file system in modalità Recommend o Automate utilizzano immediatamente i nuovi parametri per l'analisi della capacità e il processo decisionale.
+
+
+
+== Analizzare le tendenze di capacità e i punti decisionali
+
+Utilizza il grafico di utilizzo degli SSD per comprendere l'andamento della capacità nel tempo e identificare modelli nella gestione della capacità.
+
+.Informazioni su questa attività
+I punti decisionali sul grafico indicano quando:
+
+* *Punti decisionali di raccomandazione*: L'algoritmo di raccomandazione della capacità ha rilevato la necessità di ulteriore capacità SSD. Questi possono verificarsi con una frequenza fino a ogni 30 minuti se la capacità SSD non è stata aumentata.
+* *Punti decisionali dell'automazione*: Il sistema di automazione ha tentato di aumentare la capacità SSD. Questi punti indicano se l'azione è riuscita o meno.
+
+
+.Passi
+. Nella scheda *Panoramica*, selezionare il nome di un file system nella tabella.
+. Esamina il grafico di utilizzo dell'SSD che mostra l'andamento storico della capacità.
+. Seleziona intervalli di tempo diversi per visualizzare l'andamento della capacità in vari periodi.
+. Passa il mouse sui punti decisionali del grafico per visualizzare i dettagli relativi ai consigli o alle azioni di automazione in momenti specifici.
+. Utilizza le informazioni ricavate dal grafico per:
++
+** Comprendere con quale frequenza sono necessari gli aggiustamenti di capacità
+** Valuta se la modalità di automazione o quella di raccomandazione si adatta meglio ai tuoi modelli di carico di lavoro
+** Identificare i vincoli di capacità ricorrenti
+** Pianificare le future esigenze di capacità in base alle tendenze di crescita
+** Risoluzione dei problemi relativi ai tentativi di automazione non riusciti
+
+
+
+
+
+
+== Utilizzare la tabella dei cluster
+
+La tabella dei cluster fornisce una visualizzazione dettagliata di ciascun file system FSx for ONTAP con metriche sulle prestazioni e sull'utilizzo.
+
+.Passi
+. Dalla scheda *Panoramica*, consultare la tabella dei cluster.
+. Utilizza la casella di ricerca per trovare file system specifici in base al nome.
+. Seleziona le intestazioni di colonna per ordinare i dati.
+. Utilizza *Utilizzo SSD* per identificare i file system che si stanno avvicinando ai limiti di capacità.
+. Utilizza *Utilizzo throughput (P99)* per confrontare la richiesta di throughput con il throughput SKU fornito.
++
+Passa il mouse sopra le intestazioni delle colonne del throughput per visualizzare i dettagli del calcolo.
+
+. Per personalizzare le colonne, seleziona l'icona delle impostazioni delle colonne e scegli quali colonne visualizzare.
+. Per esportare i dati, seleziona l'icona di esportazione per scaricare un file CSV.
+. Per eseguire operazioni in blocco, selezionare più file system utilizzando le caselle di controllo, quindi selezionare *Modifica parametri*.
+
+
+
+
+== Best practice
+
+Prendere in considerazione queste raccomandazioni quando si utilizza la dashboard Panoramica:
+
+* *Monitoraggio regolare*: Controlla regolarmente la dashboard per identificare le tendenze prima che diventino problemi.
+* *Imposta soglie appropriate*: configura le soglie di gestione degli SSD in base ai tuoi modelli di carico di lavoro e alle preferenze di pianificazione della capacità.
+* *Utilizza i filtri in modo efficace*: combina i filtri per regione e per account per concentrarti su specifici sottoinsiemi della tua infrastruttura.
+* *Esaminare tempestivamente i suggerimenti*: filtrare la tabella Cluster in base alla data e all'ora dell'ultimo aumento SSD o alla descrizione per identificare i file system con raccomandazioni di capacità. Esaminare e seguire queste raccomandazioni per evitare limitazioni di capacità.
+* *Scegli la modalità corretta*: usa la modalità Consiglia quando vuoi avere il controllo sulle decisioni relative alla capacità, oppure la modalità Automazione per una gestione completamente automatizzata.
+* *Monitorare i punti decisionali*: Esaminare regolarmente i punti decisionali sui grafici di capacità per comprendere il comportamento dell'algoritmo e verificare che le impostazioni corrispondano alle proprie esigenze.
+* *Sfrutta la modifica in blocco*: Quando gestisci più file system, utilizza la modifica in blocco dei parametri per mantenere politiche di gestione della capacità coerenti.
+
+
+
+
+== Informazioni correlate
+
+* link:learn-overview-dashboard.html["Scopri la dashboard Panoramica"]
+* link:task-activate-overview-dashboard.html["Attiva la dashboard Panoramica"]
+* link:task-configure-latency-monitoring.html["Configura il monitoraggio della latenza"]
+

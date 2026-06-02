@@ -29,18 +29,30 @@ sidebar:
       url: "/quick-start-eda.html"
   - title: Panoramica dell'archiviazione EDA
     entries:
-    - title: Gestisci le operazioni di archiviazione EDA
+    - title: Scopri la dashboard Panoramica
+      url: "/learn-overview-dashboard.html"
+    - title: Attiva la dashboard Panoramica
+      url: "/task-activate-overview-dashboard.html"
+    - title: Utilizzare la dashboard Panoramica
       url: "/task-use-overview-dashboard.html"
   - title: Analisi della latenza di FSx for ONTAP
     entries:
-    - title: Monitorare la latenza dei volumi FSx for ONTAP
-      url: "/task-monitor-latency.html"
+    - title: Scopri il monitoraggio della latenza
+      url: "/learn-latency-monitoring.html"
+    - title: Configura il monitoraggio della latenza
+      url: "/task-configure-latency-monitoring.html"
+    - title: Analizza i problemi di latenza
+      url: "/task-analyze-latency-issues.html"
     - title: Analizza le tendenze della latenza
       url: "/task-analyze-latency-trends.html"
   - title: Analisi dell'utilizzo del progetto
     entries:
-    - title: Analizza l'utilizzo dello storage del progetto
-      url: "/task-configure-dashboard.html"
+    - title: Scopri la dashboard dei progetti
+      url: "/learn-project-dashboard.html"
+    - title: Configura la dashboard dei progetti
+      url: "/task-configure-project-dashboard.html"
+    - title: Utilizza la dashboard Progetti
+      url: "/task-use-project-dashboard.html"
   - title: Utilizzare l'integrazione Perforce
     entries:
     - title: Scopri di più sull'integrazione di Perforce

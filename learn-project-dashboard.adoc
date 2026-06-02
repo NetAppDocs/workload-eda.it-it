@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: learn-project-dashboard.html 
+keywords: projects dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, electronic design automation, volume details, capacity utilization, throughput utilization, IOPS utilization, custom filters 
+summary: 'Scopri come la dashboard Progetti di Workload Factory per EDA ti aiuta a monitorare e analizzare l"utilizzo dello spazio di archiviazione dei progetti su file system FSx for ONTAP e volumi.' 
+---
+= Scopri la dashboard Progetti in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+La dashboard Progetti aiuta gli amministratori IT e i project manager a monitorare e analizzare l'utilizzo dei progetti su file system e volumi FSx for ONTAP. Offre visibilità sui modelli di utilizzo dello storage, aiutandoti a identificare i progetti che richiedono molte risorse, tenere traccia dei costi e ottimizzare l'allocazione dello storage prima che problemi di capacità o prestazioni influiscano sulle simulazioni EDA.
+
+
+
+== Come funziona la dashboard dei progetti
+
+La dashboard Progetti raccoglie le metriche CloudWatch per tutti i volumi FSx for ONTAP associati alle tue credenziali AWS. Puoi creare fino a cinque filtri personalizzati basati sui tuoi tag AWS per organizzare e filtrare i dati in base alle tue specifiche esigenze aziendali, come progetti, team o applicazioni.
+
+La dashboard ti aiuta a:
+
+* Pianifica la capacità e valuta i costi
+* Prendi decisioni basate sui dati in merito all'allocazione delle risorse
+* Identificare i progetti ad alta intensità di risorse
+* Monitorare con precisione i costi tra progetti o team
+* Ottimizza l'allocazione dello storage prima che si verifichino problemi
+
+
+Per un monitoraggio proattivo delle performance di latenza, vedere link:learn-latency-monitoring.html["Scopri il monitoraggio della latenza"].
+
+
+
+=== CloudWatch metriche raccolte
+
+La dashboard raccoglie e visualizza le seguenti metriche CloudWatch:
+
+* *Capacità allocata*: metrica a livello di volume che rappresenta la capacità di archiviazione allocata.
+* *Capacità utilizzata*: metrica a livello di volume che rappresenta lo storage utilizzato.
+* *Throughput medio/massimo*: Calcolato come media o valore massimo della somma di DataReadBytes e DataWriteBytes nel periodo di tempo specificato.
+* *IOPS medi/massimi*: Calcolati come media o massimo della somma di DataReadOperations, DataWriteOperations e MetadataOperations nel periodo di tempo specificato.
+
+
+
+
+== Filtri personalizzati
+
+I filtri personalizzati consentono di organizzare i dati della dashboard in base al funzionamento della propria organizzazione. Allineando i filtri alla struttura del progetto, ai team o ai centri di costo, puoi accedere rapidamente ai dati specifici di cui hai bisogno senza dover navigare tra informazioni irrilevanti. Questo rende la pianificazione della capacità, il monitoraggio dei costi e il monitoraggio delle performance più efficienti.
+
+È possibile configurare fino a cinque filtri personalizzati in base ai tag AWS. Ogni filtro personalizzato richiede i seguenti componenti:
+
+* *Nome dell'etichetta del filtro*: Il nome visualizzato nella dashboard
+* *Nome della chiave del tag AWS*: la chiave del tag AWS effettivamente utilizzata sulle tue risorse
+* *Tipo di selezione*: Selezione singola o selezione multipla
+
+
+Se non configuri alcun filtro personalizzato, i filtri predefiniti (file system, tipo di volume e intervallo di tempo) rimangono disponibili così puoi comunque visualizzare e interagire con le tue dashboard.
+
+
+
+=== Tag AWS
+
+I tag AWS sono metadati per le tue risorse AWS. Ti aiutano a categorizzare le tue risorse AWS in diversi modi, ad esempio per progetto, applicazione o unità aziendale.
+
+Per utilizzare efficacemente i filtri personalizzati, configura i tag AWS sui volumi FSx per ONTAP in base alle tue esigenze aziendali, ad esempio tag che rappresentano progetti, team o unità aziendali.
+
+Per maggiori dettagli sul tagging, consulta https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/what-are-tags.html["Cosa sono i tag?"^] e https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html["Riferimento API per il tagging dei gruppi di risorse AWS"^].
+
+
+
+== Dettagli volume
+
+La dashboard offre modalità di visualizzazione per aiutarti ad analizzare le metriche di storage a diversi livelli di dettaglio.
+
+
+
+=== Vista totale
+
+La vista Totale (predefinita) mostra metriche aggregate per tutti i volumi che corrispondono ai filtri selezionati. Questa vista fornisce una panoramica high-level delle performance complessive dello storage, mostrando le metriche combinate di capacità, IOPS e throughput.
+
+Utilizzare questa vista per:
+
+* Comprendere le tendenze generali
+* Pianifica le future esigenze di capacità
+* Rapporto sul consumo totale di risorse tra progetti o team
+
+
+
+
+=== Vista del volume
+
+La vista Volume mostra le prestazioni dei singoli volumi nel tempo, mostrando i primi 10 volumi per ogni metrica. Questa vista aiuta a identificare volumi specifici che determinano il consumo di risorse e a osservarne il comportamento nel periodo di tempo selezionato.
+
+Utilizzare questa vista per:
+
+* Individuare i colli di bottiglia delle prestazioni
+* Individuare i volumi che potrebbero necessitare di un ridimensionamento
+* Individua quali progetti o carichi di lavoro specifici stanno consumando la maggior parte delle risorse
+
+
+
+
+==== Metriche del volume visualizzate
+
+Quando visualizzi i singoli volumi, la dashboard mostra i 10 volumi principali rispetto al numero totale di volumi per ciascuna metrica:
+
+* *Capacità utilizzata del volume*: Mostra i volumi con la maggiore capacità attualmente utilizzata.
+* *IOPS*: Mostra i volumi con il valore medio di IOPS più elevato durante il periodo di tempo selezionato.
+* *Throughput*: Mostra i volumi con il throughput medio più elevato durante il periodo di tempo selezionato.
+
+
+
+NOTE: La dashboard mostra solo i primi 10 volumi per ogni metrica. Se si dispone di più di 10 volumi, alcuni volumi potrebbero non essere visualizzati nella vista dettagliata.
+
+Quando gli stessi volumi compaiono in più metriche, la dashboard utilizza una codifica a colori coerente nella legenda per facilitare il monitoraggio di volumi specifici in diverse metriche.
+
+
+
+==== Dati di volume interattivi
+
+I dati interattivi visualizzati al passaggio del mouse forniscono metriche precise in momenti specifici, aiutando a correlare le variazioni delle performance con eventi o intervalli di tempo specifici. Queste informazioni dettagliate sono preziose per la risoluzione di problemi di performance, la convalida degli sforzi di ottimizzazione o la spiegazione dei modelli di utilizzo delle risorse agli stakeholder.
+
+Passando il mouse sopra una qualsiasi linea del volume nei grafici, è possibile visualizzare:
+
+* *Capacità utilizzata del volume*: Nome del volume, capacità utilizzata in quel momento e capacità allocata
+* *IOPS*: Nome del volume, IOPS medi per l'intervallo di tempo e IOPS massimi per l'intervallo di tempo
+* *Throughput*: Nome del volume, throughput medio per l'intervallo di tempo e throughput massimo per l'intervallo di tempo
+
+
+
+
+== Informazioni correlate
+
+* link:task-configure-project-dashboard.html["Configura la dashboard dei progetti"]
+* link:task-use-project-dashboard.html["Utilizza la dashboard Progetti"]
+

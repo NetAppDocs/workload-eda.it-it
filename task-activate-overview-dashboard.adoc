@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: task-activate-overview-dashboard.html 
+keywords: activate dashboard, CloudWatch metrics, AWS credentials, view permissions, FSx for ONTAP, cluster overview, enable dashboard 
+summary: Attiva la dashboard Panoramica per iniziare a raccogliere le metriche CloudWatch per i tuoi file system FSx for ONTAP. 
+---
+= Attivare la dashboard Overview in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Attiva la dashboard Panoramica per iniziare a raccogliere le metriche CloudWatch per i tuoi file system FSx for ONTAP. Una volta attivata, la dashboard fornisce un monitoraggio centralizzato dello stato di salute del cluster, della capacità e del throughput.
+
+
+
+== Prima di iniziare
+
+Assicurati di soddisfare i seguenti requisiti prima di attivare la dashboard.
+
+
+
+=== Credenziali AWS con autorizzazioni di visualizzazione
+
+È necessario configurare le credenziali AWS in Workload Factory con almeno le autorizzazioni di lettura (visualizzazione) per General Storage. Le credenziali _Basic_ non sono supportate.
+
+Se non hai configurato le credenziali con autorizzazioni di visualizzazione, verrai reindirizzato alla pagina di configurazione delle credenziali AWS quando apri la scheda Panoramica.
+
+Se non hai configurato le credenziali AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aggiungi credenziali AWS"^].
+
+
+
+== Attiva la dashboard
+
+Dopo che Workload Factory avrà confermato le credenziali con i permessi di visualizzazione, sarà necessario attivare la dashboard per iniziare a raccogliere le metriche CloudWatch per i file system FSx for ONTAP.
+
+
+NOTE: La raccolta delle metriche potrebbe richiedere del tempo dopo aver fornito il consenso. La dashboard ti avvisa mentre la raccolta iniziale è in corso.
+
+.Passi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *EDA*.
+. Seleziona la scheda *Overview*.
+. Se non vengono rilevate credenziali con autorizzazioni di visualizzazione, seleziona *Aggiungi credenziali* e segui le istruzioni per configurare le credenziali AWS con autorizzazioni di visualizzazione. Quindi torna alla scheda *Overview*.
+. Esaminare la richiesta di consenso che descrive le metriche CloudWatch che verranno raccolte per i file system FSx for ONTAP.
+. Selezionare *Attiva* per attivare la dashboard e iniziare la raccolta delle metriche.
+
+
+.Risultato
+Workload Factory inizia a raccogliere le metriche CloudWatch per tutti i file system FSx for ONTAP associati alle credenziali AWS configurate. La dashboard si popola man mano che le metriche diventano disponibili. Viene visualizzata una notifica se la raccolta è ancora in corso.
+
+
+
+== Prossimi passi
+
+Dopo aver attivato la dashboard, è possibile:
+
+* link:task-use-overview-dashboard.html["Utilizzare la dashboard Panoramica"] per monitorare lo stato di salute e la capacità del cluster
+* Configura le modalità di gestione della capacità SSD (Automatica, Consiglia o Nessuna)
+* Configura i filtri per concentrarti su regioni o account AWS specifici
+
+
+
+
+== Informazioni correlate
+
+* link:learn-overview-dashboard.html["Scopri la dashboard Panoramica"]
+* link:task-use-overview-dashboard.html["Utilizzare la dashboard Panoramica"]
+

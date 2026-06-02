@@ -17,7 +17,7 @@ Dopo aver rilevato un evento di latenza, è possibile utilizzare il grafico inte
 
 == Prima di iniziare
 
-È necessario link:task-monitor-latency.html["monitoraggio della latenza configurato"] e almeno un evento di latenza rilevato.
+È necessario link:task-configure-latency-monitoring.html["monitoraggio della latenza configurato"] e almeno un evento di latenza rilevato.
 
 
 

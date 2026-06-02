@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: task-configure-project-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, custom filters, project tags, team tags 
+summary: Configura filtri personalizzati per la dashboard Progetti per organizzare le metriche in base alla struttura aziendale, ad esempio progetti, team o applicazioni. 
+---
+= Configura la dashboard Projects in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Configura filtri personalizzati per la dashboard Progetti per organizzare le metriche in base alla struttura aziendale, ad esempio progetti, team o centri di costo. Questo ti aiuta a monitorare i costi con precisione, a identificare quali risorse consumano più capacità e a prendere decisioni informate sull'allocazione delle risorse e sulla pianificazione del budget. Allineando i filtri al funzionamento della tua organizzazione, puoi accedere rapidamente ai dati pertinenti e migliorare l'efficienza nella pianificazione della capacità, nel monitoraggio dei costi e nel controllo delle prestazioni.
+
+
+
+== Prima di iniziare
+
+Per utilizzare efficacemente i filtri personalizzati, configura i tag AWS sui volumi FSx per ONTAP in base alle tue esigenze aziendali, ad esempio tag che rappresentano progetti, team o unità aziendali.
+
+
+
+== Configura filtri personalizzati
+
+
+NOTE: Solo il primo utente amministratore ad accedere alla dashboard Progetti può configurare, aggiungere o eliminare filtri personalizzati. Tutti gli altri utenti, inclusi gli amministratori successivi, hanno accesso in sola lettura ai filtri.
+
+.Informazioni su questa attività
+Puoi configurare fino a cinque filtri personalizzati in base ai tuoi tag AWS. Ogni filtro personalizzato richiede tre componenti: un nome per l'etichetta del filtro, un nome per la chiave del tag AWS e un tipo di selezione (selezione singola o multipla).
+
+Se non configuri alcun filtro personalizzato, i filtri predefiniti (file system, tipo di volume e intervallo di tempo) rimangono disponibili così puoi comunque visualizzare e interagire con le tue dashboard.
+
+.Passi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger viene utilizzata per navigare tra carichi di lavoro quali storage, eda, ai, database, vmware e amministrazione."] e quindi selezionare *EDA*.
+. Seleziona *Progetti*.
++
+Se non hai ancora configurato la tua dashboard, ti verrà automaticamente chiesto di farlo.
+
+. Seleziona *+ Add filters*.
+. Per ogni filtro personalizzato che desideri creare, aggiungi i dettagli:
++
+** Nome dell'etichetta del filtro (il nome visualizzato nella dashboard)
+** Nome della chiave del tag AWS (la chiave del tag effettivamente utilizzata sulle tue risorse)
+** Tipo di selezione (selezione singola o multipla)
++
+
+NOTE: I filtri vengono visualizzati sulla dashboard nell'ordine in cui li configuri. Considera di organizzare prima i filtri che usi più frequentemente per un accesso più semplice.
+
+
+
+. Selezionare *Applica*.
++
+Puoi eliminare un filtro personalizzato selezionando l'icona del cestino accanto a quel filtro prima di applicare le modifiche.
+
+. Per visualizzare le modifiche apportate dopo aver applicato tag o filtri, seleziona l'icona di aggiornamento nella dashboard.
+. Per modificare in seguito la configurazione della dashboard, seleziona *Configura*.
+
+
+.Risultato
+Quando questi tag vengono applicati, Workload Factory inizia a raccogliere e visualizzare le metriche CloudWatch. La dashboard diventa uno strumento dinamico per organizzare, monitorare i costi e filtrare le risorse in base alle esigenze organizzative.
+
+
+
+== Informazioni correlate
+
+* link:learn-project-dashboard.html["Scopri la dashboard dei progetti"]
+* link:task-use-project-dashboard.html["Utilizza la dashboard Progetti"]
+

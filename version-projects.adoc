@@ -55,4 +55,4 @@ Il nome predefinito per il clone è il nome del progetto con un suffisso della d
 
 
 .Risultato
-Workload Factory crea un nuovo clone del progetto e il clone appare come un nuovo progetto nella pagina Progetti.
+Workload Factory crea una nuova copia del progetto e la copia appare come un nuovo progetto nella pagina Progetti.

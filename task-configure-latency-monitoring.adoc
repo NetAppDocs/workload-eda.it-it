@@ -1,0 +1,147 @@
+---
+sidebar: sidebar 
+permalink: task-configure-latency-monitoring.html 
+keywords: latency analysis, configure thresholds, CloudWatch alarms, latency monitoring, FSx for ONTAP, warning events, critical events, latency notifications, email notifications, SNS notifications, latency configuration 
+summary: Configura le soglie di monitoraggio della latenza e le impostazioni di notifica per rilevare e rispondere ai problemi di prestazioni con i volumi FSx for ONTAP. 
+---
+= Configurare il monitoraggio della latenza in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Configura le soglie di avviso e critiche per la latenza di lettura e scrittura per monitorare le prestazioni dei volumi FSx for ONTAP. Imposta notifiche facoltative via email o Amazon SNS per ricevere avvisi real-time quando vengono rilevati eventi di latenza.
+
+
+
+== Prima di iniziare
+
+Assicurati di soddisfare i seguenti requisiti prima di configurare il monitoraggio della latenza.
+
+
+
+=== Credenziali e autorizzazioni AWS
+
+È necessario aggiungere le credenziali AWS a Workload Factory con autorizzazioni di lettura/scrittura. La funzionalità di monitoraggio della latenza richiede l'accesso alle metriche CloudWatch per tutti i volumi FSx for ONTAP associati alle credenziali AWS.
+
+Le autorizzazioni per la modalità _Basic_ e la modalità _Read-only_ non sono supportate per il monitoraggio della latenza.
+
+Se non hai configurato le credenziali AWS, consulta link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Aggiungi credenziali AWS"^].
+
+
+
+=== FSx per il file system ONTAP
+
+È necessario almeno un file system FSx for ONTAP con volumi distribuiti nel tuo ambiente AWS. La funzionalità di monitoraggio della latenza raccoglie automaticamente le metriche per tutti i volumi associati alle credenziali AWS configurate.
+
+
+
+=== Collegamento a FSx per ONTAP
+
+Per visualizzare le informazioni di analisi di base, è necessario associare un collegamento al file system FSx for ONTAP. Senza un collegamento, gli eventi possono comunque essere rilevati, ma l'analisi fornisce informazioni limitate. Se non è già associato alcun collegamento, selezionare *Associa collegamento* in EDA, scegliere se creare un nuovo collegamento o associare un collegamento esistente, quindi selezionare *Continua* per passare automaticamente alla pagina di creazione del collegamento in Storage workloads.
+
+Per istruzioni sulla creazione e l'associazione dei collegamenti, vedere link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Crea un collegamento"^].
+
+
+
+=== ARN del modello Amazon Bedrock (opzionale)
+
+Per utilizzare la funzionalità opzionale di analisi tramite agente AI, è necessario fornire un ARN del modello Amazon Bedrock nelle impostazioni di Workload Factory.
+
+Per maggiori dettagli, vedere link:https://docs.netapp.com/us-en/workload-genai/knowledge-base/requirements-knowledge-base.html#basic-genai-requirements["Requisiti di base di GenAI"^].
+
+Se non si configura un ARN del modello Bedrock, è comunque possibile utilizzare il monitoraggio della latenza e l'analisi di base automatizzata, ma l'analisi tramite agenti AI non sarà disponibile.
+
+
+
+=== Configurazione delle notifiche (facoltativa)
+
+Per ricevere notifiche via e-mail o tramite Amazon SNS quando vengono rilevati eventi di latenza, configura le preferenze di notifica nelle impostazioni di Workload Factory. Vedi <<Configura le notifiche di latenza>> per i dettagli.
+
+
+
+== Configurare le soglie di latenza
+
+Configura le soglie di avviso e critiche per le operazioni di lettura e scrittura. Il sistema valuta continuamente le soglie e genera avvisi quando le condizioni vengono soddisfatte.
+
+
+NOTE: È necessario impostare soglie per gli eventi critici superiori alle soglie per gli eventi di avviso per garantire una corretta escalation degli avvisi. In caso contrario, non è possibile salvare la configurazione.
+
+
+NOTE: Le soglie di latenza impostate in EDA si applicano per impostazione predefinita all'intero account. È inoltre possibile impostare soglie di latenza per singoli volumi nei carichi di lavoro di archiviazione generale e tali impostazioni avranno la priorità per quel volume. L'aggiornamento delle soglie a livello di account in EDA non modificherà le impostazioni a livello di volume.
+
+.Passi
+. Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
+. Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *EDA*.
+. Seleziona la scheda *Latenza*.
+. Nella pagina di configurazione della latenza EDA, configurare le soglie per:
++
+** Latenza di lettura (avviso e critico)
+** Latenza di scrittura (avviso e critico)
+** Soglie IOPS per ciascuno
+** Intervalli temporali per la valutazione
+
+
+. Seleziona *Applica* per salvare la configurazione.
+
+
+.Risultato
+Workload Factory inizia a raccogliere metriche di latenza per tutti i volumi FSx for ONTAP associati alle tue credenziali AWS. Le metriche vengono raccolte almeno ogni 20 minuti. Tutti i volumi che superano le soglie configurate vengono visualizzati nella tabella degli eventi di latenza.
+
+
+
+== Configura le notifiche di latenza
+
+Configura le notifiche via email o Amazon SNS per ricevere avvisi quando vengono rilevati eventi di latenza. Le notifiche vengono inviate ogni volta che un volume supera le soglie configurate, fornendo consapevolezza in tempo reale dei problemi di prestazioni.
+
+Le notifiche di latenza vengono inviate per ogni singolo file system. Quando uno o più volumi di un file system superano le soglie di latenza, si riceve un'unica notifica che elenca tutti i volumi interessati.
+
+
+NOTE: Se sono interessati più di 10 volumi, l'e-mail visualizza i primi 10 volumi e indica quanti altri volumi sono interessati. È possibile visualizzare tutti i volumi interessati nella console di Workload Factory.
+
+Canali di notifica:
+
+* *Email*: inviata agli indirizzi email configurati nelle impostazioni di notifica di Workload Factory
+* *Amazon SNS*: Pubblicato sull'argomento SNS configurato per l'integrazione con altri sistemi
+
+
+Per abilitare le notifiche, consultare link:https://docs.netapp.com/us-en/workload-setup-admin/configure-notifications.html#wf-console-email-notifications["Configura le impostazioni di notifica"].
+
+
+
+== Gestisci la configurazione della latenza
+
+Dopo la configurazione iniziale, è possibile modificare le soglie secondo necessità.
+
+.Passi
+. Nella pagina *Latenza*, seleziona *Modifica*.
+. Modifica uno qualsiasi dei valori soglia secondo necessità.
++
+
+NOTE: Assicurarsi che le soglie critiche rimangano superiori alle soglie di avviso. Il sistema visualizza un errore se si configurano soglie critiche inferiori alle soglie di avviso.
+
+. Seleziona *Applica* per salvare le modifiche.
+
+
+
+
+== Best practice
+
+Tenete in considerazione questi suggerimenti durante la configurazione del monitoraggio della latenza:
+
+* *Imposta soglie realistiche*: configura le soglie in base ai requisiti del tuo carico di lavoro. I valori predefiniti forniscono un punto di partenza ma potrebbero richiedere adattamenti per il tuo ambiente specifico.
+* *Inizia con le soglie di avviso*: usa gli eventi di avviso per stabilire le aspettative di prestazioni di base prima di perfezionare le soglie critiche.
+* *Considera attentamente gli intervalli di tempo*: intervalli di tempo più brevi (5-10 minuti) rilevano i problemi più velocemente ma potrebbero generare più avvisi. Intervalli di tempo più lunghi (15-20 minuti) riducono i falsi positivi ma potrebbero ritardare il rilevamento.
+* *Coordinare le soglie di IOPS e latenza*: la logica a doppia condizione implica che entrambe debbano essere superate. L'impostazione di soglie di IOPS molto elevate potrebbe impedire l'emissione di avvisi anche quando la latenza è problematica.
+* *Esaminare gli eventi ignorati*: esaminare periodicamente i motivi per cui gli eventi sono stati ignorati per identificare opportunità di adeguamento della soglia o di miglioramenti dell'infrastruttura.
+
+
+
+
+== Informazioni correlate
+
+* link:learn-latency-monitoring.html["Scopri il monitoraggio della latenza"]
+* link:task-analyze-latency-issues.html["Analizza i problemi di latenza"]
+* link:task-analyze-latency-trends.html["Analizza le tendenze della latenza"]
+

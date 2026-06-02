@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: learn-overview-dashboard.html 
+keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, EMS events, latency events, SSD management, capacity automation, capacity recommendations, decision points 
+summary: Scopri come la dashboard Panoramica di Workload Factory per EDA ti aiuta a monitorare la salute del cluster FSx for ONTAP, la capacità e il throughput su larga scala. 
+---
+= Scopri la dashboard Panoramica in Workload Factory per EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+La dashboard Panoramica offre una visione centralizzata per gli amministratori IT che gestiscono i carichi di lavoro EDA su più file system FSx for ONTAP. Utilizzatela per valutare rapidamente lo stato e l'utilizzo del cluster, decidere dove posizionare nuovi volumi o processi, identificare i candidati per la migrazione di volumi o SVM e determinare quando scalare la capacità o il throughput.
+
+
+
+== Panoramica
+
+La dashboard Panoramica raccoglie le metriche CloudWatch per tutti i file system FSx for ONTAP associati alle credenziali AWS configurate.
+
+Comprende:
+
+* *Stato di salute del cluster*: Informazioni di riepilogo nella parte superiore che evidenziano gli eventi di latenza, l'utilizzo delle unità SSD e i consigli sulla capacità, nonché gli eventi ONTAP EMS sui file system.
+* *Tabella dei cluster*: una tabella dettagliata e ricercabile che mostra l'utilizzo e le metriche di performance per ciascun cluster, con supporto per filtri, ordinamento, impaginazione ed esportazione in formato CSV.
+
+
+Ti aiuta a:
+
+* Posiziona nuovi volumi e ribilancia i carichi di lavoro
+* Pianifica la scalabilità della capacità o del throughput
+* Monitorare lo stato di salute dei cluster su larga scala
+* Prendi decisioni informate sul posizionamento dei volumi
+* Identificare i cluster che si avvicinano ai limiti di capacità
+
+
+
+
+== Componenti della dashboard
+
+
+
+=== Stato di salute del cluster
+
+Lo stato di salute del cluster fornisce un'istantanea dell'attività sui file system filtrati. Queste informazioni vengono visualizzate solo quando almeno un collegamento FSx for ONTAP è associato ai file system.
+
+Lo stato di salute comprende le seguenti aree:
+
+*Latenza*:: Visualizza il numero di eventi di latenza rilevati nei file system considerati. È possibile visualizzare le informazioni sulla latenza solo se è stato abilitato il monitoraggio della latenza.
+*gestione della capacità*:: Visualizza il numero di file system con utilizzo SSD superiore all'80% e il numero di file system con raccomandazioni di capacità attive. Questo consente di identificare rapidamente i file system che potrebbero richiedere attenzione alla capacità.
+*Eventi ONTAP*:: Visualizza il numero di eventi EMS rilevati, categorizzati per Capacità, Disponibilità & protezione e Sicurezza & altro.
+
+
+
+
+=== Tabella dei cluster
+
+La tabella dei cluster fornisce una visualizzazione dettagliata di ciascun file system FSx for ONTAP, filtrata in base alla regione attiva e alle selezioni dell'account AWS. I dati vengono raccolti dalle metriche di CloudWatch.
+
+Utilizzare la tabella per:
+
+* Identificare i file system che si stanno avvicinando ai limiti di capacità (colonna Utilizzo SSD)
+* Confronta la domanda di throughput con il throughput SKU fornito (colonna Utilizzo throughput P99)
+* Monitora le metriche delle prestazioni su più cluster
+* Verifica lo stato della configurazione del collegamento (colonna Collegamento associato) - la validità della connessione viene verificata quotidianamente
+* Selezionare più cluster per aggiornamenti di parametri in blocco
+
+
+
+
+== gestione della capacità SSD
+
+La dashboard Panoramica offre una gestione intelligente della capacità SSD.
+
+
+
+=== Modalità di gestione
+
+*Automatizzare*:: Workload Factory aumenta automaticamente la capacità degli SSD in base a soglie predefinite e schemi di utilizzo. Il sistema gestisce la scalabilità della capacità senza intervento manuale. Questa soluzione è ideale per ambienti in cui si preferisce una gestione automatizzata.
+*Consiglia*:: Workload Factory analizza gli schemi di utilizzo del tuo SSD e fornisce raccomandazioni per l'aumento della capacità. Esamini e applichi manualmente le raccomandazioni. Questo ti offre il pieno controllo sulle decisioni relative alla capacità, beneficiando al contempo dell'analisi automatizzata.
+*Nessuno*:: Non vengono eseguite raccomandazioni di capacità né azioni automatizzate. Ciò è utile quando si desidera gestire la capacità manualmente senza l'ausilio del sistema.
+
+
+
+
+=== Raccomandazioni sulla capacità
+
+Quando Workload Factory è in modalità Automate o Recommend, il sistema esegue automaticamente un algoritmo di raccomandazione della capacità per ogni file system FSx for ONTAP. L'algoritmo esegue una scansione ogni 24 ore e identifica quando sono consigliate regolazioni della capacità degli SSD.
+
+Quando viene individuata una raccomandazione:
+
+* Ricevi una notifica immediata in base alle impostazioni di notifica di Workload Factory
+* I file system con raccomandazioni possono essere identificati filtrando la tabella Cluster in base alle colonne Last SSD increase timestamp o Last SSD increase description
+* Viene visualizzato il numero totale di file system con raccomandazioni attive
+
+
+La raccomandazione spiega la modifica suggerita e le motivazioni alla base di essa, ad esempio: _Consigliamo di aumentare le dimensioni dell'SSD in base allo schema di utilizzo dell'SSD del file system._
+
+
+
+=== Parametri di gestione SSD
+
+I parametri controllano il modo in cui il sistema di gestione della capacità analizza e agisce sull'utilizzo dell'SSD:
+
+*Soglia* (10-90%):: La percentuale di utilizzo dell'SSD che attiva i consigli sulla capacità o le azioni automatizzate. Ad esempio, una soglia dell'80% significa che i consigli o le azioni vengono attivati quando l'utilizzo dell'SSD raggiunge l'80%. Disponibile sia in modalità Recommend che in modalità Automate.
+*Lookback* (1-200 ore):: Periodo di tempo utilizzato per analizzare gli schemi storici di utilizzo degli SSD. Un periodo di analisi più lungo fornisce un contesto storico più ampio per le decisioni relative alla capacità. Disponibile solo in modalità Automate.
+*Avanti* (1-200 ore):: Il periodo di tempo utilizzato per prevedere il fabbisogno di capacità futuro. Un periodo di previsione più lungo consente di pianificare la crescita della capacità a lungo termine. Disponibile solo in modalità Automate.
+
+
+È possibile configurare questi parametri singolarmente per ciascun file system oppure applicare impostazioni coerenti a più file system tramite la modifica in blocco.
+
+
+
+=== Comprendere i punti decisionali relativi alla capacità
+
+Il grafico di utilizzo degli SSD visualizza i punti decisionali che indicano quando sono state generate raccomandazioni sulla capacità o intraprese azioni automatizzate. Questi indicatori visivi aiutano a comprendere il comportamento dell'algoritmo di gestione della capacità nel tempo.
+
+*Punti decisionali per la raccomandazione*:: Vengono visualizzati quando l'algoritmo di raccomandazione della capacità rileva che è necessaria ulteriore capacità SSD. Questi punti possono verificarsi con una frequenza fino a ogni 30 minuti se la capacità SSD non è stata aumentata. Il grafico mostra tutti i punti decisionali quando possibile, oppure li raggruppa se l'intervallo di tempo rende i singoli punti troppo ravvicinati.
+*Punti decisionali per l'automazione*:: Compaiono quando il sistema di automazione tenta di aumentare la capacità dell'SSD. Questi punti indicano se l'azione di automazione è riuscita o meno.
+
+
+Utilizzare i punti decisionali con il grafico storico dell'utilizzo dell'SSD per:
+
+* Comprendere con quale frequenza sono necessari gli aggiustamenti di capacità
+* Valuta se la modalità di automazione o quella di raccomandazione si adatta meglio ai tuoi modelli di carico di lavoro
+* Identificare i vincoli di capacità ricorrenti
+* Pianificare le future esigenze di capacità in base alle tendenze di crescita
+* Risoluzione dei problemi relativi ai tentativi di automazione non riusciti
+
+
+
+
+== Informazioni correlate
+
+* link:task-activate-overview-dashboard.html["Attiva la dashboard Panoramica"]
+* link:task-use-overview-dashboard.html["Utilizzare la dashboard Panoramica"]
+

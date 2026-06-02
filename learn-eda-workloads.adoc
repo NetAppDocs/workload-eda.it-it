@@ -48,7 +48,7 @@ Utilizzando le funzionalità di snapshot e clonazione di NetApp ONTAP, puoi acce
 
 == Automazione con Workload Factory Codebox
 
-Workload Factory introduce l'automazione integrata con _Codebox_. Codebox offre i seguenti vantaggi di automazione:
+Workload Factory introduce l'automazione integrata con _Codebox_. _Codebox_ offre i seguenti vantaggi in termini di automazione:
 
 * *Generazione di frammenti di codice*: i frammenti di Infrastructure-as-Code (IaC) vengono generati durante la creazione delle risorse, consentendo un'integrazione perfetta con i flussi di lavoro di orchestrazione esistenti.
 * *Copilota dell'infrastruttura come codice*: Codebox è un copilota dell'infrastruttura come codice (IaC) che aiuta gli sviluppatori e i DevOps a generare codice per eseguire qualsiasi operazione supportata da Workload Factory.
@@ -76,7 +76,6 @@ EDA è supportato in tutte le regioni commerciali in cui è supportato FSx per O
 Le seguenti regioni AWS non sono supportate:
 
 * regioni della Cina
-* Regioni GovCloud (USA)
 * Nuvola segreta
 * Nuvola top secret
 
