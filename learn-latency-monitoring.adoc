@@ -35,7 +35,7 @@ Un avviso si attiva solo quando queste condizioni sono vere per l'intero interva
 * Gravità critica
 
 
-Tutti gli eventi rilevati vengono visualizzati nella tabella degli eventi di latenza. Se le notifiche sono configurate, ricevi anche un'email o un messaggio Amazon SNS con i dettagli relativi ai volumi interessati.
+Tutti gli eventi rilevati vengono visualizzati nella tabella degli eventi di latenza. Se le notifiche sono configurate, ricevi anche un'email o un messaggio Amazon SNS con i dettagli relativi ai volumi interessati. Puoi controllare la frequenza con cui ricevi le notifiche: ogni giorno per file system oppure ogni 20 minuti.
 
 
 

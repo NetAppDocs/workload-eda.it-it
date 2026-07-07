@@ -91,7 +91,11 @@ Workload Factory raccoglie le metriche di latenza per tutti i volumi FSx for ONT
 
 == Configura le notifiche di latenza
 
-Configura le notifiche via email o Amazon SNS per ricevere avvisi quando viene rilevata una latenza elevata. Riceverai una notifica ogni volta che un volume supera le soglie che hai impostato, così saprai subito se c'è un problema di prestazioni.
+Configura le notifiche via email o Amazon SNS per ricevere avvisi quando viene rilevata una latenza elevata. Puoi controllare la frequenza delle notifiche con due opzioni:
+
+* *Ricordami ogni giorno (consigliato)*: Ricevi una notifica quando si verifica una nuova violazione in qualsiasi file system. Dopo aver inviato una notifica per un file system, aspetta 24 ore prima di inviarne un'altra per lo stesso file system.
+* *Notifica in caso di violazione della latenza (ogni 20 minuti)*: Ricevi una notifica quando viene rilevata una violazione, al massimo una volta ogni 20 minuti.
+
 
 Le notifiche di latenza vengono inviate per ogni singolo file system. Quando uno o più volumi di un file system superano le soglie di latenza, si riceve un'unica notifica che elenca tutti i volumi interessati.
 
