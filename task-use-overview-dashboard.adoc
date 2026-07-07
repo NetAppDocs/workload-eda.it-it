@@ -11,7 +11,7 @@ summary: Utilizza la dashboard Panoramica per monitorare lo stato del cluster, v
 
 
 [role="lead"]
-Utilizza la dashboard Panoramica per monitorare lo stato di salute e la capacità del cluster sui tuoi file system FSx for ONTAP. Filtra i dati, visualizza le raccomandazioni sulla capacità, gestisci le impostazioni di capacità SSD e analizza le tendenze delle prestazioni per prendere decisioni informate sul posizionamento dei volumi e sulla scalabilità della capacità.
+Utilizza la dashboard Panoramica per verificare lo stato e la capacità dei tuoi file system FSx for ONTAP. Puoi filtrare i dati, visualizzare i consigli sulla capacità, regolare le impostazioni di capacità degli SSD e analizzare le tendenze delle prestazioni per decidere dove posizionare i volumi e quando aumentare la capacità.
 
 
 
@@ -23,7 +23,7 @@ Utilizza la dashboard Panoramica per monitorare lo stato di salute e la capacit�
 
 == Filtra la dashboard
 
-Utilizza i filtri nella parte superiore del dashboard per concentrarti su specifici file system. Questi filtri si applicano alle sezioni relative a latenza, utilizzo ed eventi ONTAP, nonché alla tabella dei cluster.
+Usa i filtri nella parte superiore della dashboard per visualizzare specifici file system. I filtri si applicano alle sezioni latenza, utilizzo, eventi ONTAP e alla tabella dei cluster.
 
 .Passi
 . Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
@@ -43,7 +43,7 @@ Utilizza i filtri nella parte superiore del dashboard per concentrarti su specif
 
 == Visualizza lo stato di salute del cluster
 
-Nella parte superiore del pannello di controllo viene visualizzata una panoramica dello stato di salute e dell'attività dei file system filtrati. Queste informazioni vengono mostrate solo se almeno un collegamento FSx for ONTAP è associato ai file system.
+Nella parte superiore del pannello di controllo, vedi un riepilogo dello stato di salute e dell'attività dei file system che hai selezionato. Questo appare solo quando almeno un collegamento FSx for ONTAP è connesso ai tuoi file system.
 
 .Informazioni su questa attività
 Lo stato di salute del cluster comprende le seguenti aree chiave:
@@ -74,7 +74,7 @@ La scheda di visualizzazione degli eventi ONTAP mostra il numero di eventi EMS p
 
 == Visualizza e applica le raccomandazioni sulla capacità
 
-Workload Factory esegue automaticamente un algoritmo di raccomandazione della capacità per ogni file system FSx for ONTAP. È possibile identificare i file system con raccomandazioni di capacità filtrando la tabella Cluster.
+Workload Factory esegue automaticamente una raccomandazione sulla capacità per ogni file system FSx for ONTAP. Puoi trovare i file system con raccomandazioni filtrando la tabella Clusters.
 
 .Passi
 . Nella tabella *Cluster*, filtra in base alle colonne *Timestamp ultimo aumento SSD* o *Descrizione ultimo aumento SSD*.
@@ -100,7 +100,7 @@ Il grafico visualizza anche i punti decisionali relativi alle raccomandazioni e 
 
 == Modifica la modalità di gestione dell'SSD
 
-Modifica la modalità di gestione della capacità SSD per i singoli file system per controllare se desideri raccomandazioni manuali o scalabilità della capacità automatizzata.
+Per ogni file system, scegli come gestire la capacità SSD: ricevi consigli manuali oppure consenti il ridimensionamento automatico.
 
 .Informazioni su questa attività
 Le modalità di gestione dell'SSD includono:
@@ -130,20 +130,20 @@ Selezionando la modalità Automatizza, è possibile configurare i parametri Sogl
 
 
 .Risultato
-Il file system utilizza immediatamente la nuova modalità. Se hai selezionato Consiglia o Automatizza, il sistema utilizza i parametri configurati per l'analisi della capacità e il processo decisionale.
+Il file system passa immediatamente alla nuova modalità. Se scegli Consiglia o Automatizza, il sistema utilizza le impostazioni configurate per analizzare la capacità di storage e prendere decisioni.
 
 
 
 == Modifica in blocco i parametri di gestione SSD
 
-Regola i parametri di gestione della capacità SSD per più file system contemporaneamente, in modo da applicare impostazioni coerenti a tutti i cluster.
+Modifica le impostazioni di capacità SSD per più file system contemporaneamente così le stesse impostazioni si applicano a tutti i tuoi cluster.
 
 .Informazioni su questa attività
 Quando si selezionano più file system per la modifica in blocco:
 
-* Se tutti i file system selezionati hanno valori di parametro identici, tali valori vengono visualizzati come predefiniti nella finestra di dialogo di modifica
-* Se uno qualsiasi dei file system selezionati è in modalità None, nella finestra di dialogo vengono visualizzati i valori predefiniti
-* Se i valori dei parametri differiscono tra i file system selezionati, nella finestra di dialogo vengono inseriti i valori predefiniti
+* Se tutti i file system selezionati utilizzano le stesse impostazioni, queste vengono visualizzate come predefinite nella finestra di dialogo di modifica.
+* Se uno qualsiasi dei file system selezionati è in modalità None, nella finestra di dialogo vengono visualizzati i valori predefiniti.
+* Se i valori dei parametri differiscono tra i file system selezionati, nella finestra di dialogo vengono popolati i valori predefiniti.
 
 
 .Passi
@@ -168,13 +168,13 @@ I parametri vengono aggiornati per tutti i file system selezionati. I file syste
 
 == Analizzare le tendenze di capacità e i punti decisionali
 
-Utilizza il grafico di utilizzo degli SSD per comprendere l'andamento della capacità nel tempo e identificare modelli nella gestione della capacità.
+Utilizza il grafico di utilizzo dell'SSD per vedere come l'uso dello storage cambia nel tempo e individuare i pattern.
 
 .Informazioni su questa attività
 I punti decisionali sul grafico indicano quando:
 
 * *Punti decisionali di raccomandazione*: L'algoritmo di raccomandazione della capacità ha rilevato la necessità di ulteriore capacità SSD. Questi possono verificarsi con una frequenza fino a ogni 30 minuti se la capacità SSD non è stata aumentata.
-* *Punti decisionali dell'automazione*: Il sistema di automazione ha tentato di aumentare la capacità SSD. Questi punti indicano se l'azione è riuscita o meno.
+* *Punti decisionali dell'automazione*: Il sistema di automazione ha provato ad aumentare la capacità SSD. Questi punti mostrano se l'azione è riuscita o meno.
 
 
 .Passi
@@ -197,7 +197,7 @@ I punti decisionali sul grafico indicano quando:
 
 == Utilizzare la tabella dei cluster
 
-La tabella dei cluster fornisce una visualizzazione dettagliata di ciascun file system FSx for ONTAP con metriche sulle prestazioni e sull'utilizzo.
+La tabella dei cluster offre una visualizzazione dettagliata di ogni file system FSx for ONTAP con metriche sulle prestazioni e sull'utilizzo.
 
 .Passi
 . Dalla scheda *Panoramica*, consultare la tabella dei cluster.
@@ -219,13 +219,13 @@ Passa il mouse sopra le intestazioni delle colonne del throughput per visualizza
 
 Prendere in considerazione queste raccomandazioni quando si utilizza la dashboard Panoramica:
 
-* *Monitoraggio regolare*: Controlla regolarmente la dashboard per identificare le tendenze prima che diventino problemi.
-* *Imposta soglie appropriate*: configura le soglie di gestione degli SSD in base ai tuoi modelli di carico di lavoro e alle preferenze di pianificazione della capacità.
-* *Utilizza i filtri in modo efficace*: combina i filtri per regione e per account per concentrarti su specifici sottoinsiemi della tua infrastruttura.
-* *Esaminare tempestivamente i suggerimenti*: filtrare la tabella Cluster in base alla data e all'ora dell'ultimo aumento SSD o alla descrizione per identificare i file system con raccomandazioni di capacità. Esaminare e seguire queste raccomandazioni per evitare limitazioni di capacità.
-* *Scegli la modalità corretta*: usa la modalità Consiglia quando vuoi avere il controllo sulle decisioni relative alla capacità, oppure la modalità Automazione per una gestione completamente automatizzata.
-* *Monitorare i punti decisionali*: Esaminare regolarmente i punti decisionali sui grafici di capacità per comprendere il comportamento dell'algoritmo e verificare che le impostazioni corrispondano alle proprie esigenze.
-* *Sfrutta la modifica in blocco*: Quando gestisci più file system, utilizza la modifica in blocco dei parametri per mantenere politiche di gestione della capacità coerenti.
+* *Monitoraggio regolare*: Controlla spesso la dashboard per individuare le tendenze prima che diventino problemi.
+* **Imposta soglie chiare**: scegli soglie di gestione SSD adatte al tuo carico di lavoro e ai tuoi piani di capacità.
+* **Utilizza i filtri**: applica i filtri per regione e account per concentrarti sulle parti della tua infrastruttura che vuoi esaminare.
+* **Esamina rapidamente i suggerimenti**: filtra la tabella dei cluster in base alla **Last SSD increase timestamp** o alla descrizione per trovare i file system con suggerimenti di capacità. Controllali e agisci per evitare di rimanere senza spazio.
+* **Scegli la modalità corretta**: Usa la modalità **Recommend** se vuoi approvare tu stesso le modifiche di capacità. Usa la modalità **Automation** se vuoi che il sistema gestisca automaticamente la capacità.
+* **Guarda i punti decisionali**: Controlla i punti decisionali sui grafici di capacità per vedere come il sistema prende le decisioni e conferma che le impostazioni funzionano per le tue esigenze.
+* **Modifica in blocco**: Quando gestisci molti file system, usa la modifica in blocco per mantenere coerenti le impostazioni di capacità.
 
 
 

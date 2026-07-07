@@ -11,25 +11,25 @@ summary: Configura filtri personalizzati per la dashboard Progetti per organizza
 
 
 [role="lead"]
-Configura filtri personalizzati per la dashboard Progetti per organizzare le metriche in base alla struttura aziendale, ad esempio progetti, team o centri di costo. Questo ti aiuta a monitorare i costi con precisione, a identificare quali risorse consumano più capacità e a prendere decisioni informate sull'allocazione delle risorse e sulla pianificazione del budget. Allineando i filtri al funzionamento della tua organizzazione, puoi accedere rapidamente ai dati pertinenti e migliorare l'efficienza nella pianificazione della capacità, nel monitoraggio dei costi e nel controllo delle prestazioni.
+Configura filtri personalizzati nella dashboard Progetti per organizzare i dati in modo che rispecchino il funzionamento della tua azienda, ad esempio per progetto, team o centro di costo. Questo rende più facile vedere chiaramente i costi, individuare quali risorse usano più capacità e prendere decisioni migliori su budget e personale. Quando i filtri corrispondono alla struttura della tua organizzazione, puoi trovare rapidamente i dati che ti servono e gestire capacità, costi e prestazioni in modo più efficiente.
 
 
 
 == Prima di iniziare
 
-Per utilizzare efficacemente i filtri personalizzati, configura i tag AWS sui volumi FSx per ONTAP in base alle tue esigenze aziendali, ad esempio tag che rappresentano progetti, team o unità aziendali.
+Per utilizzare filtri personalizzati, aggiungi tag AWS ai tuoi volumi FSx per ONTAP in base alle tue esigenze, ad esempio tag per progetti, team o unità aziendali.
 
 
 
 == Configura filtri personalizzati
 
 
-NOTE: Solo il primo utente amministratore ad accedere alla dashboard Progetti può configurare, aggiungere o eliminare filtri personalizzati. Tutti gli altri utenti, inclusi gli amministratori successivi, hanno accesso in sola lettura ai filtri.
+NOTE: Solo il primo admin che apre la dashboard Projects può creare, modificare o eliminare filtri personalizzati. Tutti gli altri utenti, inclusi gli altri admin, possono solo visualizzare i filtri.
 
 .Informazioni su questa attività
-Puoi configurare fino a cinque filtri personalizzati in base ai tuoi tag AWS. Ogni filtro personalizzato richiede tre componenti: un nome per l'etichetta del filtro, un nome per la chiave del tag AWS e un tipo di selezione (selezione singola o multipla).
+Puoi configurare fino a cinque filtri personalizzati utilizzando i tag AWS. Ogni filtro richiede i seguenti elementi: un'etichetta del filtro, una chiave del tag AWS e un tipo di selezione (singola o multipla).
 
-Se non configuri alcun filtro personalizzato, i filtri predefiniti (file system, tipo di volume e intervallo di tempo) rimangono disponibili così puoi comunque visualizzare e interagire con le tue dashboard.
+Se non configuri filtri personalizzati, i filtri predefiniti, file system, tipo di volume e intervallo di tempo saranno comunque disponibili, così puoi continuare a visualizzare e usare le tue dashboard.
 
 .Passi
 . Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
@@ -46,7 +46,7 @@ Se non hai ancora configurato la tua dashboard, ti verrà automaticamente chiest
 ** Tipo di selezione (selezione singola o multipla)
 +
 
-NOTE: I filtri vengono visualizzati sulla dashboard nell'ordine in cui li configuri. Considera di organizzare prima i filtri che usi più frequentemente per un accesso più semplice.
+NOTE: I filtri vengono visualizzati nella dashboard nell'ordine in cui li hai impostati. Metti i filtri che usi di più in cima così sono più facili da trovare.
 
 
 
@@ -59,7 +59,7 @@ Puoi eliminare un filtro personalizzato selezionando l'icona del cestino accanto
 
 
 .Risultato
-Quando questi tag vengono applicati, Workload Factory inizia a raccogliere e visualizzare le metriche CloudWatch. La dashboard diventa uno strumento dinamico per organizzare, monitorare i costi e filtrare le risorse in base alle esigenze organizzative.
+Quando applichi questi tag, Workload Factory inizia a raccogliere e mostrare le relative metriche CloudWatch. La tua dashboard poi ti aiuta a organizzare le risorse, tenere traccia dei costi e filtrare gli elementi in base alle tue esigenze.
 
 
 

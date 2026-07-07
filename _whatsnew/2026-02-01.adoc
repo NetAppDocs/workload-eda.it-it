@@ -1,10 +1,10 @@
-= Filtraggio della dashboard migliorato con tag personalizzabili
+= Filtri dashboard migliorati con tag personalizzabili nei carichi di lavoro EDA
 :allow-uri-read: 
 
 
 
 
-=== Filtraggio della dashboard migliorato con tag personalizzabili
+=== Filtri dashboard migliorati con tag personalizzabili nei carichi di lavoro EDA
 
 Ora puoi configurare fino a cinque filtri personalizzati sulla dashboard EDA in base ai tuoi tag AWS. Ogni filtro personalizzato include un nome etichetta, una chiave di tag AWS e un tipo di selezione (singola o multipla).
 

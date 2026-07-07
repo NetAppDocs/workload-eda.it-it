@@ -11,7 +11,7 @@ summary: Attiva la dashboard Panoramica per iniziare a raccogliere le metriche C
 
 
 [role="lead"]
-Attiva la dashboard Panoramica per iniziare a raccogliere le metriche CloudWatch per i tuoi file system FSx for ONTAP. Una volta attivata, la dashboard fornisce un monitoraggio centralizzato dello stato di salute del cluster, della capacità e del throughput.
+Attiva la dashboard Panoramica per iniziare a raccogliere le metriche CloudWatch per i tuoi file system FSx for ONTAP. La dashboard ti permette di vedere in un unico posto lo stato di salute del cluster, la capacità e il throughput.
 
 
 
@@ -33,10 +33,10 @@ Se non hai configurato le credenziali AWS, consulta link:https://docs.netapp.com
 
 == Attiva la dashboard
 
-Dopo che Workload Factory avrà confermato le credenziali con i permessi di visualizzazione, sarà necessario attivare la dashboard per iniziare a raccogliere le metriche CloudWatch per i file system FSx for ONTAP.
+Dopo che Workload Factory verifica le credenziali con i permessi di visualizzazione, attiva la dashboard per iniziare a raccogliere le metriche CloudWatch per i tuoi file system FSx for ONTAP.
 
 
-NOTE: La raccolta delle metriche potrebbe richiedere del tempo dopo aver fornito il consenso. La dashboard ti avvisa mentre la raccolta iniziale è in corso.
+NOTE: Dopo aver dato il consenso, la raccolta delle metriche potrebbe richiedere un po' di tempo. La dashboard ti avviserà mentre la prima raccolta è in corso.
 
 .Passi
 . Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
@@ -48,7 +48,7 @@ NOTE: La raccolta delle metriche potrebbe richiedere del tempo dopo aver fornito
 
 
 .Risultato
-Workload Factory inizia a raccogliere le metriche CloudWatch per tutti i file system FSx for ONTAP associati alle credenziali AWS configurate. La dashboard si popola man mano che le metriche diventano disponibili. Viene visualizzata una notifica se la raccolta è ancora in corso.
+Workload Factory inizia a raccogliere le metriche CloudWatch per tutti i file system FSx for ONTAP collegati alle tue credenziali AWS. La dashboard si popola man mano che le metriche diventano disponibili. Appare una notifica mentre la raccolta di dati è ancora in corso.
 
 
 

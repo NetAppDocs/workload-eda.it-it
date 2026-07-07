@@ -11,17 +11,17 @@ summary: NetApp Workload Factory per EDA ti aiuta a ottimizzare le prestazioni d
 
 
 [role="lead"]
-Workload Factory per EDA ti aiuta a ottimizzare FSx per ONTAP su più file system. È possibile ottimizzare le prestazioni e ridurre i costi operativi automatizzando i parametri di archiviazione, analizzando i vincoli prestazionali e ottenendo informazioni dettagliate sui progetti EDA.
+Workload Factory per EDA ti aiuta a gestire Amazon FSx per ONTAP su più file system. Migliora le performance e riduce i costi regolando automaticamente le impostazioni dello storage, individuando i problemi di latenza e fornendo informazioni dettagliate sui tuoi progetti EDA.
 
 È progettato per integrarsi con i framework Infrastructure as Code (IaC).
 
-Workload Factory per EDA fornisce dashboard, framework e utilità di automazione dell'archiviazione che aiutano a gestire più file system FSx for ONTAP .
+Workload Factory per EDA offre dashboard, strumenti di automazione e utility che ti aiutano a gestire più file system Amazon FSx for ONTAP.
 
 Offre quanto segue:
 
-* link:learn-overview-dashboard.html["Panoramica del pannello di controllo"]: fornisce una vista centralizzata del cluster per aiutarti a monitorare lo stato di salute, la capacità e il throughput del cluster FSx for ONTAP, determinare dove posizionare nuovi volumi, prendere decisioni informate sulla scalabilità della capacità e del throughput, ricevere raccomandazioni automatiche sulla capacità o abilitare la scalabilità automatica della capacità. Visualizza i punti decisionali storici per comprendere il comportamento dell'algoritmo nel tempo.
-* link:learn-latency-monitoring.html["Monitorare la latenza del volume"]: monitora in modo proattivo le performance di latenza di lettura e scrittura dei volumi con soglie di avviso e critiche configurabili. Ricevi notifiche via email o SNS quando vengono rilevati eventi. Include un'analisi di base automatizzata utilizzando le metriche ONTAP QoS delay center e un'analisi opzionale con agenti AI per scenari complessi che richiedono un'identificazione più approfondita delle cause principali.
-* link:task-analyze-latency-trends.html["Analizza le tendenze della latenza"]: usa il grafico interattivo della latenza per visualizzare il comportamento della latenza nel tempo, identificare i modelli, capire se i problemi di performance sono ricorrenti o isolati e prendere decisioni basate sui dati riguardo alle azioni correttive.
-* link:learn-project-dashboard.html["dashboard dei progetti"]: fornisce una visione centralizzata del consumo di storage nei tuoi file system FSx for ONTAP per aiutarti a pianificare, valutare i costi e raccogliere informazioni sull'utilizzo dello storage nei tuoi progetti.
-* link:learn-eda-workloads.html["CI/CD"]: semplifica e riduce i tempi di compilazione del software sfruttando le capacità di clonazione del volume di FSx for ONTAP .
+* link:learn-overview-dashboard.html["Panoramica del pannello di controllo"]: Fornisce una visione unificata del tuo cluster FSx for ONTAP così puoi monitorare stato di salute, capacità e throughput. Usala per decidere dove posizionare nuovi volumi, pianificare quando aumentare capacità o throughput, ottenere raccomandazioni automatiche sulla capacità o abilitare lo scaling automatico. Puoi anche rivedere le decisioni passate per vedere come sono cambiate nel tempo le raccomandazioni del sistema.
+* link:learn-latency-monitoring.html["Monitorare la latenza del volume"]Monitora la latenza di lettura e scrittura dei volumi e ti permette di impostare soglie di avviso e critiche. Quando le soglie vengono superate, invia notifiche via email o SNS. Include un'analisi di base automatizzata utilizzando le metriche ONTAP QoS delay center, con analisi AI opzionale per problemi più complessi che richiedono un'identificazione più approfondita della causa principale.
+* link:task-analyze-latency-trends.html["Analizza le tendenze della latenza"]Usa grafici delle prestazioni sincronizzati per latenza, IOPS e throughput per vedere come queste metriche cambiano nel tempo. Questo ti aiuta a individuare schemi, a determinare se i problemi si ripetono o si verificano solo una volta e a prendere decisioni informate sulle soluzioni.
+* link:learn-project-dashboard.html["dashboard dei progetti"]Mostra l'utilizzo dello storage per tutti i tuoi file system Amazon FSx for ONTAP in un unico posto, aiutandoti a pianificare la capacità, stimare i costi e vedere come ogni progetto utilizza lo storage.
+* link:learn-eda-workloads.html["CI/CD"]Velocizza la compilazione del software clonando rapidamente i volumi FSx for ONTAP.
 

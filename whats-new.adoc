@@ -15,6 +15,31 @@ Scopri le novità sulla funzionalità EDA di Workload Factory.
 
 
 
+== 5 luglio 2026
+
+
+
+=== Analisi avanzata della latenza con grafici IOPS e throughput
+
+Il pannello di analisi della latenza ora mostra grafici delle prestazioni sincronizzati nella scheda *Nel tempo*:
+
+* *Grafico della latenza*: mostra come la latenza varia nel tempo, con linee di soglia e avvisi quando i limiti vengono superati.
+* *Grafico IOPS*: mostra le operazioni al secondo, con linee di soglia e indicatori per i precedenti superamenti dei limiti.
+* *Grafico del throughput*: mostra le velocità di trasferimento dei dati (DataReadBytes o DataWriteBytes).
+
+
+Tutti i grafici utilizzano la stessa linea temporale e mostrano automaticamente le metriche corrette in base al fatto che l'evento sia una lettura o una scrittura.
+
+Un nuovo filtro ti permette di passare tra Tutto, Lettura, Scrittura o Metadati per un'analisi più dettagliata.
+
+Questi grafici ti aiutano a vedere come latenza, IOPS e throughput sono correlati tra loro, rendendo più facile trovare la causa dei problemi di performance e decidere come risolverli.
+
+I grafici delle prestazioni sono ora disponibili solo se vengono fornite le credenziali AWS. I collegamenti FSx for ONTAP sono necessari solo per la scomposizione dei componenti nelle analisi di base e AI.
+
+https://docs.netapp.com/us-en/workload-eda/task-analyze-latency-trends.html["Scopri come analizzare le tendenze di latenza con più grafici"^].
+
+
+
 == 31 maggio 2026
 
 
@@ -125,18 +150,18 @@ https://docs.netapp.com/us-en/workload-eda/task-use-overview-dashboard.html#capa
 
 === Analisi automatizzata della latenza dell'AI
 
-L'analisi della latenza ora include l'analisi degli agenti AI.
+L'analisi della latenza ora include anche l'analisi AI.
 
-Per scenari complessi che coinvolgono dati o latenza del cluster, è possibile richiamare l'analisi dell'agente AI per ricevere:
+Per scenari complessi che coinvolgono dati o latenza del cluster, puoi richiamare l'analisi AI per ricevere:
 
 * Identificazione dettagliata della causa principale
 * Elenco dei client EC2 interessati
 * Misure di risanamento specifiche
 
 
-L'analisi tramite agente AI richiede la configurazione dell'ARN del modello Amazon Bedrock ed è disponibile su richiesta per gli scenari in cui l'analisi di base raccomanda un'indagine più approfondita. L'agente AI è in grado di identificare problemi quali volumi eccessivi, configurazioni non ottimali dei punti di montaggio, FlexGroup, necessità di ribilanciamento e requisiti di scale-out.
+L'analisi AI richiede la configurazione dell'ARN del modello Amazon Bedrock ed è disponibile su richiesta per gli scenari in cui l'analisi di base consiglia un'indagine più approfondita. L'agente AI può identificare problemi come volumi eccessivi, configurazioni non ottimali dei punti di montaggio, FlexGroup, necessità di ribilanciamento e requisiti di scale-out.
 
-https://docs.netapp.com/us-en/workload-eda/task-monitor-latency.html#run-ai-agent-analysis["Scopri di più sull'analisi degli agenti AI"^].
+https://docs.netapp.com/us-en/workload-eda/task-monitor-latency.html#run-ai-agent-analysis["Scopri di più sull'analisi basata sull'intelligenza artificiale"^].
 
 
 
@@ -182,7 +207,7 @@ link:https://docs.netapp.com/us-en/workload-setup-admin/workload-factory-overvie
 
 
 
-=== Filtraggio della dashboard migliorato con tag personalizzabili
+=== Filtri dashboard migliorati con tag personalizzabili nei carichi di lavoro EDA
 
 Ora puoi configurare fino a cinque filtri personalizzati sulla dashboard EDA in base ai tuoi tag AWS. Ogni filtro personalizzato include un nome etichetta, una chiave di tag AWS e un tipo di selezione (singola o multipla).
 
@@ -248,7 +273,7 @@ BlueXP è stato rinominato e riprogettato per riflettere meglio il ruolo che svo
 
 
 
-=== Supporto per cloni
+=== Supporto per la clonazione in Workload Factory per i Builders
 
 Ora puoi clonare un progetto in BlueXP Workload Factory for Builders. Quando si clona un progetto, Builders crea un nuovo progetto da uno snapshot, con la stessa configurazione dell'originale. La clonazione è utile per creare rapidamente progetti simili o per scopi di test. È possibile montare il nuovo clone del progetto seguendo le istruzioni in Builders.
 
@@ -260,7 +285,7 @@ https://docs.netapp.com/us-en/workload-builders/version-projects.html["Gestisci 
 
 
 
-=== Terminologia aggiornata delle autorizzazioni
+=== Terminologia delle autorizzazioni aggiornata in Workload Factory per EDA
 
 L'interfaccia utente e la documentazione di Workload Factory ora utilizzano "sola lettura" per fare riferimento alle autorizzazioni di lettura e "lettura/scrittura" per fare riferimento alle autorizzazioni di automazione.
 

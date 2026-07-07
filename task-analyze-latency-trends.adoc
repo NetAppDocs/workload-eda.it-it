@@ -11,29 +11,33 @@ summary: 'Utilizza il grafico interattivo della latenza per analizzare le tenden
 
 
 [role="lead"]
-Dopo aver rilevato un evento di latenza, è possibile utilizzare il grafico interattivo per analizzare il comportamento della latenza del volume nel tempo. Questo aiuta a identificare i modelli, a capire se i problemi di performance sono ricorrenti o isolati e a prendere decisioni basate sui dati in merito alle azioni correttive.
+Dopo che è stato rilevato un evento di latenza, usa il grafico interattivo per vedere come la latenza e il volume cambiano nel tempo. Questo ti aiuta a individuare schemi, vedere se il problema si verifica spesso o solo una volta, e decidere come risolverlo in base ai dati.
 
 
 
 == Prima di iniziare
 
-È necessario link:task-configure-latency-monitoring.html["monitoraggio della latenza configurato"] e almeno un evento di latenza rilevato.
+Devi avere link:task-configure-latency-monitoring.html["monitoraggio della latenza configurato"] e almeno un evento di latenza rilevato. Puoi visualizzare i grafici delle prestazioni se hai le credenziali AWS. Per vedere la ripartizione dei componenti, ti serve un link.
 
 
 
 == Analizza le tendenze della latenza
 
-Il grafico della latenza fornisce una rappresentazione visiva dell'andamento della latenza del volume nel tempo.
+La scheda *Nel tempo* fornisce grafici delle prestazioni per aiutarti ad analizzare il comportamento del volume: latenza, IOPS e throughput.
 
 .Informazioni su questa attività
-Il grafico della latenza visualizza i dati di latenza di CloudWatch per il volume interessato. Il grafico mostra automaticamente la latenza di lettura o di scrittura in base all'allarme che ha attivato l'evento. È possibile regolare l'intervallo di tempo per visualizzare il comportamento della latenza in periodi diversi.
+I grafici mostrano le metriche di CloudWatch per il volume interessato. Tutti i grafici utilizzano la stessa timeline. Visualizzano automaticamente le metriche di lettura o scrittura in base all'allarme che ha attivato l'evento.
 
-Comprende:
+Puoi cambiare l'intervallo di tempo per vedere le prestazioni in periodi diversi. Puoi anche passare tra Tutte, Lettura, Scrittura o Metadati.
 
-* *Linea della metrica di latenza*: mostra i valori di latenza effettivi (in millisecondi) raccolti da CloudWatch nel tempo
-* *Linee di soglia*: Linee orizzontali tratteggiate che indicano le soglie di avviso e critiche configurate
-* *Indicatori di violazione*: Indicatori visivi che mostrano quando e quante volte le soglie sono state superate durante il periodo di tempo
-* *Dettagli della violazione*: Per ogni violazione, visualizza il valore di latenza mediana, la percentuale al di sopra della soglia, i dati del centro di ritardo QoS e il tempo di rilevamento
+La visualizzazione comprende:
+
+* *Grafico della latenza*: mostra i valori di latenza effettivi (in millisecondi) rilevati da CloudWatch nel tempo, con linee di soglia e indicatori di superamento.
+* *Grafico IOPS*: mostra la latenza effettiva in millisecondi da CloudWatch nel tempo. Le linee di soglia indicano i limiti impostati e i marcatori mostrano quando quei limiti sono stati superati. Mostra anche le operazioni al secondo con una linea di soglia e marcatori per le violazioni passate. L'attività di lettura mostra DataReadOperations e l'attività di scrittura mostra DataWriteOperations.
+* *Grafico del throughput*: mostra le velocità di trasferimento dei dati. Per gli eventi di lettura, visualizza DataReadBytes. Per gli eventi di scrittura, visualizza DataWriteBytes. Se **Metadata** è selezionato nel filtro, il grafico del throughput non mostra dati.
+* *Linee di soglia*: Le linee orizzontali tratteggiate mostrano i limiti di avviso e critici che imposti sui grafici di latenza e IOPS.
+* *Indicatori di violazione*: Indicatori visivi che mostrano quando le soglie sono state superate e quante volte durante il periodo.
+* *Dettagli della violazione*: Per ogni violazione, visualizza il ritardo mediano, la % al di sopra del limite, i dati del centro di ritardo QoS e l'ora in cui è stata rilevata.
 
 
 .Passi
@@ -42,43 +46,41 @@ Comprende:
 Si apre il pannello di analisi della latenza.
 
 . Seleziona la scheda *Over time*.
-. Esamina la visualizzazione grafica predefinita che mostra i dati di latenza delle ultime 3 ore.
-. Modifica l'intervallo di tempo per analizzare periodi diversi e identificare schemi.
-. Osserva la linea di tendenza della latenza rispetto alle linee di soglia.
-. Esamina gli indicatori di violazione sul grafico:
-+
-Quando le soglie vengono superate più volte durante il periodo di tempo visualizzato, gli indicatori di violazione segnalano quando le soglie sono state superate.
-
-. Per visualizzare i dettagli della violazione, posiziona il cursore del mouse sull'indicatore di violazione o selezionalo.
+. Esamina la visualizzazione predefinita, che mostra i grafici delle prestazioni relativi a latenza, IOPS e throughput nelle ultime 3 ore.
+. Facoltativamente, puoi usare il filtro *Tipo* per passare tra Tutte, Lettura, Scrittura o Metadati. L'impostazione predefinita corrisponde al tipo di evento (Read per gli eventi di lettura, Write per gli eventi di scrittura).
+. Modifica l'intervallo di tempo per esaminare altri periodi e cercare schemi.
+. Controlla le linee di tendenza per latenza, IOPS e throughput. I grafici di IOPS e latenza includono linee di soglia per confronto.
+. Cerca gli indicatori di superamento sui grafici. Questi indicatori compaiono quando le soglie vengono superate più volte durante il periodo di tempo selezionato.
+. Per vedere più dettagli, passa il mouse sopra o seleziona un indicatore di violazione.
 . Esamina il riepilogo del numero di violazioni:
 +
-Il grafico mostra il numero totale di violazioni di avviso o critiche rilevate durante il periodo di tempo selezionato.
+Il grafico mostra il numero totale di violazioni di avviso o critiche durante il periodo di tempo selezionato.
 
 . Utilizza le informazioni ricavate dal grafico per:
 +
-** Determinare se i problemi di latenza sono isolati o ricorrenti
-** Identificare i modelli dell'ora del giorno che sono correlati a un'elevata latenza
-** Valuta se i picchi di latenza sono brevi o prolungati
-** Correlare gli eventi di latenza con i modelli di carico di lavoro o le modifiche del sistema
+** Verifica se i problemi di latenza si verificano una sola volta o si ripetono
+** Individua i momenti della giornata in cui la latenza è più elevata
+** Scopri se i picchi di latenza sono di breve o lunga durata
+** Confronta gli eventi di latenza con i modelli di carico di lavoro o le modifiche di sistema
 
 
 
 
 .Risultato
-Ottieni una visione completa dell'andamento della latenza di volume nel tempo, che ti aiuta a prendere decisioni informate sulla necessità di interventi immediati, sulla regolazione delle soglie o sull'indagine di problemi infrastrutturali sottostanti.
+Puoi vedere come la latenza del volume cambia nel tempo. Questo ti aiuta a decidere se intervenire subito, modificare i limiti di avviso o verificare la presenza di problemi di sistema.
 
 
-NOTE: Il grafico della latenza mostra i dati delle metriche di CloudWatch, che possono differire leggermente dai dati del centro di ritardo QoS di ONTAP a causa delle diverse metodologie di raccolta. Entrambe le fonti di dati sono fornite per un'analisi completa.
+NOTE: Il grafico della latenza utilizza le metriche di CloudWatch. Queste potrebbero essere leggermente diverse dai dati del centro di ritardo QoS di ONTAP perché vengono raccolte in modi differenti. Entrambe sono mostrate per offrire una visione più completa.
 
 
 
 == Interpretazione del grafico
 
-Considera queste raccomandazioni quando analizzi le tendenze di latenza:
+Utilizza questi suggerimenti quando analizzi le variazioni nei tempi di risposta:
 
-* *Utilizzare intervalli di tempo multipli*: Esaminare il grafico in diversi intervalli di tempo per distinguere tra picchi isolati e peggioramento delle performance. Iniziare con la visualizzazione a 24H per avere un quadro generale, quindi ingrandire periodi più brevi per analizzare incidenti specifici o espandere a 72H per identificare i modelli giornalieri.
-* *Confronta visivamente le soglie*: utilizza le linee di soglia sul grafico per valutare se i valori di avviso e critici configurati sono appropriati per i tuoi modelli di carico di lavoro. Se la latenza si avvicina frequentemente alla soglia ma non la supera, valuta se la soglia è impostata troppo alta. Se noti molti brevi superamenti della soglia che non influiscono sulle operazioni, la soglia potrebbe essere troppo sensibile.
-* *Identifica i modelli giornalieri*: utilizza le visualizzazioni a 24H e 72H per identificare i modelli in base all'ora del giorno. Se si verificano picchi di latenza in orari prevedibili, puoi pianificare in modo proattivo le operazioni che richiedono molte risorse durante i periodi di minore utilizzo o aumentare la capacità per gestire i picchi di carico.
-* *Distingui i tipi di picchi*: Picchi brevi e improvvisi indicano problemi transitori (come una temporanea contesa di risorse), mentre una latenza elevata e prolungata suggerisce problemi sistemici (come limitazioni di capacità o problemi di configurazione). Ciascuno richiede approcci di risoluzione differenti.
-* *Monitorare l'andamento dopo le modifiche*: Dopo aver regolato le soglie, aggiunto capacità o modificato le configurazioni, monitorare il grafico per almeno 72 ore per verificare che le modifiche abbiano l'effetto desiderato.
+* *Utilizza intervalli di tempo multipli*: osserva i grafici in intervalli di tempo diversi per distinguere tra picchi brevi e rallentamenti prolungati. Inizia con la visualizzazione a 24 ore per avere un quadro generale. Poi ingrandisci su periodi più brevi per esaminare episodi specifici, oppure passa alla visualizzazione a 72 ore per individuare i pattern giornalieri.
+* *Confronta visivamente le soglie*: usa le linee di soglia sul grafico per verificare se le impostazioni di avviso e critiche sono adatte al tuo carico di lavoro. Se la latenza si avvicina spesso alla soglia ma non la supera, la soglia potrebbe essere troppo alta. Se vedi molti picchi brevi che superano la soglia ma non influiscono sulle operazioni, la soglia potrebbe essere troppo sensibile.
+* *Identifica i modelli giornalieri*: usa le visualizzazioni a 24 e 72 ore per individuare i modelli durante la giornata. Se i picchi di latenza si verificano negli stessi orari, pianifica le attività più impegnative durante i periodi più tranquilli oppure aggiungi più capacità per i momenti di maggiore carico.
+* *Distingui i tipi di picchi*: i picchi brevi di solito indicano problemi temporanei, come una breve contesa di risorse. La latenza che rimane elevata nel tempo indica problemi di sistema più profondi, come capacità limitata o problemi di configurazione. Ogni situazione richiede una soluzione diversa.
+* *Monitora l'andamento dopo le modifiche*: Dopo aver regolato le soglie, aggiunto capacità o cambiato le impostazioni, monitora il grafico per almeno 72 ore per assicurarti che le modifiche abbiano funzionato.
 
