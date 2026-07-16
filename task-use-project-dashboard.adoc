@@ -15,12 +15,14 @@ Utilizza la dashboard Progetti per monitorare l'utilizzo dello storage nei tuoi 
 
 
 
+[[before-you-begin]]
 == Prima di iniziare
 
 Dovresti avere link:task-configure-project-dashboard.html["filtri personalizzati configurati"] per la dashboard Progetti. Se non hai configurato filtri personalizzati, puoi comunque utilizzare i filtri predefiniti (file system, tipo di volume e intervallo di tempo).
 
 
 
+[[filter-the-dashboard]]
 == Filtra la dashboard
 
 Il filtraggio ti permette di concentrarti su gruppi specifici di risorse di storage. Questo rende più facile individuare tendenze, trovare problemi e creare report per gli stakeholder. Usando più filtri insieme, puoi rispondere a domande mirate come: "Quanta storage sta usando il team del progetto ASIC?" oppure "Quali volumi nella regione US-West hanno il numero più alto di IOPS?"
@@ -44,12 +46,14 @@ Il filtraggio ti permette di concentrarti su gruppi specifici di risorse di stor
 
 
 
+[[view-volume-details]]
 == Visualizza i dettagli del volume
 
 Analizzare sia le prestazioni complessive dei volumi che quelle dei singoli volumi ti aiuta a pianificare la capacità e migliorare le prestazioni. La visualizzazione "Totale" mostra le tendenze generali. La visualizzazione "Volume" ti aiuta a trovare i volumi specifici che potrebbero richiedere attenzione, ottimizzazione o più risorse.
 
 
 
+[[view-aggregated-volume-metrics]]
 === Visualizza metriche aggregate del volume
 
 La vista Totale mostra le metriche combinate per tutti i volumi che corrispondono ai tuoi filtri.
@@ -68,6 +72,7 @@ La vista Totale mostra le metriche combinate per tutti i volumi che corrispondon
 
 
 
+[[view-individual-volume-performance]]
 === Visualizza le prestazioni dei singoli volumi
 
 La vista Volume mostra come si comporta ciascun volume nel tempo. Evidenzia i 10 volumi principali per ogni metrica.
@@ -106,6 +111,7 @@ Usa questi dati per:
 
 
 
+[[best-practices]]
 == Best practice
 
 Considerare queste raccomandazioni quando si utilizza la dashboard Progetti:
@@ -120,6 +126,7 @@ Considerare queste raccomandazioni quando si utilizza la dashboard Progetti:
 
 
 
+[[related-information]]
 == Informazioni correlate
 
 * link:learn-project-dashboard.html["Scopri la dashboard dei progetti"]

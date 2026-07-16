@@ -4,6 +4,7 @@
 
 
 
+[[enhanced-dashboard-filtering-with-customizable-tags-in-eda-workloads]]
 === Filtri dashboard migliorati con tag personalizzabili nei carichi di lavoro EDA
 
 Ora puoi configurare fino a cinque filtri personalizzati sulla dashboard EDA in base ai tuoi tag AWS. Ogni filtro personalizzato include un nome etichetta, una chiave di tag AWS e un tipo di selezione (singola o multipla).
@@ -16,6 +17,7 @@ https://docs.netapp.com/us-en/workload-eda/task-configure-dashboard.html["Scopri
 
 
 
+[[volume-details-view-for-granular-performance-analysis]]
 === Visualizzazione dei dettagli del volume per un'analisi granulare delle performance
 
 La dashboard ora offre due modalità di visualizzazione: Total view e Volume view. La Total view mostra metriche aggregate su tutti i volumi, mentre la Volume view mostra le performance individuali dei primi 10 volumi nel tempo.
@@ -26,6 +28,7 @@ https://docs.netapp.com/us-en/workload-eda/task-configure-dashboard.html#view-vo
 
 
 
+[[latency-analysis-for-proactive-performance-monitoring]]
 === Analisi della latenza per il monitoraggio proattivo delle performance
 
 L'analisi della latenza consente di monitorare la latenza di lettura e scrittura dei volumi nei file system FSx for ONTAP. È possibile configurare soglie personalizzabili di avviso e di evento critico per identificare in modo proattivo i colli di bottiglia delle performance prima che influiscano sui carichi di lavoro EDA.

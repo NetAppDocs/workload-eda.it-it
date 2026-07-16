@@ -15,6 +15,7 @@ Il monitoraggio della latenza in Workload Factory per EDA ti aiuta a individuare
 
 
 
+[[how-latency-monitoring-works]]
 == Come funziona il monitoraggio della latenza
 
 L'analisi della latenza raccoglie le metriche di CloudWatch per l'attività di lettura e scrittura su tutti i volumi FSx for ONTAP collegati al tuo account AWS. Controlla continuamente queste metriche rispetto ai limiti definiti per rilevare tempestivamente eventuali problemi di performance.
@@ -23,6 +24,7 @@ Se la latenza aumenta, Workload Factory analizza automaticamente le metriche di 
 
 
 
+[[alert-generation]]
 === Generazione di avvisi
 
 Un avviso si attiva solo quando queste condizioni sono vere per l'intero intervallo di tempo selezionato: la latenza rimane al di sopra della sua soglia e gli IOPS rimangono al di sopra della loro soglia. Richiedere entrambe riduce i falsi allarmi, assicurando che la latenza si verifichi mentre il sistema sta gestendo un carico di lavoro reale.
@@ -39,12 +41,14 @@ Tutti gli eventi rilevati vengono visualizzati nella tabella degli eventi di lat
 
 
 
+[[understanding-alerts]]
 == Comprensione degli avvisi
 
 Comprendere come vengono attivati gli avvisi aiuta a configurare le soglie appropriate e a interpretare i risultati.
 
 
 
+[[metrics-collected]]
 === Metriche raccolte
 
 Il sistema raccoglie le seguenti metriche CloudWatch per ogni volume:
@@ -55,6 +59,7 @@ Il sistema raccoglie le seguenti metriche CloudWatch per ogni volume:
 
 
 
+[[alert-trigger-conditions]]
 === Condizioni di attivazione dell'avviso
 
 Un avviso viene attivato quando vengono soddisfatte tutte le seguenti condizioni:
@@ -68,6 +73,7 @@ Ad esempio, con le soglie di avviso predefinite, un avviso di lettura viene atti
 
 
 
+[[event-severity]]
 === Gravità dell'evento
 
 * *Eventi di avviso*: indicano una latenza elevata che potrebbe richiedere attenzione
@@ -76,12 +82,14 @@ Ad esempio, con le soglie di avviso predefinite, un avviso di lettura viene atti
 
 
 
+[[latency-analysis]]
 == Analisi della latenza
 
 Workload Factory offre due livelli di analisi per aiutarti a risolvere i problemi di latenza.
 
 
 
+[[basic-analysis]]
 === Analisi di base
 
 Quando si verifica un evento di latenza, Workload Factory esegue automaticamente un'analisi di base per individuarne la causa. Utilizza le metriche ONTAP QoS delay center per vedere quale componente è responsabile del rallentamento, come FlexCache, il pool di capacità, i limiti QoS, i dischi, i dati, il cluster o un altro sottosistema. Questo permette di identificare rapidamente la fonte della latenza senza bisogno di indagini manuali.
@@ -94,6 +102,7 @@ NOTE: I valori di latenza dall'analisi QoS di ONTAP e CloudWatch potrebbero diff
 
 
 
+[[ai-analysis]]
 === Analisi AI
 
 Mentre un'analisi di base può identificare la fonte della latenza, situazioni più complesse che coinvolgono dati o componenti del cluster spesso richiedono un'indagine più approfondita. L'analisi basata sull'intelligenza artificiale fornisce questa risoluzione dei problemi più approfondita, individuando criticità come volumi sovraccarichi, configurazioni inadeguate o la necessità di aumentare la capacità—problematiche che un'analisi di base potrebbe non rilevare.
@@ -109,6 +118,7 @@ L'analisi AI richiede un ARN del modello Amazon Bedrock nelle impostazioni di Wo
 
 
 
+[[related-information]]
 == Informazioni correlate
 
 * link:task-configure-latency-monitoring.html["Configura il monitoraggio della latenza"]

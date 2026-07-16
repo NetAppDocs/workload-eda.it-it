@@ -15,6 +15,7 @@ La dashboard Progetti consente agli amministratori IT e ai project manager di ve
 
 
 
+[[how-the-projects-dashboard-works]]
 == Come funziona la dashboard dei progetti
 
 La dashboard Progetti mostra le metriche CloudWatch per tutti i volumi FSx for ONTAP collegati alle tue credenziali AWS. Puoi creare fino a cinque filtri utilizzando i tag AWS per organizzare e visualizzare i dati per progetto, team, applicazione o altre categorie.
@@ -32,6 +33,7 @@ Per un monitoraggio proattivo delle performance di latenza, vedere link:learn-la
 
 
 
+[[cloudwatch-metrics-collected]]
 === CloudWatch metriche raccolte
 
 La dashboard raccoglie e visualizza le seguenti metriche CloudWatch:
@@ -44,6 +46,7 @@ La dashboard raccoglie e visualizza le seguenti metriche CloudWatch:
 
 
 
+[[custom-filters]]
 == Filtri personalizzati
 
 I filtri personalizzati ti aiutano a organizzare i dati del dashboard in base al funzionamento della tua organizzazione. Imposta i filtri per progetto, team o centro di costo così puoi trovare rapidamente i dati di cui hai bisogno senza dover setacciare informazioni non pertinenti. Questo rende più facile pianificare la capacità, tenere traccia dei costi e monitorare le performance.
@@ -59,6 +62,7 @@ Se non configuri alcun filtro personalizzato, i filtri predefiniti—file system
 
 
 
+[[aws-tags]]
 === Tag AWS
 
 I tag AWS sono metadati per le tue risorse AWS. Ti aiutano a categorizzare le tue risorse AWS in diversi modi, ad esempio per progetto, applicazione o unità aziendale.
@@ -69,12 +73,14 @@ Per maggiori dettagli sul tagging, consulta https://docs.aws.amazon.com/whitepap
 
 
 
+[[volume-details]]
 == Dettagli volume
 
 La dashboard offre modalità di visualizzazione per aiutarti ad analizzare le metriche di storage a diversi livelli di dettaglio.
 
 
 
+[[total-view]]
 === Vista totale
 
 La vista Totale (predefinita) mostra le metriche combinate per tutti i volumi che corrispondono ai filtri selezionati. Ti offre una rapida panoramica delle performance dello storage, inclusi capacità totale, IOPS e throughput.
@@ -88,6 +94,7 @@ Utilizzare questa vista per:
 
 
 
+[[volume-view]]
 === Vista del volume
 
 La vista Volume mostra come si comportano i singoli volumi nel tempo. Visualizza i 10 volumi principali per ogni metrica. Questo ti aiuta a vedere quali volumi utilizzano più risorse e come si comportano durante il periodo di tempo selezionato.
@@ -133,6 +140,7 @@ Passando il mouse sopra una qualsiasi linea del volume nei grafici, è possibile
 
 
 
+[[related-information]]
 == Informazioni correlate
 
 * link:task-configure-project-dashboard.html["Configura la dashboard dei progetti"]

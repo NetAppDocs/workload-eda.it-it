@@ -15,6 +15,7 @@ Lavora con diverse versioni dei tuoi progetti EDA creando snapshot e cloni su ri
 
 
 
+[[create-a-snapshot-of-a-project]]
 == Creare uno snapshot di un progetto
 
 È possibile creare uno snapshot di un progetto seguendo questi passaggi.
@@ -31,6 +32,7 @@ Lavora con diverse versioni dei tuoi progetti EDA creando snapshot e cloni su ri
 
 
 
+[[create-a-clone-of-a-project]]
 == Creare un clone di un progetto
 
 Per clonare un progetto EDA da uno snapshot, seguire questi passaggi. Quando si crea un clone, viene creato un nuovo volume modificabile che conterrà il clone.

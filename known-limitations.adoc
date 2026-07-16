@@ -15,6 +15,7 @@ Le limitazioni note identificano piattaforme, dispositivi o funzioni che non son
 
 
 
+[[operator-permissions-required]]
 == Sono richieste autorizzazioni dell'operatore
 
 Per funzionare correttamente, NetApp Workload Factory per EDA richiede le autorizzazioni dell'operatore.

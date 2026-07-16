@@ -15,6 +15,7 @@ summary: Gestisci le istanze di Microsoft SQL Server in Workload Factory per dat
 
 
 
+[[create-a-project]]
 == Crea un progetto
 
 È possibile creare un nuovo progetto EDA per sfruttare le funzionalità di protezione dei dati del file system FSx for ONTAP per il proprio codice e i propri artefatti. .Passaggi
@@ -70,6 +71,7 @@ Il progetto viene creato e appare nell'elenco dei progetti nella pagina Progetti
 
 
 
+[[view-existing-projects]]
 == Visualizza i progetti esistenti
 
 È possibile visualizzare i progetti esistenti creati in NetApp Workload Factory per EDA seguendo questi passaggi.
@@ -84,6 +86,7 @@ Il progetto viene creato e appare nell'elenco dei progetti nella pagina Progetti
 
 
 
+[[edit-a-project]]
 == Modifica un progetto
 
 È possibile modificare le impostazioni di un progetto in qualsiasi momento.
@@ -100,6 +103,7 @@ Il progetto viene creato e appare nell'elenco dei progetti nella pagina Progetti
 
 
 
+[[view-a-projects-workspaces]]
 == Visualizza gli spazi di lavoro di un progetto
 
 Un clone o uno snapshot di un progetto è noto come area di lavoro. Quando si crea un'area di lavoro, questa viene conservata per tutto il tempo consentito dai criteri operativi del progetto. È possibile visualizzare gli spazi di lavoro esistenti per un progetto seguendo questi passaggi.
@@ -116,6 +120,7 @@ Un clone o uno snapshot di un progetto è noto come area di lavoro. Quando si cr
 
 
 
+[[delete-a-project]]
 == Elimina un progetto
 
 È possibile eliminare un progetto quando non è più necessario seguendo questi passaggi.
