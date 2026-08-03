@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: task-use-overview-dashboard.html 
-keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, bulk edit, decision points, clusters table, ONTAP events, latency events 
-summary: Utilizza la dashboard Panoramica per monitorare lo stato del cluster, visualizzare i consigli sulla capacità, gestire le impostazioni di capacità SSD e analizzare le tendenze delle prestazioni nei tuoi file system FSx for ONTAP. 
+keywords: cluster overview, filter dashboard, cluster health, capacity recommendations, SSD management, throughput management, bulk edit, decision points, clusters table, ONTAP events, latency events 
+summary: Utilizza la dashboard Panoramica per monitorare lo stato del cluster, visualizzare i consigli sulla capacità, gestire le impostazioni SSD e di throughput e analizzare le tendenze delle prestazioni nei tuoi file system FSx for ONTAP. 
 ---
 = Utilizzare la dashboard Panoramica in Workload Factory per EDA
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Utilizza la dashboard Panoramica per monitorare lo stato del cluster, v
 
 
 [role="lead"]
-Utilizza la dashboard Panoramica per verificare lo stato e la capacità dei tuoi file system FSx for ONTAP. Puoi filtrare i dati, visualizzare i consigli sulla capacità, regolare le impostazioni di capacità degli SSD e analizzare le tendenze delle prestazioni per decidere dove posizionare i volumi e quando aumentare la capacità.
+Utilizza la dashboard Panoramica per verificare lo stato e la capacità dei tuoi file system FSx for ONTAP. Puoi filtrare i dati, visualizzare i consigli sulla capacità, regolare le impostazioni SSD e di throughput, e analizzare le tendenze delle prestazioni per decidere dove posizionare i volumi e quando aumentare la capacità.
 
 
 
@@ -52,7 +52,12 @@ Nella parte superiore del pannello di controllo, vedi un riepilogo dello stato d
 Lo stato di salute del cluster comprende le seguenti aree chiave:
 
 * *Latenza*: Numero di eventi di latenza rilevati
-* *Modalità capacità SSD*: Stato di utilizzo SSD e file system con raccomandazioni sulla capacità attiva
+* *Elasticità del file system*:
++
+** *Capacità SSD*: mostra quanti file system usano Automate, Recommend o None per gestire la capacità SSD.
+** *Throughput*: mostra quanti file system utilizzano Automate, Recommend o None per gestire il throughput.
+
+
 * *Eventi ONTAP*: Numero di eventi EMS per categoria (Capacità, Disponibilità e protezione, Sicurezza e altro)
 
 
@@ -75,25 +80,25 @@ La scheda di visualizzazione degli eventi ONTAP mostra il numero di eventi EMS p
 
 
 
-[[view-and-apply-capacity-recommendations]]
-== Visualizza e applica le raccomandazioni sulla capacità
+[[view-and-apply-capacity-or-throughput-recommendations]]
+== Visualizza e applica i suggerimenti relativi alla capacità o al throughput
 
-Workload Factory esegue automaticamente una raccomandazione sulla capacità per ogni file system FSx for ONTAP. Puoi trovare i file system con raccomandazioni filtrando la tabella Clusters.
+Workload Factory esegue automaticamente i suggerimenti per ogni file system FSx for ONTAP. Puoi trovare i file system con suggerimenti filtrando la tabella Clusters.
 
 .Passi
-. Nella tabella *Cluster*, filtra in base alle colonne *Timestamp ultimo aumento SSD* o *Descrizione ultimo aumento SSD*.
+. Nella tabella *Cluster*, filtra per la colonna del tempo o dei dettagli.
 +
-I file system con raccomandazioni di capacità vengono visualizzati nella parte superiore della tabella.
+I file system con raccomandazioni relative a capacità o throughput vengono visualizzati nella parte superiore della tabella.
 
-. Seleziona un nome di file system nella tabella per aprirlo e visualizzare i suggerimenti.
-. Esaminate le raccomandazioni relative all'SSD e il grafico della capacità.
+. Seleziona un nome di file system nella tabella per aprire i dettagli del cluster.
+. Esamina la raccomandazione e il grafico.
 +
 La raccomandazione spiega la modifica suggerita e le motivazioni che la supportano. Ad esempio: _Consigliamo di aumentare le dimensioni dell'SSD in base allo schema di utilizzo dell'SSD del file system._
 
 +
-Il grafico presenta l'utilizzo attuale degli SSD a confronto con le tendenze storiche e mostra come l'algoritmo di raccomandazione della capacità avrebbe regolato la capacità nel tempo.
+Il grafico presenta l'utilizzo attuale insieme alle tendenze storiche.
 
-. In alto a destra del grafico, selezionare l'intervallo di tempo per modificare il periodo visualizzato. L'impostazione predefinita è una settimana.
+. In alto a destra del grafico, selezionare l'intervallo di tempo per modificare il periodo visualizzato.
 +
 Il grafico visualizza anche i punti decisionali relativi alle raccomandazioni e i punti decisionali relativi all'automazione (se la modalità di automazione è abilitata). Passando il mouse su un punto decisionale qualsiasi, è possibile visualizzare i dettagli relativi alla raccomandazione di capacità o all'azione di automazione in quel momento.
 
@@ -107,28 +112,20 @@ Il grafico visualizza anche i punti decisionali relativi alle raccomandazioni e 
 
 Per ogni file system, scegli come gestire la capacità SSD: ricevi consigli manuali oppure consenti il ridimensionamento automatico.
 
-.Informazioni su questa attività
-Le modalità di gestione dell'SSD includono:
-
-* *Automatizza*: Aumenta automaticamente la capacità SSD in base a soglie predefinite
-* *Consigliato*: Ricevi raccomandazioni sulla capacità che puoi esaminare e applicare manualmente
-* *Nessuno*: Nessuna raccomandazione di capacità o azioni automatizzate
-
-
-Selezionando la modalità Automatizza, è possibile configurare i parametri Soglia, Analisi retrospettiva e Previsione che controllano il modo in cui il sistema di gestione della capacità analizza l'utilizzo dell'SSD e prende decisioni automatizzate. Selezionando la modalità Raccomanda, è possibile configurare solo il parametro Soglia.
-
-* *Soglia* (10-90%): la percentuale di utilizzo dell'SSD che attiva i suggerimenti di capacità o le azioni automatizzate
-* *Retrospettiva* (1-200 ore): il periodo di tempo utilizzato per analizzare i modelli storici di utilizzo degli SSD
-* *In anticipo* (1-200 ore): il periodo di tempo utilizzato per prevedere il fabbisogno di capacità futuro
-
-
 .Passi
 . Nella tabella Cluster, individua il nome del file system. Accanto ad esso, apri image:icon-action.png["l'icona del menu delle azioni"] e seleziona *Modifica gestione della capacità SSD*.
+. Seleziona *Abilita gestione della capacità SSD* e poi seleziona *Applica*.
 . Scegli la modalità che preferisci:
 +
-** *Nessuno*: Disabilita gestione della capacità
-** *Consigliato*: Imposta il parametro Threshold per l'analisi delle raccomandazioni
-** *Automatizza*: Imposta i parametri di soglia, di analisi retrospettiva e di previsione per la scalabilità della capacità
+** *Solo notifica (modalità consigliata)*
+** *Automatizzare*
+
+
+. Configura i parametri di gestione della capacità SSD:
++
+** *Soglia (%)*: percentuale di utilizzo dell'SSD che attiva un suggerimento
+** *Lookback (%)*: Periodo di dati storici di utilizzo per l'analisi
+** *Previsioni (%)*: Utilizzo previsto per la pianificazione della capacità futura
 
 
 . Selezionare *Applica*.
@@ -139,18 +136,42 @@ Il file system passa immediatamente alla nuova modalità. Se scegli Consiglia o 
 
 
 
-[[bulk-edit-ssd-management-parameters]]
-== Modifica in blocco i parametri di gestione SSD
+[[change-throughput-management-mode]]
+== Modifica la modalità di gestione del throughput
 
-Modifica le impostazioni di capacità SSD per più file system contemporaneamente così le stesse impostazioni si applicano a tutti i tuoi cluster.
+Per ciascun file system, scegli come gestire l'aumento del throughput.
 
-.Informazioni su questa attività
-Quando si selezionano più file system per la modifica in blocco:
+.Passi
+. Nella scheda *Panoramica*, seleziona uno o più file system nella tabella Cluster.
+. Seleziona *Modifica gestione throughput*.
+. Seleziona *Abilita gestione throughput* e poi seleziona *Applica*.
+. Scegli la modalità che preferisci:
++
+** *Solo notifica (modalità consigliata)*
+** *Automatizzare*
 
-* Se tutti i file system selezionati utilizzano le stesse impostazioni, queste vengono visualizzate come predefinite nella finestra di dialogo di modifica.
-* Se uno qualsiasi dei file system selezionati è in modalità None, nella finestra di dialogo vengono visualizzati i valori predefiniti.
-* Se i valori dei parametri differiscono tra i file system selezionati, nella finestra di dialogo vengono popolati i valori predefiniti.
 
+. Nella finestra di dialogo, configura i parametri di gestione del throughput:
++
+** *Intervallo di valutazione (ore)*: Periodo di tempo per analizzare i modelli di throughput
+** *Metriche (%)*: Soglia percentuale per determinare la violazione
+** *Periodo di violazione consecutiva (ore)*: Durata delle violazioni consecutive prima dell'azione
+** *Latenza minima (ms)*: Soglia di latenza utilizzata per determinare l'aumento del throughput
+** *Throughput massimo (SKU)*: SKU di throughput massimo consentito
+
+
+. Selezionare *Applica*.
+
+
+.Risultato
+I file system selezionati passano immediatamente alla nuova modalità di throughput.
+
+
+
+[[bulk-edit-management-parameters]]
+== Modifica in blocco dei parametri di gestione
+
+Modifica le impostazioni di più file system contemporaneamente così le stesse impostazioni si applicano a tutti i tuoi cluster.
 
 .Passi
 . Dalla scheda *Panoramica*, seleziona i file system che desideri modificare nella tabella.
@@ -158,9 +179,9 @@ Quando si selezionano più file system per la modifica in blocco:
 
 TIP: È possibile selezionare singoli file system oppure utilizzare la casella di controllo nell'intestazione per selezionare tutti i file system visibili.
 
-. Seleziona *Modifica gestione della capacità* sopra la tabella.
+. Seleziona *Modifica gestione della capacità SSD* o *Modifica gestione throughput* sopra la tabella.
 . Scegli la modalità che preferisci.
-. Nella finestra di dialogo di modifica, regolare i parametri Threshold, Lookback e Ahead secondo necessità.
+. Nella finestra di dialogo di modifica, regola i parametri secondo necessità.
 +
 Ciascun campo parametro include una descrizione che ne illustra lo scopo e l'intervallo di validità. La finestra di dialogo indica i valori correnti o predefiniti in base alla selezione effettuata.
 
@@ -168,7 +189,7 @@ Ciascun campo parametro include una descrizione che ne illustra lo scopo e l'int
 
 
 .Risultato
-I parametri vengono aggiornati per tutti i file system selezionati. I file system in modalità Recommend o Automate utilizzano immediatamente i nuovi parametri per l'analisi della capacità e il processo decisionale.
+I parametri vengono aggiornati per tutti i file system selezionati. I file system in modalità Recommend o Automate utilizzano immediatamente i nuovi parametri per l'analisi e le decisioni.
 
 
 
@@ -180,7 +201,7 @@ Utilizza il grafico di utilizzo dell'SSD per vedere come l'uso dello storage cam
 .Informazioni su questa attività
 I punti decisionali sul grafico indicano quando:
 
-* *Punti decisionali di raccomandazione*: L'algoritmo di raccomandazione della capacità ha rilevato la necessità di ulteriore capacità SSD. Questi possono verificarsi con una frequenza fino a ogni 30 minuti se la capacità SSD non è stata aumentata.
+* *Punti decisionali di raccomandazione*: L'algoritmo di raccomandazione della capacità ha rilevato la necessità di ulteriore capacità SSD.
 * *Punti decisionali dell'automazione*: Il sistema di automazione ha provato ad aumentare la capacità SSD. Questi punti mostrano se l'azione è riuscita o meno.
 
 
@@ -218,7 +239,6 @@ Passa il mouse sopra le intestazioni delle colonne del throughput per visualizza
 
 . Per personalizzare le colonne, seleziona l'icona delle impostazioni delle colonne e scegli quali colonne visualizzare.
 . Per esportare i dati, seleziona l'icona di esportazione per scaricare un file CSV.
-. Per eseguire operazioni in blocco, selezionare più file system utilizzando le caselle di controllo, quindi selezionare *Modifica parametri*.
 
 
 
@@ -229,12 +249,12 @@ Passa il mouse sopra le intestazioni delle colonne del throughput per visualizza
 Prendere in considerazione queste raccomandazioni quando si utilizza la dashboard Panoramica:
 
 * *Monitoraggio regolare*: Controlla spesso la dashboard per individuare le tendenze prima che diventino problemi.
-* **Imposta soglie chiare**: scegli soglie di gestione SSD adatte al tuo carico di lavoro e ai tuoi piani di capacità.
+* **Imposta soglie chiare**: scegli soglie di utilizzo SSD e parametri di throughput adatti al tuo carico di lavoro e ai tuoi piani di capacità.
 * **Utilizza i filtri**: applica i filtri per regione e account per concentrarti sulle parti della tua infrastruttura che vuoi esaminare.
-* **Esamina rapidamente i suggerimenti**: filtra la tabella dei cluster in base alla **Last SSD increase timestamp** o alla descrizione per trovare i file system con suggerimenti di capacità. Controllali e agisci per evitare di rimanere senza spazio.
-* **Scegli la modalità corretta**: Usa la modalità **Recommend** se vuoi approvare tu stesso le modifiche di capacità. Usa la modalità **Automation** se vuoi che il sistema gestisca automaticamente la capacità.
+* **Esamina rapidamente i suggerimenti**: filtra la tabella Cluster per trovare i file system con suggerimenti relativi a capacità o throughput. Verificali e agisci di conseguenza per evitare di rimanere senza spazio.
+* **Scegli la modalità corretta**: Usa la modalità **Consiglia** se vuoi approvare personalmente le modifiche di capacità o di throughput. Usa la modalità **Automatizza** se vuoi che il sistema gestisca automaticamente la capacità o il throughput.
 * **Guarda i punti decisionali**: Controlla i punti decisionali sui grafici di capacità per vedere come il sistema prende le decisioni e conferma che le impostazioni funzionano per le tue esigenze.
-* **Modifica in blocco**: Quando gestisci molti file system, usa la modifica in blocco per mantenere coerenti le impostazioni di capacità.
+* **Modifica in blocco**: Quando gestisci molti file system, usa la modifica in blocco per mantenere le impostazioni coerenti.
 
 
 

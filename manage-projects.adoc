@@ -34,7 +34,7 @@ summary: Gestisci le istanze di Microsoft SQL Server in Workload Factory per dat
 ... *Regione*: Seleziona la regione in cui risiede questo file system FSx for ONTAP.
 ... *FSx for ONTAP file system*: Selezionare un FSx for ONTAP file system da utilizzare con questo progetto.
 +
-È possibile selezionare solo i file system configurati con un collegamento. https://docs.netapp.com/us-en/workload-fsx-ontap/links-overview.html["Scopri di più sui link"^].
+Puoi selezionare solo i file system configurati con un collegamento. link:https://docs.netapp.com/us-en/workload-fsx-ontap/links-overview.html["Scopri di più sui link"^].
 
 ... *Scegli un volume*: seleziona un volume su cui archiviare il progetto; EDA utilizza questo volume come repository software.
 +

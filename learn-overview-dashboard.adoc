@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: learn-overview-dashboard.html 
-keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, EMS events, latency events, SSD management, capacity automation, capacity recommendations, decision points 
+keywords: cluster overview, cluster dashboard, FSx for ONTAP, cluster health, EMS events, latency events, SSD management, throughput management, capacity automation, capacity recommendations, decision points 
 summary: Scopri come la dashboard Panoramica di Workload Factory per EDA ti aiuta a monitorare la salute del cluster FSx for ONTAP, la capacità e il throughput su larga scala. 
 ---
 = Scopri la dashboard Panoramica in Workload Factory per EDA
@@ -11,7 +11,7 @@ summary: Scopri come la dashboard Panoramica di Workload Factory per EDA ti aiut
 
 
 [role="lead"]
-La dashboard Panoramica offre agli amministratori IT un unico punto di accesso per monitorare i carichi di lavoro EDA su più file system FSx for ONTAP. Usala per verificare rapidamente lo stato e l'utilizzo del sistema, scegliere dove posizionare nuovi volumi o processi, individuare volumi o SVM che potrebbero dover essere spostati e vedere quando è il momento di aumentare la capacità o il throughput.
+La dashboard Panoramica offre agli amministratori IT un unico punto di accesso per monitorare i carichi di lavoro EDA su più file system FSx for ONTAP. Usala per verificare rapidamente lo stato e l'utilizzo del sistema, scegliere dove posizionare nuovi volumi o job, trovare volumi o SVM che potrebbero dover essere spostati e vedere quando è il momento di aumentare la capacità o il throughput.
 
 
 
@@ -22,7 +22,7 @@ La dashboard Panoramica raccoglie le metriche CloudWatch per tutti i file system
 
 Comprende:
 
-* *Stato di salute del cluster*: un riepilogo nella parte superiore evidenzia gli eventi di latenza, l'utilizzo delle unità SSD, i consigli sulla capacità e gli eventi ONTAP EMS nei tuoi file system.
+* *Stato di salute del cluster*: un riepilogo nella parte superiore evidenzia gli eventi di latenza, l'utilizzo delle unità SSD, lo stato della modalità throughput, i consigli sulla capacità e gli eventi ONTAP EMS sui tuoi file system.
 * Tabella dei cluster: una tabella ricercabile che mostra l'utilizzo e le performance di ciascun cluster. Puoi filtrare e ordinare i dati, spostarti tra le pagine ed esportarli come file CSV.
 
 
@@ -50,7 +50,14 @@ Lo stato di salute del cluster mostra una panoramica rapida dell'attività sui f
 Lo stato di salute comprende le seguenti aree:
 
 *Latenza*:: Mostra il numero di eventi di latenza rilevati nei file system selezionati. Queste informazioni vengono visualizzate solo se il monitoraggio della latenza è abilitato.
-*gestione della capacità*:: Visualizza il numero di file system con utilizzo SSD superiore all'80% e il numero di file system con raccomandazioni di capacità attive. Questo consente di identificare rapidamente i file system che potrebbero richiedere attenzione alla capacità.
+*Elasticità del file system*::
++
+--
+* *Capacità SSD*: mostra quanti file system usano Automate, Recommend o None per gestire la capacità SSD.
+* *Throughput*: mostra quanti file system utilizzano Automate, Recommend o None per gestire il throughput.
+
+
+--
 *Eventi ONTAP*:: Visualizza il numero di eventi EMS rilevati, categorizzati per Capacità, Disponibilità & protezione e Sicurezza & altro.
 
 
@@ -70,6 +77,8 @@ Utilizzare la tabella per:
 * Selezionare più cluster per aggiornamenti di parametri in blocco
 
 
+Seleziona un file system per aprire i dettagli del cluster, incluse le informazioni sul cluster, i valori di capacità SSD e il grafico della capacità SSD nel tempo.
+
 
 
 [[ssd-capacity-management]]
@@ -80,26 +89,10 @@ Utilizzare la tabella per:
 [[management-modes]]
 === Modalità di gestione
 
+*Solo notifica (modalità consigliata)*:: Workload Factory analizza il modo in cui utilizzi i tuoi SSD e suggerisce quando aumentarne la capacità. Esamini questi suggerimenti e decidi se applicarli. Così mantieni il pieno controllo sulle modifiche di capacità, beneficiando comunque dell'analisi automatizzata.
 *Automatizzare*:: Workload Factory aggiunge automaticamente ulteriore spazio SSD quando l'utilizzo raggiunge i limiti preimpostati. Se ne occupa da solo, quindi non serve alcun intervento manuale. Funziona bene per ambienti che preferiscono la gestione automatica.
-*Consiglia*:: Workload Factory analizza il modo in cui utilizzi i tuoi SSD e suggerisce quando aumentarne la capacità. Esamini questi suggerimenti e decidi se applicarli. Così mantieni il pieno controllo sulle modifiche di capacità, beneficiando comunque dell'analisi automatizzata.
-*Nessuno*:: Il sistema non fornisce raccomandazioni sulla capacità né intraprende azioni automatizzate. Usa questa opzione se vuoi gestire la capacità tu stesso.
+*Nessuno*:: Se non hai abilitato la gestione della capacità SSD, il sistema non fornisce consigli sulla capacità né intraprende azioni automatiche. Usa questa opzione se vuoi gestire tu stesso la capacità.
 
-
-
-
-[[capacity-recommendations]]
-=== Raccomandazioni sulla capacità
-
-Quando Workload Factory è in modalità Automate o Recommend, controlla automaticamente ogni file system Amazon FSx for ONTAP ed esegue un algoritmo di raccomandazione della capacità. Il sistema esegue una scansione ogni 24 ore per verificare se la capacità dell'SSD deve essere regolata.
-
-Quando viene individuata una raccomandazione:
-
-* Ricevi una notifica immediata in base alle impostazioni di notifica di Workload Factory.
-* Identifica i file system con raccomandazioni filtrando la tabella Cluster utilizzando le colonne **Last SSD increase timestamp** o **Last SSD increase description**.
-* L'interfaccia mostra il numero totale di file system che attualmente hanno raccomandazioni attive.
-
-
-La raccomandazione spiega la modifica suggerita e le motivazioni alla base di essa, ad esempio: _Consigliamo di aumentare le dimensioni dell'SSD in base allo schema di utilizzo dell'SSD del file system._
 
 
 
@@ -110,10 +103,63 @@ I parametri controllano il modo in cui il sistema di gestione della capacità an
 
 *Soglia* (10-90%):: La percentuale di utilizzo dell'SSD che attiva i consigli sulla capacità o le azioni automatizzate. Ad esempio, una soglia dell'80% significa che i consigli o le azioni vengono attivati quando l'utilizzo dell'SSD raggiunge l'80%. Questa impostazione è disponibile sia nella modalità Recommend che nella modalità Automate.
 *Lookback* (1-200 ore):: Periodo di tempo utilizzato per analizzare gli schemi storici di utilizzo degli SSD. Un periodo di analisi più lungo fornisce un contesto storico più ampio per le decisioni relative alla capacità. Disponibile solo in modalità Automate.
-*Avanti* (1-200 ore):: Il periodo di tempo utilizzato per prevedere il fabbisogno di capacità futuro. Un periodo di previsione più lungo consente di pianificare la crescita della capacità a lungo termine. Disponibile solo in modalità Automate.
+*Previsioni* (1-200 ore):: Il periodo di tempo utilizzato per prevedere il fabbisogno di capacità futuro. Un periodo di previsione più lungo consente di pianificare la crescita della capacità a lungo termine. Disponibile solo in modalità Automate.
 
 
 Puoi impostare questi parametri per ciascun file system singolarmente oppure usare la modifica in blocco per applicare le stesse impostazioni a più file system.
+
+
+
+[[throughput-management]]
+== Gestione del throughput
+
+Puoi configurare il comportamento di incremento elastico del throughput per uno o più file system.
+
+
+
+[[management-modes]]
+=== Modalità di gestione
+
+*Solo notifica (modalità consigliata)*:: Workload Factory valuta la pressione sul throughput e fornisce raccomandazioni che puoi applicare.
+*Automatizzare*:: Workload Factory aumenta automaticamente il throughput quando vengono soddisfatte le condizioni configurate.
+*Nessuno*:: Se non hai abilitato la gestione del throughput, il sistema non fornisce raccomandazioni né intraprende azioni automatiche. Usa questa opzione se vuoi gestire tu stesso la capacità.
+
+
+
+
+[[throughput-parameters]]
+=== Parametri di throughput
+
+La finestra di dialogo per la configurazione del throughput include:
+
+* *Soglia di utilizzo* (50-100%, valore predefinito 80%): Percentuale di utilizzo del throughput che attiva raccomandazioni o automazione.
+
+
+I parametri avanzati di throughput sono disponibili in una sezione espandibile *Configurazione avanzata*.
+
+* *Periodo di valutazione (ore)* (12-72 ore, predefinito 24)
+* *Breached metrics (%)* (predefinito 66%): Soglia % per determinare la violazione
+* *Intervallo di tempo consecutivo in caso di violazione (ore)* (1-5 ore, predefinito 2)
+* *Metriche di violazione consecutive (%)* (predefinito 95%)
+* *Latenza minima (ms)* (predefinita 10 ms)
+* *SKU di throughput massimo* (predefinito None)
+
+
+
+
+[[file-system-elasticity-recommendations]]
+== Raccomandazioni sull'elasticità del file system
+
+Quando Workload Factory è in modalità Automate o Recommend, controlla automaticamente ogni FSx for ONTAP file system ed esegue un algoritmo di raccomandazione della capacità. Il sistema esegue scansioni periodiche per verificare se la capacità dell'SSD o il throughput devono essere regolati.
+
+Quando viene individuata una raccomandazione:
+
+* Ricevi una notifica immediata in base alle impostazioni di notifica di Workload Factory.
+* Identifica i file system con suggerimenti filtrando la tabella Cluster.
+* L'interfaccia mostra il numero totale di file system che attualmente hanno raccomandazioni attive.
+
+
+La raccomandazione spiega la modifica suggerita e le motivazioni alla base di essa, ad esempio: _Consigliamo di aumentare le dimensioni dell'SSD in base allo schema di utilizzo dell'SSD del file system._
 
 
 
@@ -122,7 +168,7 @@ Puoi impostare questi parametri per ciascun file system singolarmente oppure usa
 
 Il grafico di utilizzo dell'SSD indica quando il sistema ha fornito raccomandazioni sulla capacità o ha intrapreso azioni automatiche. Questi indicatori mostrano come l'algoritmo di gestione della capacità si è comportato nel tempo.
 
-*Punti decisionali per la raccomandazione*:: Compaiono quando il sistema rileva che è necessaria più capacità SSD. Se la capacità non è stata aumentata, questi punti possono comparire anche ogni 30 minuti. Il grafico mostra ogni punto decisionale, ove possibile. Se l'intervallo di tempo selezionato è troppo denso, i punti vengono raggruppati.
+*Punti decisionali per la raccomandazione*:: Compaiono quando il sistema rileva che è necessaria più capacità SSD. Se la capacità non è stata aumentata, questi punti possono comparire anche ogni 30 minuti. Il grafico mostra ogni punto decisionale quando possibile. Se l'intervallo di tempo selezionato è troppo denso, i punti vengono raggruppati.
 *Punti decisionali per l'automazione*:: Compaiono quando il sistema di automazione tenta di aumentare la capacità dell'SSD. Mostrano se l'azione è riuscita o meno.
 
 

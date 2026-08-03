@@ -27,6 +27,8 @@ sidebar:
       url: "/learn-eda.html"
     - title: Avvio rapido
       url: "/quick-start-eda.html"
+    - title: Requisiti
+      url: "/requirements-eda.html"
   - title: Panoramica dell'archiviazione EDA
     entries:
     - title: Scopri la dashboard Panoramica
@@ -57,8 +59,6 @@ sidebar:
     entries:
     - title: Scopri di più sull'integrazione di Perforce
       url: "/learn-eda-workloads.html"
-    - title: Requisiti
-      url: "/requirements-eda.html"
     - title: Gestire progetti
       url: "/manage-projects.html"
     - title: Gestire le versioni del progetto

@@ -40,7 +40,7 @@ Se non configuri filtri personalizzati, i filtri predefiniti, file system, tipo 
 +
 Se non hai ancora configurato la tua dashboard, ti verrà automaticamente chiesto di farlo.
 
-. Seleziona *+ Add filters*.
+. Seleziona *Aggiungi filtri*.
 . Per ogni filtro personalizzato che desideri creare, aggiungi i dettagli:
 +
 ** Nome dell'etichetta del filtro (il nome visualizzato nella dashboard)
