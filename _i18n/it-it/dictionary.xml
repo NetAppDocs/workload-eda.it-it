@@ -453,7 +453,6 @@
   <block id="7b0ddde1961cce4426c7f0cf5da65e0d" category="doc">Raccomandazioni sulla capacità EDA</block>
   <block id="edb815136867c3359e368e3f925ae387" category="paragraph">Workload Factory ora analizza automaticamente la capacità SSD di ciascun cluster FSx for ONTAP presente nell'inventario EDA e genera raccomandazioni di capacità quando sono necessari aggiustamenti. L'algoritmo viene eseguito una volta ogni 24 ore per ciascun cluster.</block>
   <block id="1f9c155d60450baccee27bca630b6497" category="paragraph">Quando viene individuata una raccomandazione:</block>
-  <block id="8d65ccbe024d7453ace82bd13b7980d8" category="list-text">Ricevi immediatamente un'email o una notifica WAD (non inclusa nel riepilogo settimanale).</block>
   <block id="8e5fe5a1e14c6d69b9c457c33f0204a7" category="list-text">Nella tabella Cluster, sul cluster interessato compare un indicatore a forma di lampadina.</block>
   <block id="c38bddc25aeb4374d71816e0b71a53a0" category="list-text">Nella dashboard Panoramica è presente un riepilogo che mostra il numero totale di cluster con raccomandazioni attive.</block>
   <block id="1471ae7120155f3a06fa9c0a62a7f3f5" category="paragraph">Seleziona un cluster con una raccomandazione attiva per visualizzare la raccomandazione, che spiega la modifica suggerita e le relative motivazioni.</block>
@@ -1093,4 +1092,5 @@
   <block id="0ecfcdfed86b687b39299cccc3380def" category="list-text">**Scegli la modalità corretta**: Usa la modalità **Consiglia** se vuoi approvare personalmente le modifiche di capacità o di throughput. Usa la modalità **Automatizza** se vuoi che il sistema gestisca automaticamente la capacità o il throughput.</block>
   <block id="88a7c4b8bd498e193a117097af5581b1" category="list-text">**Modifica in blocco**: Quando gestisci molti file system, usa la modifica in blocco per mantenere le impostazioni coerenti.</block>
   <block id="951a51b60db3d63eb71726cd5fe6fbad" category="section-title">3 agosto 2026</block>
+  <block id="73c57946c156d22b4a35f2e089180ab4" category="list-text">Riceverai immediatamente un'e-mail o una notifica well-architected (non inclusa nel riepilogo settimanale).</block>
 </blocks>
