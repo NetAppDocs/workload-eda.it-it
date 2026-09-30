@@ -77,7 +77,9 @@ Utilizzare la tabella per:
 * Selezionare più cluster per aggiornamenti di parametri in blocco
 
 
-Seleziona un file system per aprire i dettagli del cluster, incluse le informazioni sul cluster, i valori di capacità SSD e il grafico della capacità SSD nel tempo.
+Seleziona un file system per visualizzare i dettagli del cluster, incluse le informazioni sul cluster, la capacità SSD e i grafici. Nella visualizzazione dei dettagli del cluster, utilizza le opzioni *Throughput* e *Capacità SSD* per passare da una visualizzazione all'altra.
+
+La vista Throughput mostra il throughput del client e l'utilizzo delle risorse. La vista Capacità SSD mostra le tendenze di utilizzo degli SSD e i consigli sulla capacità.
 
 
 
@@ -150,7 +152,7 @@ I parametri avanzati di throughput sono disponibili in una sezione espandibile *
 [[file-system-elasticity-recommendations]]
 == Raccomandazioni sull'elasticità del file system
 
-Quando Workload Factory è in modalità Automate o Recommend, controlla automaticamente ogni FSx for ONTAP file system ed esegue un algoritmo di raccomandazione della capacità. Il sistema esegue scansioni periodiche per verificare se la capacità dell'SSD o il throughput devono essere regolati.
+Quando Workload Factory è in modalità Automate o Recommend, controlla automaticamente ogni file system FSx for ONTAP e consiglia modifiche alla capacità. Esegue regolarmente la scansione del sistema per determinare se la capacità SSD o il throughput devono essere regolati. Quando la gestione è abilitata, la pagina dei dettagli del file system mostra la capacità SSD e il throughput insieme alle tendenze storiche e ai punti di regolazione consigliati.
 
 Quando viene individuata una raccomandazione:
 
@@ -166,7 +168,7 @@ La raccomandazione spiega la modifica suggerita e le motivazioni alla base di es
 [[understanding-capacity-decision-points]]
 === Comprendere i punti decisionali relativi alla capacità
 
-Il grafico di utilizzo dell'SSD indica quando il sistema ha fornito raccomandazioni sulla capacità o ha intrapreso azioni automatiche. Questi indicatori mostrano come l'algoritmo di gestione della capacità si è comportato nel tempo.
+Il grafico di utilizzo dell'SSD mostra quando il sistema ha consigliato modifiche alla capacità o ha effettuato regolazioni automatiche. Questi indicatori mostrano come il sistema ha gestito la capacità nel tempo. Se la gestione della capacità SSD è disattivata, il grafico mostra solo l'utilizzo passato e non visualizza consigli o azioni automatiche.
 
 *Punti decisionali per la raccomandazione*:: Compaiono quando il sistema rileva che è necessaria più capacità SSD. Se la capacità non è stata aumentata, questi punti possono comparire anche ogni 30 minuti. Il grafico mostra ogni punto decisionale quando possibile. Se l'intervallo di tempo selezionato è troppo denso, i punti vengono raggruppati.
 *Punti decisionali per l'automazione*:: Compaiono quando il sistema di automazione tenta di aumentare la capacità dell'SSD. Mostrano se l'azione è riuscita o meno.

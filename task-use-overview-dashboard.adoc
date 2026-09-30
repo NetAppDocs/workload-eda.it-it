@@ -113,11 +113,10 @@ Il grafico visualizza anche i punti decisionali relativi alle raccomandazioni e 
 Per ogni file system, scegli come gestire la capacità SSD: ricevi consigli manuali oppure consenti il ridimensionamento automatico.
 
 .Passi
-. Nella tabella Cluster, individua il nome del file system. Accanto ad esso, apri image:icon-action.png["l'icona del menu delle azioni"] e seleziona *Modifica gestione della capacità SSD*.
-. Seleziona *Abilita gestione della capacità SSD* e poi seleziona *Applica*.
+. Nella tabella Cluster, trova e seleziona il nome del file system, quindi seleziona *Modifica gestione della capacità SSD*.
 . Scegli la modalità che preferisci:
 +
-** *Solo notifica (modalità consigliata)*
+** *Consiglia*
 ** *Automatizzare*
 
 
@@ -144,18 +143,20 @@ Per ciascun file system, scegli come gestire l'aumento del throughput.
 .Passi
 . Nella scheda *Panoramica*, seleziona uno o più file system nella tabella Cluster.
 . Seleziona *Modifica gestione throughput*.
-. Seleziona *Abilita gestione throughput* e poi seleziona *Applica*.
+. Seleziona *Abilita gestione del throughput*.
 . Scegli la modalità che preferisci:
 +
 ** *Solo notifica (modalità consigliata)*
 ** *Automatizzare*
 
 
-. Nella finestra di dialogo, configura i parametri di gestione del throughput:
+. In *Soglia di utilizzo (%)* imposta il livello di utilizzo che attiva i consigli o le azioni di automazione.
+. In *Configurazione avanzata*, configura i parametri di gestione del throughput:
 +
 ** *Intervallo di valutazione (ore)*: Periodo di tempo per analizzare i modelli di throughput
 ** *Metriche (%)*: Soglia percentuale per determinare la violazione
-** *Periodo di violazione consecutiva (ore)*: Durata delle violazioni consecutive prima dell'azione
+** *Finestra di violazioni consecutive (ore)*: durata delle violazioni consecutive prima dell'intervento
+** *Metriche di violazione consecutive (%)*: Soglia percentuale per determinare le violazioni consecutive
 ** *Latenza minima (ms)*: Soglia di latenza utilizzata per determinare l'aumento del throughput
 ** *Throughput massimo (SKU)*: SKU di throughput massimo consentito
 
@@ -165,31 +166,6 @@ Per ciascun file system, scegli come gestire l'aumento del throughput.
 
 .Risultato
 I file system selezionati passano immediatamente alla nuova modalità di throughput.
-
-
-
-[[bulk-edit-management-parameters]]
-== Modifica in blocco dei parametri di gestione
-
-Modifica le impostazioni di più file system contemporaneamente così le stesse impostazioni si applicano a tutti i tuoi cluster.
-
-.Passi
-. Dalla scheda *Panoramica*, seleziona i file system che desideri modificare nella tabella.
-+
-
-TIP: È possibile selezionare singoli file system oppure utilizzare la casella di controllo nell'intestazione per selezionare tutti i file system visibili.
-
-. Seleziona *Modifica gestione della capacità SSD* o *Modifica gestione throughput* sopra la tabella.
-. Scegli la modalità che preferisci.
-. Nella finestra di dialogo di modifica, regola i parametri secondo necessità.
-+
-Ciascun campo parametro include una descrizione che ne illustra lo scopo e l'intervallo di validità. La finestra di dialogo indica i valori correnti o predefiniti in base alla selezione effettuata.
-
-. Seleziona *Applica* per applicare le modifiche a tutti i file system selezionati.
-
-
-.Risultato
-I parametri vengono aggiornati per tutti i file system selezionati. I file system in modalità Recommend o Automate utilizzano immediatamente i nuovi parametri per l'analisi e le decisioni.
 
 
 
@@ -203,23 +179,20 @@ I punti decisionali sul grafico indicano quando:
 
 * *Punti decisionali di raccomandazione*: L'algoritmo di raccomandazione della capacità ha rilevato la necessità di ulteriore capacità SSD.
 * *Punti decisionali dell'automazione*: Il sistema di automazione ha provato ad aumentare la capacità SSD. Questi punti mostrano se l'azione è riuscita o meno.
++
+Se la gestione della capacità SSD è disattivata, il grafico mostra solo l'utilizzo passato e non visualizza raccomandazioni o decisioni di automazione.
+
 
 
 .Passi
-. Nella scheda *Panoramica*, selezionare il nome di un file system nella tabella.
-. Esamina il grafico di utilizzo dell'SSD che mostra l'andamento storico della capacità.
-. Seleziona intervalli di tempo diversi per visualizzare l'andamento della capacità in vari periodi.
-. Passa il mouse sui punti decisionali del grafico per visualizzare i dettagli relativi ai consigli o alle azioni di automazione in momenti specifici.
-. Utilizza le informazioni ricavate dal grafico per:
-+
-** Comprendere con quale frequenza sono necessari gli aggiustamenti di capacità
-** Valuta se la modalità di automazione o quella di raccomandazione si adatta meglio ai tuoi modelli di carico di lavoro
-** Identificare i vincoli di capacità ricorrenti
-** Pianificare le future esigenze di capacità in base alle tendenze di crescita
-** Risoluzione dei problemi relativi ai tentativi di automazione non riusciti
+. Dalla scheda *Panoramica*, seleziona il nome di un file system nella tabella. Nella visualizzazione dei dettagli del cluster, seleziona l'opzione *Throughput* o *Capacità SSD* per cambiare la visualizzazione del grafico.
 
 
+Se selezioni *Throughput*, il grafico mostra il throughput e l'utilizzo del client, così puoi confrontare la domanda con il livello di throughput configurato e le soglie.
 
+Se selezioni *Capacità SSD*, il grafico mostra l'utilizzo dell'SSD, inclusi i trend storici della capacità e i punti decisionali relativi alla capacità.
+
+Seleziona intervalli di tempo diversi per visualizzare le tendenze di throughput o capacità in periodi diversi. . Passa il mouse sui punti decisionali del grafico per visualizzare i dettagli sui consigli o sulle azioni di automazione in momenti specifici. . Usa le informazioni del grafico per: * Capire con quale frequenza sono necessari aggiustamenti della capacità * Valutare se la modalità di automazione o di raccomandazione si adatta meglio ai tuoi modelli di workload * Identificare vincoli di capacità ricorrenti * Pianificare le future esigenze di capacità in base alle tendenze di crescita * Risolvere i problemi relativi ai tentativi di automazione non riusciti
 
 
 
