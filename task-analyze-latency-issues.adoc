@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: task-analyze-latency-issues.html 
-keywords: latency analysis, analyze latency, latency events, root cause analysis, QoS delay center, AI analysis, latency troubleshooting, volume latency, basic analysis, affected clients, remediation steps, iops, throughput 
+keywords: latency analysis, analyze latency, latency events, root cause analysis, QoS delay center, AI analysis, latency troubleshooting, volume latency, basic analysis, affected clients, remediation steps, iops, throughput, analysis status 
 summary: 'Visualizza e analizza gli eventi di latenza per individuare problemi di prestazioni con i volumi FSx for ONTAP. Usa l"analisi di base e, opzionalmente, l"analisi AI per identificare la causa principale e le soluzioni suggerite.' 
 ---
 = Analizza i problemi di latenza in Workload Factory per EDA
@@ -37,7 +37,6 @@ La tabella Volumi con latenza superiore alla soglia mostra i volumi che hanno su
 . Accedi utilizzando uno dei link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["esperienze di console"^].
 . Seleziona il menu image:workloads-menu-icon.png["L'icona del menu hamburger"] e poi seleziona *EDA*.
 . Seleziona la scheda *Latenza*.
-. Esamina le informazioni relative a ciascun evento nella tabella.
 . Per visualizzare i dettagli di un evento di latenza, selezionare l'evento nella colonna *Gravità*. Si apre un pannello di analisi della latenza per quell'evento.
 . Per ordinare la tabella, selezionare un'intestazione di colonna qualsiasi. Per impostazione predefinita, gli eventi critici vengono visualizzati per primi, ordinati per ora, seguiti dagli eventi di avviso, anch'essi ordinati per ora.
 . Per chiudere uno o più eventi, accanto a ciascun evento seleziona image:icon-action.png["L'icona del menu di azione"] *Dismiss*.
@@ -92,6 +91,7 @@ Esamina i risultati, tra cui:
 
 
 . Seleziona *Visualizza analisi completa* per vedere tutti i risultati dell'analisi AI, inclusi i grafici delle prestazioni che mostrano la latenza, gli IOPS e il throughput dalle metriche di CloudWatch nel periodo di tempo selezionato.
+. Per aggiornare i risultati, seleziona *Run analysis again*. Per il volume viene avviata una nuova analisi e il pannello si aggiorna al termine dell'analisi.
 . Segui i passaggi consigliati per risolvere il problema di latenza.
 . Dopo aver apportato le modifiche, controlla la tabella degli eventi di latenza per verificare che il problema sia stato risolto.
 

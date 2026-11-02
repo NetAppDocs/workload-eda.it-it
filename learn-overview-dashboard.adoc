@@ -185,6 +185,26 @@ Usa il grafico della cronologia di utilizzo dell'SSD per:
 
 
 
+[[understanding-throughput-decision-points]]
+=== Comprendere i punti decisionali relativi al throughput
+
+Il grafico del throughput del client mostra quando il sistema ha consigliato modifiche al throughput o lo ha regolato automaticamente. Questi indicatori compaiono anche nella legenda del grafico. Se la gestione del throughput è disattivata, il grafico mostra solo il throughput passato e non visualizza consigli o modifiche automatiche.
+
+*Punti decisionali per la raccomandazione*:: Viene visualizzato quando il sistema rileva che il throughput deve aumentare. Passa il mouse su un punto decisionale per visualizzarne i dettagli. Se si verificano più raccomandazioni con lo stesso timestamp, il punto mostra il numero di raccomandazioni e i dettagli di quella più recente.
+*Punti decisionali per l'automazione*:: Viene visualizzato quando il sistema di automazione tenta di aumentare il throughput. Passa il mouse su un punto decisionale per visualizzare i dettagli. Se l'aumento ha avuto successo, viene mostrato anche il nuovo SKU. Se non riesce, viene mostrata invece una breve spiegazione. Se si verificano più errori contemporaneamente, il punto mostra il numero di errori e i dettagli di quello più recente.
+
+
+Usa il grafico del throughput del client per:
+
+* Verifica con quale frequenza hai bisogno di un throughput maggiore
+* Scegli se la modalità automatica o quella di raccomandazione è più adatta alle tue esigenze
+* Identifica i limiti di throughput ricorrenti
+* Pianifica le future esigenze di throughput in base alla crescita dell'utilizzo nel tempo
+* Scopri perché i tentativi di automazione non sono riusciti
+
+
+
+
 [[related-information]]
 == Informazioni correlate
 
